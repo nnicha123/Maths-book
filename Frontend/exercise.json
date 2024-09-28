@@ -1,0 +1,127 @@
+[
+    {
+        "exerciseId": 1,
+        "userId": 1,
+        "exerciseNumber": 1
+    },
+    {
+        "exerciseId": 2,
+        "userId": 1,
+        "exerciseNumber": 2
+    },
+    {
+        "exerciseId": 3,
+        "userId": 1,
+        "exerciseNumber": 3
+    },
+    {
+        "exerciseId": 4,
+        "userId": 1,
+        "exerciseNumber": 4
+    },
+    {
+        "exerciseId": 5,
+        "userId": 1,
+        "exerciseNumber": 5
+    },
+    {
+        "exerciseId": 6,
+        "userId": 2,
+        "exerciseNumber": 1
+    },
+    {
+        "exerciseId": 7,
+        "userId": 2,
+        "exerciseNumber": 2
+    },
+    {
+        "exerciseId": 8,
+        "userId": 2,
+        "exerciseNumber": 3
+    },
+    {
+        "exerciseId": 9,
+        "userId": 2,
+        "exerciseNumber": 4
+    },
+    {
+        "exerciseId": 10,
+        "userId": 2,
+        "exerciseNumber": 5
+    },
+    {
+        "exerciseId": 11,
+        "userId": 3,
+        "exerciseNumber": 1
+    },
+    {
+        "exerciseId": 12,
+        "userId": 3,
+        "exerciseNumber": 2
+    },
+    {
+        "exerciseId": 13,
+        "userId": 3,
+        "exerciseNumber": 3
+    },
+    {
+        "exerciseId": 14,
+        "userId": 3,
+        "exerciseNumber": 4
+    },
+    {
+        "exerciseId": 15,
+        "userId": 3,
+        "exerciseNumber": 5
+    },
+    {
+        "exerciseId": 16,
+        "userId": 4,
+        "exerciseNumber": 1
+    },
+    {
+        "exerciseId": 17,
+        "userId": 4,
+        "exerciseNumber": 2
+    },
+    {
+        "exerciseId": 18,
+        "userId": 4,
+        "exerciseNumber": 3
+    },
+    {
+        "exerciseId": 19,
+        "userId": 4,
+        "exerciseNumber": 4
+    },
+    {
+        "exerciseId": 20,
+        "userId": 4,
+        "exerciseNumber": 5
+    },
+    {
+        "exerciseId": 21,
+        "userId": 5,
+        "exerciseNumber": 1
+    },
+    {
+        "exerciseId": 22,
+        "userId": 5,
+        "exerciseNumber": 2
+    },
+    {
+        "exerciseId": 23,
+        "userId": 5,
+        "exerciseNumber": 3
+    },
+    {
+        "exerciseId": 24,
+        "userId": 5,
+        "exerciseNumber": 4
+    },
+    {
+        "exerciseId": 25,
+        "userId": 5,
+        "exerciseNumber": 5
+    }
+]

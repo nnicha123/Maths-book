@@ -1,0 +1,42 @@
+[
+    {
+        "userId": "1",
+        "firstName": "Nicha",
+        "lastName": "Ngamtweerat",
+        "username": "nngam123",
+        "email": "nicha_nga@hotmail.com",
+        "password": "password"
+    },
+    {
+        "userId": "2",
+        "firstName": "Sophie",
+        "lastName": "Summers",
+        "username": "soph123",
+        "email": "sophie1@hotmail.com",
+        "password": "password"
+    },
+    {
+        "userId": "3",
+        "firstName": "Ryan",
+        "lastName": "Rogers",
+        "username": "rroger111",
+        "email": "rroger111@hotmail.com",
+        "password": "password"
+    },
+    {
+        "userId": "4",
+        "firstName": "Eliana",
+        "lastName": "Wang",
+        "username": "elleFour",
+        "email": "eliie@gmail.com",
+        "password": "password"
+    },
+    {
+        "userId": "5",
+        "firstName": "Olivia",
+        "lastName": "Potters",
+        "username": "olliePot",
+        "email": "ollieLand@hotmail.com",
+        "password": "password"
+    }
+]
