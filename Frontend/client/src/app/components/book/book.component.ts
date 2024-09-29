@@ -13,4 +13,11 @@ export class BookComponent {
   exerciseFourQuestions = ['100 / 5', '19 x 6', '71 x 4', '310 / 5', '81 x 8'];
   exerciseFiveQuestions = ['945 x 2', '968 / 4', '126 / 3', '56 x 11', '909 / 3'];
 
+  zIndexes = [
+    { id: 'turn-1', zIndex: 15 },
+    { id: 'turn-2', zIndex: 14 },
+    { id: 'turn-3', zIndex: 13 },
+    { id: 'turn-4', zIndex: 12 },
+  ]
+
 }

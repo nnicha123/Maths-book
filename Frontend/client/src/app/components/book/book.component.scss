@@ -54,6 +54,9 @@
     transform-style: preserve-3d;
     transform-origin: left;
     transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+    // & :hover{
+    //     border: 3px solid red;
+    // }
 }
 
 .book-page.page-right.turn {

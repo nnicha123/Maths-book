@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './rankings.component.scss'
 })
 export class RankingsComponent {
-
+  nextPage(){
+    
+  }
 }
