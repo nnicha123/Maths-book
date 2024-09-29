@@ -13,6 +13,7 @@ import { BookComponent } from './book/book.component';
 import { RouterModule } from '@angular/router';
 import { COMPONENT_ROUTES } from './component.routes';
 import { SharedModule } from '../shared/shared.module';
+import { ExerciseComponent } from './exercise/exercise.component';
 
 
 
@@ -28,6 +29,7 @@ import { SharedModule } from '../shared/shared.module';
     CongratulationsComponent,
     AchievementsComponent,
     BookComponent,
+    ExerciseComponent,
   ],
   imports: [
     CommonModule,

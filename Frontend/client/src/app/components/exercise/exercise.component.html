@@ -1,0 +1,14 @@
+<h1>Exercise {{exerciseNumber}}</h1>
+@for (question of questions; track question) {
+    <div class="question-container">
+        <span class="question">{{question}}</span>
+        <span class="question">=</span>
+        <span class="answer"><input type="number"></span>
+    </div>
+    } @empty {
+    <li>There are no questions.</li>
+}
+
+<div class="button-container">
+    <button>Submit</button>
+</div>

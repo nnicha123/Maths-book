@@ -12,12 +12,42 @@
         <div class="cover cover-left"></div>
         <div class="cover cover-right"></div>
         <div class="book-pages-container">
-            <div class="page-left" style="height: 100%;">
+            <div class="book-page page-left" style="height: 100%;">
                 <app-profile></app-profile>
 
             </div>
-            <div class="page-right">
-                <app-rankings style="width: 100%;text-align: center;"></app-rankings>
+            <div class="book-page page-right turn" id="turn-1">
+                <div class="page-front">
+                    <app-rankings></app-rankings>
+                </div>
+                <div class="page-back">
+                    <!-- <app-exercise-one></app-exercise-one> -->
+                     <app-exercise [questions]="exerciseOneQuestions"></app-exercise>
+                </div>
+            </div>
+            <div class="book-page page-right turn" id="turn-2">
+                <div class="page-front">
+                    <app-exercise [questions]="exerciseTwoQuestions" [exerciseNumber]=2></app-exercise>
+                </div>
+                <div class="page-back">
+                    <app-exercise [questions]="exerciseThreeQuestions" [exerciseNumber]="3"></app-exercise>
+                </div>
+            </div>
+            <div class="book-page page-right turn" id="turn-3">
+                <div class="page-front">
+                    <app-exercise [questions]="exerciseFourQuestions" [exerciseNumber]="4"></app-exercise>
+                </div>
+                <div class="page-back">
+                    <app-exercise [questions]="exerciseFiveQuestions" [exerciseNumber]="5"></app-exercise>
+                </div>
+            </div>
+            <div class="book-page page-right turn" id="turn-4">
+                <div class="page-front">
+                    <app-congratulations></app-congratulations>
+                </div>
+                <div class="page-back">
+                    <app-achievements></app-achievements>
+                </div>
             </div>
         </div>
     </div>
