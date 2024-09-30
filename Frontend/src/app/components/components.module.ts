@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { COMPONENT_ROUTES } from './component.routes';
 import { SharedModule } from '../shared/shared.module';
 import { ExerciseComponent } from './exercise/exercise.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -20,6 +21,7 @@ import { ExerciseComponent } from './exercise/exercise.component';
     AchievementsComponent,
     BookComponent,
     ExerciseComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,

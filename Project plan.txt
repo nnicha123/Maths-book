@@ -1,6 +1,8 @@
 30/09/2024 ++
 	- Add backend -> node/express to pull data from json file (DONE) - added simple ones (login, getusers, getSingleUser, getUserExercises, getQuestions)
-	- Add redux store to page : Store person info, currentPage number (keep track and update)
+	- Add redux store to page (DONE)
+	- Add login page (DONE)
+	- In redux: Store person info, currentPage number (keep track and update)
 		- Update z-index with the currentPage information 
 		- Also update the 'turn' class to be added 
 
