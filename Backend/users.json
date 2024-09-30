@@ -1,6 +1,6 @@
 [
     {
-        "userId": "1",
+        "userId": 1,
         "firstName": "Nicha",
         "lastName": "Ngamtweerat",
         "username": "nngam123",
@@ -8,7 +8,7 @@
         "password": "password"
     },
     {
-        "userId": "2",
+        "userId": 2,
         "firstName": "Sophie",
         "lastName": "Summers",
         "username": "soph123",
@@ -16,7 +16,7 @@
         "password": "password"
     },
     {
-        "userId": "3",
+        "userId": 3,
         "firstName": "Ryan",
         "lastName": "Rogers",
         "username": "rroger111",
@@ -24,7 +24,7 @@
         "password": "password"
     },
     {
-        "userId": "4",
+        "userId": 4,
         "firstName": "Eliana",
         "lastName": "Wang",
         "username": "elleFour",
@@ -32,7 +32,7 @@
         "password": "password"
     },
     {
-        "userId": "5",
+        "userId": 5,
         "firstName": "Olivia",
         "lastName": "Potters",
         "username": "olliePot",
