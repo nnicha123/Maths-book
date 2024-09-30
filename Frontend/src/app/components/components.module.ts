@@ -10,6 +10,7 @@ import { COMPONENT_ROUTES } from './component.routes';
 import { SharedModule } from '../shared/shared.module';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -26,6 +27,8 @@ import { LoginComponent } from './login/login.component';
   imports: [
     CommonModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(COMPONENT_ROUTES),
   ]
 })

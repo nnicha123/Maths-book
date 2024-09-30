@@ -8,24 +8,24 @@
 </head>
 
 <body>
-    <div class="book-container">
+    <form class="book-container" [formGroup]="form" (ngSubmit)="submitForm()">
         <div class="image-wrapper">
             <img src="human-icon.jpg" alt="">
         </div>
         <div class="text-container">
             <div>
-                <input type="text" placeholder="USERNAME">
+                <input type="text" placeholder="USERNAME" formControlName="username">
             </div>
             <div>
-                <input type="password" placeholder="PASSWORD">
+                <input type="password" placeholder="PASSWORD" formControlName="password">
             </div>
         </div>
         <div class="button-container">
-            <button>Login</button>
+            <button type="submit">Login</button>
             <button class="revert-style">Signup</button>
         </div>
         
-    </div>
+    </form>
 </body>
 
 </html>
