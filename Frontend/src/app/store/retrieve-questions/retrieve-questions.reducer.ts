@@ -1,7 +1,10 @@
 import { on, ReducerTypes } from "@ngrx/store";
 import { moduleEntityAdapter, ModuleEntityState } from "../definitions/store.definitions";
-import * as fromActions from './login-user.action'
+import * as fromActions from './retrieve-questions.action'
 import { User } from "../../models/User.model";
+import { getData } from "../utils";
+import { Exercise } from "../../models/Exercise.model";
+import { ModuleData } from "../../definitions/module.definition";
 
 const initialUser: User = {
     userId: 0,
@@ -12,48 +15,47 @@ const initialUser: User = {
     email: ''
 }
 
-export function loginUserReducer(): ReducerTypes<ModuleEntityState, any>[] {
+export function retrieveQuestionsReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
-        on(fromActions.loginUser, (state) => {
-            console.log(state.selectedId)
+        on(fromActions.retrieveExercises, (state) => {
+            console.log(state)
             return {
-                ...moduleEntityAdapter.addOne(
+                ...moduleEntityAdapter.updateOne(
                     {
-                        data: {
-                            id: state.selectedId || '0',
-                            user: { ...initialUser },
-                            exercises: []
-                        },
-                        isLoggedIn: false,
-                        status: 'loading'
+                        id: state.selectedId || '0',
+                        changes: {
+
+                            status: 'loading',
+                        }
+
                     },
                     state
                 )
             }
         }),
-        on(fromActions.loginUserSuccess, (state, action) => {
+        on(fromActions.retrieveExercisesSuccess, (state, action) => {
+            const data: ModuleData = getData(state);
+            const exercises: Exercise[] = action.exercises;
             return {
                 ...moduleEntityAdapter.updateOne(
                     {
                         id: state.selectedId || '0',
                         changes: {
                             data: {
-                                id: '' + action.user.userId,
-                                user: action.user,
-                                exercises: []
+                                ...data,
+                                exercises
                             },
                             isLoggedIn: true,
                             status: 'ready'
-                            
+
                         },
                     },
                     state
-                    
-                ),
-                selectedId:'' + action.user.userId,
+
+                )
             }
         }),
-        on(fromActions.loginUserError, (state, action) => {
+        on(fromActions.retrieveExercisesError, (state, action) => {
             return {
                 ...moduleEntityAdapter.updateOne(
                     {

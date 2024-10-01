@@ -1,9 +1,10 @@
 import { Action, createReducer } from "@ngrx/store";
 import { moduleEntityAdapter, ModuleEntityState } from "./definitions/store.definitions";
 import { loginUserReducer } from "./login-user/login-user.reducer";
+import { retrieveQuestionsReducer } from "./retrieve-questions/retrieve-questions.reducer";
 
 export const initialState: ModuleEntityState = moduleEntityAdapter.getInitialState({
-    selectedId: null
+  selectedId: null
 });
 
 const { selectIds, selectEntities, selectAll } = moduleEntityAdapter.getSelectors();
@@ -14,9 +15,10 @@ export const selectAllEntities = selectAll;
 
 const _reducer = createReducer(
   initialState,
-  ...loginUserReducer()
+  ...loginUserReducer(),
+  ...retrieveQuestionsReducer()
 );
 
-export function moduleReducer(state:ModuleEntityState|undefined, action:Action){
-  return _reducer(state,action)
+export function moduleReducer(state: ModuleEntityState | undefined, action: Action) {
+  return _reducer(state, action)
 };
