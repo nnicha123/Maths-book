@@ -36,6 +36,20 @@ export class RetrieveQuestionsEffect {
         )
     )
 
+    // retrieveExerciseSuccess$ = createEffect(
+    //     this.actions$.pipe(
+    //         ofType(fromActions.retrieveExercisesSuccess),
+    //         switchMap((action) => {
+    //             const exercises = action.exercises;
+    //             const exerciseIdList = exercises.map(value => value.exerciseId);
+    //             return this.exerciseService.getAllQuestionsOfExerciseIdList(exerciseIdList)
+    //             .pipe(
+    //                 map((questions:Question[]) => fromActions.retrieveQuestionsSuccess({questions}))
+    //             )
+    //         })
+    //     )
+    // )
+
 
     // retrieveExerciseSuccess$ = createEffect(
     //     this.actions$.pipe(

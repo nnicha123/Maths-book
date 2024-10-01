@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
     .get('/user/userSingle/:userId', getSingleUser)
     .get('/user/userExercise/:userId', getUserExercises)
     .get('/exercise/:exerciseId', getQuestionsFromExerciseId)
+    .post('/questions', getQuestionsFromExerciseList)
 
 app.listen(3000, () => {
     console.log('Listening at: http://localhost:3000');
@@ -68,7 +69,20 @@ function getUserExercises(req, res) {
     })
 }
 
-function getQuestionsFromExerciseId(req,res) {
+function getQuestionsFromExerciseList(req, res) {
+    fs.readFile("question.json", { encoding: "utf-8" }, (err, results) => {
+        let questionsList = JSON.parse(results);
+        if (req.body.exerciseIdList) {
+            let exerciseIds = req.body.exerciseIdList;
+            const filteredQuestions = questionsList.filter(item => exerciseIds.includes(item.exerciseId));
+            res.send(filteredQuestions);
+        } else {
+            res.status(500).send({ "message": "Cannot find questions related to exerciseId" })
+        }
+    })
+}
+
+function getQuestionsFromExerciseId(req, res) {
     fs.readFile("question.json", { encoding: "utf-8" }, (err, results) => {
         let questionsList = JSON.parse(results);
         if (req.params.exerciseId) {

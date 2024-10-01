@@ -16,6 +16,10 @@ export class ExerciseService {
         return this.httpClient.get<Exercise[]>(`${this.baseUrl}/user/userExercise/${userId}`)
     }
 
+    getAllQuestionsOfExerciseIdList(exerciseIdList: number[]): Observable<Question[]> {
+        return this.httpClient.post<Question[]>(`${this.baseUrl}/exercise`, exerciseIdList)
+    }
+
     getExerciseQuestions(exerciseId: number): Observable<Question[]> {
         return this.httpClient.get<Question[]>(`${this.baseUrl}/exercise/${exerciseId}`)
     }

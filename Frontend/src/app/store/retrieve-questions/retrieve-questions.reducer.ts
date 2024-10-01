@@ -17,14 +17,13 @@ const initialUser: User = {
 
 export function retrieveQuestionsReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
-        on(fromActions.retrieveExercises, (state) => {
+        on(fromActions.retrieveExercises, (state, action) => {
             console.log(state)
             return {
                 ...moduleEntityAdapter.updateOne(
                     {
                         id: state.selectedId || '0',
                         changes: {
-
                             status: 'loading',
                         }
 
