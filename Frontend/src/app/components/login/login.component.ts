@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.form.value)
     this.moduleFacade.loginUser({username:this.form.value.username, password:this.form.value.password})
   }
 

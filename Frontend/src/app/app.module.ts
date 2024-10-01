@@ -22,7 +22,7 @@ import { ModuleFacade } from './store/module.facade';
 import { HttpClientModule } from '@angular/common/http';
 
 const NGRX_MODULES = [
-  StoreModule.forRoot(fromStore.moduleReducer),
+  StoreModule.forRoot({ module: fromStore.moduleReducer }),
   EffectsModule.forRoot(fromStore.effects),
   StoreDevtoolsModule.instrument({ maxAge: 25, name: 'Maths Book Project Dev Tool', logOnly: !isDevMode() })
 ]
@@ -49,6 +49,6 @@ const NGRX_MODULES = [
     ...NGRX_MODULES
   ],
   providers: [ModuleFacade],
-  bootstrap: [AppComponent,]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

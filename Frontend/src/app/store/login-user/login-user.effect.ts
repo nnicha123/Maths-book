@@ -19,14 +19,10 @@ export class LoginUserEffect {
     this.actions$.pipe(
       ofType(fromActions.loginUser),
       switchMap((action) => {
-        console.log(action)
         const login = action.login;
         return this.loginService.loginUser(login)
           .pipe(
-            map((user: User) => {
-              console.log(user)
-              return fromActions.loginUserSuccess({ user })
-            })
+            map((user: User) =>  fromActions.loginUserSuccess({ user }))
           )
       })
     )
