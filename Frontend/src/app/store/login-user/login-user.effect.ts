@@ -28,11 +28,17 @@ export class LoginUserEffect {
     )
   )
 
-  finishedLogin$ = createEffect(() =>
+  loginSuccess$ = createEffect(() => 
     this.actions$.pipe(
-      ofType(fromActions.loginUserSuccess, fromActions.loginUserError),
-      tap(() => this.router.navigate(['/book']))
+      ofType(fromActions.loginUserSuccess),
+      switchMap((action) => {
+        const user = action.user;
+        localStorage.setItem('userId',''+user.userId);
+        this.router.navigate(['/book']);
+        return [];
+      })
     ),
-    { dispatch: false }
+    {dispatch:false}
   )
+
 }

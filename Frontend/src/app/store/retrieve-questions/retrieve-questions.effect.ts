@@ -3,6 +3,7 @@ import { ExerciseService } from "../../services/exercises/exercises.service";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import * as fromActions from './retrieve-questions.action';
 import * as fromLoginActions from '../login-user/login-user.action';
+import * as fromRefreshUserActions from '../refresh-user/refresh-user.action';
 import { map, switchMap } from "rxjs/operators";
 import { Exercise } from "../../models/Exercise.model";
 import { Question } from "../../models/Question.model";
@@ -29,7 +30,7 @@ export class RetrieveQuestionsEffect {
 
     loginUserSuccess$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(fromLoginActions.loginUserSuccess),
+            ofType(fromLoginActions.loginUserSuccess, fromRefreshUserActions.refreshUserSuccess),
             switchMap((action) => {
                 const userId = action.user;
                 return [fromActions.retrieveExercises(userId)]

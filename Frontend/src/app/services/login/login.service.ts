@@ -15,4 +15,8 @@ export class LoginService {
   loginUser(login: Login): Observable<User> {
     return this.httpClient.post<User>(`${this.baseUrl}/auth/login`, login)
   }
+
+  getUserById(userId:number):Observable<User>{
+    return this.httpClient.get<User>(`${this.baseUrl}/user/userSingle/${userId}`)
+  }
 }

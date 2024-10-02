@@ -4,5 +4,6 @@ import { BookComponent } from './components/book/book.component';
 
 export const APP_ROUTES: Routes = [
   { path: "login", component: LoginComponent },
-  { path: "book", component: BookComponent }
+  { path: "book", component: BookComponent },
+  { path: "**", redirectTo: '/book' },
 ];
