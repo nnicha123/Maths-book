@@ -14,7 +14,7 @@
 
         <div class="rank">
             <p>Rank</p>
-            <span *ngIf="ranking$ | async as rank" class="star-container" style="margin: 0;">
+            <span *ngIf="user.currentLevel as rank" class="star-container" style="margin: 0;">
                 @for (item of rank | starRating; track item) {
                 <i class='bx bxs-star'></i>
                 }

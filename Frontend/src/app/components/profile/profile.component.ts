@@ -11,10 +11,9 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   user$: Observable<User>;
-  ranking$: Observable<number>;
+
   constructor(private moduleFacade: ModuleFacade, private router: Router) {
     this.user$ = this.moduleFacade.user$;
-    this.ranking$ = this.moduleFacade.ranking$
   }
 
   ngOnInit(): void {

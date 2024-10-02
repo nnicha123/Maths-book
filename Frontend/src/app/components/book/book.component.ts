@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModuleFacade } from '../../store/module.facade';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-book',
@@ -7,6 +8,8 @@ import { ModuleFacade } from '../../store/module.facade';
   styleUrl: './book.component.scss'
 })
 export class BookComponent implements OnInit {
+
+  currentPage$: Observable<number>;
 
   exerciseOneQuestions = ['1 x 1', '2 x 2', '3 x 2', '2 x 4', '5 x 5'];
   exerciseTwoQuestions = ['10 / 5', '11 x 6', '7 x 4', '30 / 6', '8 x 8'];
@@ -21,11 +24,13 @@ export class BookComponent implements OnInit {
     { id: 'turn-4', zIndex: 12 },
   ]
 
-  constructor(private moduleFacade:ModuleFacade){}
+  constructor(private moduleFacade: ModuleFacade) {
+    this.currentPage$ = this.moduleFacade.currentPage$;
+  }
 
   ngOnInit(): void {
-      const userId = localStorage.getItem('userId');
-      this.moduleFacade.refreshUser(userId || '0')
+    const userId = localStorage.getItem('userId');
+    this.moduleFacade.refreshUser(userId || '0')
   }
 
 }

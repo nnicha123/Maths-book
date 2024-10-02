@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModuleFacade } from '../../store/module.facade';
 
 @Component({
   selector: 'app-rankings',
@@ -6,7 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './rankings.component.scss'
 })
 export class RankingsComponent {
-  nextPage(){
-    
+
+  constructor(private moduleFacade: ModuleFacade) { }
+
+  nextPage() {
+    this.moduleFacade.turnPageForward();
   }
 }

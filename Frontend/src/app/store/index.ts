@@ -9,6 +9,8 @@ import { LogoutUserEffect } from "./logout-user/logout-user.effect";
 import { logoutUser } from "./logout-user/logout-user.action";
 import { CalculateRankingEffect } from "./calculate-rankings/calculate-rankings.effect";
 import { calculateRanking, calculateRankingError, calculateRankingSuccess } from "./calculate-rankings/calculate-rankings.action";
+import { turnPageForward, turnPageForwardError, turnPageForwardSuccess } from "./turn-page/turn-page.action";
+import { TurnPageEffect } from "./turn-page/turn-page.effect";
 
 const actions = {
     loginUser: loginUser,
@@ -26,7 +28,10 @@ const actions = {
     retrieveQuestionsError: retrieveQuestionsError,
     calculateRanking: calculateRanking,
     calculateRankingSuccess: calculateRankingSuccess,
-    calculateRankingError: calculateRankingError
+    calculateRankingError: calculateRankingError,
+    turnPageForward: turnPageForward,
+    turnPageForwardSuccess: turnPageForwardSuccess,
+    turnPageForwardError: turnPageForwardError
 
 };
 
@@ -35,7 +40,8 @@ const effects: any[] = [
     LogoutUserEffect,
     RefreshUserEffect,
     RetrieveQuestionsEffect,
-    CalculateRankingEffect
+    CalculateRankingEffect,
+    TurnPageEffect
 ];
 
 export { actions, effects, moduleReducer }

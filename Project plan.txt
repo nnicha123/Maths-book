@@ -7,7 +7,8 @@
 		- Store for login, getexercises and questions (DONE)
 		- Store login, logout and refresh and redirect (DONE)
 
-		currentPage number (keep track and update)
+		currentPage number (keep track and update) (DONE)
+		- Also update the 'turn' class to be added - start (DONE)
+
 		- Update z-index with the currentPage information 
-		- Also update the 'turn' class to be added 
 

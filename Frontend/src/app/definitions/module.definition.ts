@@ -5,8 +5,9 @@ import { User } from "../models/User.model";
 export interface ModuleData {
     id: string;
     user: User;
-    exercises:Exercise[];
-    questions:Question[];
+    exercises: Exercise[];
+    questions: Question[];
+    currentPage: number;
 }
 
 export type ModuleStatus = 'loading' | 'ready' | 'error';

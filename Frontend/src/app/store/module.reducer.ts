@@ -5,6 +5,7 @@ import { retrieveQuestionsReducer } from "./retrieve-questions/retrieve-question
 import { refershUserReducer } from "./refresh-user/refresh-user.reducer";
 import { logoutUserReducer } from "./logout-user/logout-user.reducer";
 import { CalculateRankingReducer } from "./calculate-rankings/calculate-rankings.reducer";
+import { TurnPageReducer } from "./turn-page/turn-page.reducer";
 
 export const initialState: ModuleEntityState = moduleEntityAdapter.getInitialState({
   selectedId: null
@@ -22,7 +23,8 @@ const _reducer = createReducer(
   ...logoutUserReducer(),
   ...refershUserReducer(),
   ...retrieveQuestionsReducer(),
-  ...CalculateRankingReducer()
+  ...CalculateRankingReducer(),
+  ...TurnPageReducer()
 );
 
 export function moduleReducer(state: ModuleEntityState | undefined, action: Action) {

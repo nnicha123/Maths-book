@@ -4,6 +4,7 @@ import { Login } from "../models/Login.model";
 import * as fromLoginActions from './login-user/login-user.action';
 import * as fromRefreshActions from './refresh-user/refresh-user.action';
 import * as fromLogoutActions from './logout-user/logout-user.action';
+import * as fromTurnPageActions from './turn-page/turn-page.action';
 import { Injectable } from "@angular/core";
 import * as fromSelectors from './module.selector'
 import { Observable } from "rxjs";
@@ -21,15 +22,19 @@ export class ModuleFacade {
         this.store.dispatch(fromRefreshActions.refreshUser({ userId }))
     }
 
-    logoutUser():void {
+    logoutUser(): void {
         this.store.dispatch(fromLogoutActions.logoutUser());
+    }
+
+    turnPageForward(): void {
+        this.store.dispatch(fromTurnPageActions.turnPageForward())
     }
 
     get user$(): Observable<User> {
         return this.store.pipe(select(fromSelectors.selectUser))
     }
 
-    get ranking$():Observable<number>{
-        return this.store.pipe(select(fromSelectors.selectRanking))
+    get currentPage$(): Observable<number> {
+        return this.store.pipe(select(fromSelectors.selectCurrentPage))
     }
 }

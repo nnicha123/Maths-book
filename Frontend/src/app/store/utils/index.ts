@@ -22,5 +22,6 @@ export const initialData: ModuleData = {
     id: '0',
     user: { ...initialUser },
     exercises: [],
-    questions: []
+    questions: [],
+    currentPage: 1
 }
