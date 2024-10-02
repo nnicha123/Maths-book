@@ -1,6 +1,5 @@
 import { loginUser, loginUserError, loginUserSuccess } from "./login-user/login-user.action";
 import { LoginUserEffect } from "./login-user/login-user.effect";
-import { featureKey } from "./definitions/store.definitions";
 import { moduleReducer } from "./module.reducer";
 import { RetrieveQuestionsEffect } from "./retrieve-questions/retrieve-questions.effect";
 import { retrieveExercises, retrieveExercisesError, retrieveExercisesSuccess, retrieveQuestionsError, retrieveQuestionsSuccess, retrievQuestions } from "./retrieve-questions/retrieve-questions.action";
@@ -22,4 +21,4 @@ const effects: any[] = [
     RetrieveQuestionsEffect
 ];
 
-export { featureKey, actions, effects, moduleReducer }
+export { actions, effects, moduleReducer }
