@@ -1,26 +1,26 @@
 import { on, ReducerTypes } from "@ngrx/store";
 import { moduleEntityAdapter, ModuleEntityState } from "../definitions/store.definitions";
-import * as fromActions from './refresh-user.action'
+import * as fromActions from './calculate-rankings.action';
 import { getData, initialData } from "../utils";
 
-
-
-export function refershUserReducer(): ReducerTypes<ModuleEntityState, any>[] {
+export function CalculateRankingReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
-        on(fromActions.refreshUser, (state) => {
+        on(fromActions.calculateRanking, (state) => {
             return {
-                ...moduleEntityAdapter.addOne(
+                ...moduleEntityAdapter.updateOne(
                     {
-                        data: { ...initialData },
-                        isLoggedIn: false,
-                        status: 'loading'
+                        id: state.selectedId || '0',
+                        changes: {
+                            status:'loading'
+                        }
                     },
                     state
                 )
             }
         }),
-        on(fromActions.refreshUserSuccess, (state, action) => {
+        on(fromActions.calculateRankingSuccess, (state, action) => {
             const data = getData(state);
+            const user = data.user;
             return {
                 ...moduleEntityAdapter.updateOne(
                     {
@@ -28,8 +28,10 @@ export function refershUserReducer(): ReducerTypes<ModuleEntityState, any>[] {
                         changes: {
                             data: {
                                 ...data,
-                                id: '' + action.user.userId,
-                                user: action.user,
+                                user: {
+                                    ...user,
+                                    currentLevel: action.ranking
+                                }
                             },
                             isLoggedIn: true,
                             status: 'ready'
@@ -39,10 +41,9 @@ export function refershUserReducer(): ReducerTypes<ModuleEntityState, any>[] {
                     state
 
                 ),
-                selectedId: '' + action.user.userId,
             }
         }),
-        on(fromActions.refreshUserError, (state, action) => {
+        on(fromActions.calculateRankingError, (state, action) => {
             return {
                 ...moduleEntityAdapter.updateOne(
                     {

@@ -28,4 +28,8 @@ export class ModuleFacade {
     get user$(): Observable<User> {
         return this.store.pipe(select(fromSelectors.selectUser))
     }
+
+    get ranking$():Observable<number>{
+        return this.store.pipe(select(fromSelectors.selectRanking))
+    }
 }

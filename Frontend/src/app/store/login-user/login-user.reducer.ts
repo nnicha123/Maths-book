@@ -1,29 +1,11 @@
 import { on, ReducerTypes } from "@ngrx/store";
 import { moduleEntityAdapter, ModuleEntityState } from "../definitions/store.definitions";
 import * as fromActions from './login-user.action'
-import { User } from "../../models/User.model";
-import { getData } from "../utils";
-import { ModuleData } from "../../definitions/module.definition";
-
-const initialUser: User = {
-    userId: 0,
-    username: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    email: ''
-}
-
-const initialData: ModuleData = {
-    id: '0',
-    user: { ...initialUser },
-    exercises: [],
-    questions: []
-}
+import { getData, initialData } from "../utils";
 
 export function loginUserReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
-        on(fromActions.loginUser, (state) => {
+        on(fromActions.loginUser, (state,action) => {
             return {
                 ...moduleEntityAdapter.addOne(
                     {

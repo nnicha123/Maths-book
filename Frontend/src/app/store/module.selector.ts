@@ -9,29 +9,34 @@ export const selectModuleState = (state: { module: ModuleEntityState }) => state
 
 // Select entities from state
 export const selectAllEntities = createSelector(
-    selectModuleState,
-    fromReducer.selectAllEntities
+  selectModuleState,
+  fromReducer.selectAllEntities
 );
 
 // Select selectedId from state
 export const selectSelectedId = createSelector(
-    selectModuleState,
-    (state:ModuleEntityState) => state.selectedId
+  selectModuleState,
+  (state: ModuleEntityState) => state.selectedId
 );
 
 export const selectEntity = createSelector(
-    selectModuleState,
-    (state: ModuleEntityState) => state.entities[state.selectedId || '0']
+  selectModuleState,
+  (state: ModuleEntityState) => state.entities[state.selectedId || '0']
 )
 
 // Select the data from the selected entity
 export const selectData = createSelector(
-    selectEntity,
-    entity => entity ? entity.data : {} as ModuleData
-  );
-  
+  selectEntity,
+  entity => entity ? entity.data : {} as ModuleData
+);
+
 //   Select the user from the data
-  export const selectUser = createSelector(
-    selectData,
-    data => data ? data.user : {} as User
-  );
+export const selectUser = createSelector(
+  selectData,
+  data => data ? data.user : {} as User
+);
+
+export const selectRanking = createSelector(
+  selectUser,
+  user => user ? user.currentLevel : 0
+)

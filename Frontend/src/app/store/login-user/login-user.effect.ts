@@ -22,23 +22,23 @@ export class LoginUserEffect {
         const login = action.login;
         return this.loginService.loginUser(login)
           .pipe(
-            map((user: User) =>  fromActions.loginUserSuccess({ user }))
+            map((user: User) => fromActions.loginUserSuccess({ user }))
           )
       })
     )
   )
 
-  loginSuccess$ = createEffect(() => 
+  loginSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromActions.loginUserSuccess),
       switchMap((action) => {
         const user = action.user;
-        localStorage.setItem('userId',''+user.userId);
+        localStorage.setItem('userId', '' + user.userId);
         this.router.navigate(['/book']);
         return [];
       })
     ),
-    {dispatch:false}
+    { dispatch: false }
   )
 
 }

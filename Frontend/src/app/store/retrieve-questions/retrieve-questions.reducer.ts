@@ -1,20 +1,10 @@
 import { on, ReducerTypes } from "@ngrx/store";
 import { moduleEntityAdapter, ModuleEntityState } from "../definitions/store.definitions";
 import * as fromActions from './retrieve-questions.action'
-import { User } from "../../models/User.model";
 import { getData } from "../utils";
 import { Exercise } from "../../models/Exercise.model";
 import { ModuleData } from "../../definitions/module.definition";
 import { Question } from "../../models/Question.model";
-
-const initialUser: User = {
-    userId: 0,
-    username: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    email: ''
-}
 
 export function retrieveQuestionsReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [

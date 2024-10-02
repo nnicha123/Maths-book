@@ -9,17 +9,15 @@
     <div class="level-and-rank">
         <div class="rank">
             <p>Current Level</p>
-            <p>5</p>
+            <p>{{user.currentLevel}}</p>
         </div>
 
         <div class="rank">
             <p>Rank</p>
-            <span class="star-container" style="margin: 0;">
+            <span *ngIf="ranking$ | async as rank" class="star-container" style="margin: 0;">
+                @for (item of rank | starRating; track item) {
                 <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
+                }
             </span>
         </div>
     </div>
