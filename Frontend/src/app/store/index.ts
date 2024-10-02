@@ -3,7 +3,7 @@ import { LoginUserEffect } from "./login-user/login-user.effect";
 import { featureKey } from "./definitions/store.definitions";
 import { moduleReducer } from "./module.reducer";
 import { RetrieveQuestionsEffect } from "./retrieve-questions/retrieve-questions.effect";
-import { retrieveExercises, retrieveExercisesError, retrieveExercisesSuccess } from "./retrieve-questions/retrieve-questions.action";
+import { retrieveExercises, retrieveExercisesError, retrieveExercisesSuccess, retrieveQuestionsError, retrieveQuestionsSuccess, retrievQuestions } from "./retrieve-questions/retrieve-questions.action";
 
 const actions = {
     loginUser: loginUser,
@@ -11,7 +11,10 @@ const actions = {
     loginUserError: loginUserError,
     retrieveExercises: retrieveExercises,
     retrieveExercisesSuccess: retrieveExercisesSuccess,
-    retrieveExercisesError: retrieveExercisesError
+    retrieveExercisesError: retrieveExercisesError,
+    retrieveQuestions: retrievQuestions,
+    retrieveQuestionsSuccess: retrieveQuestionsSuccess,
+    retrieveQuestionsError: retrieveQuestionsError
 };
 
 const effects: any[] = [

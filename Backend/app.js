@@ -23,7 +23,6 @@ app.listen(3000, () => {
 
 function getUsers(req, res) {
     fs.readFile("users.json", { encoding: "utf-8" }, (err, results) => {
-        // console.log(results);
         let userList = JSON.parse(results);
         res.send(userList);
     })
@@ -72,8 +71,8 @@ function getUserExercises(req, res) {
 function getQuestionsFromExerciseList(req, res) {
     fs.readFile("question.json", { encoding: "utf-8" }, (err, results) => {
         let questionsList = JSON.parse(results);
-        if (req.body.exerciseIdList) {
-            let exerciseIds = req.body.exerciseIdList;
+        if (req.body) {
+            const exerciseIds = req.body
             const filteredQuestions = questionsList.filter(item => exerciseIds.includes(item.exerciseId));
             res.send(filteredQuestions);
         } else {

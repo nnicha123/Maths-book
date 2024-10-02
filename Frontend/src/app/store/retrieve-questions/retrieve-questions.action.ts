@@ -16,6 +16,6 @@ export const retrieveExercises = createAction(RetrieveQuestionAction.RETRIEVE_EX
 export const retrieveExercisesSuccess = createAction(RetrieveQuestionAction.RETRIEVE_EXERCISES_SUCCESS, props<{ exercises: Exercise[] }>())
 export const retrieveExercisesError = createAction(RetrieveQuestionAction.RETRIEVE_EXERCISES, props<{ error: any }>())
 
-export const retrievQuestions = createAction(RetrieveQuestionAction.RETRIEVE_QUESTIONS, props<{ exerciseId: number }>())
+export const retrievQuestions = createAction(RetrieveQuestionAction.RETRIEVE_QUESTIONS, props<{ exerciseIdList: number[] }>())
 export const retrieveQuestionsSuccess = createAction(RetrieveQuestionAction.RETRIEVE_QUESTIONS_SUCCESS, props<{ questions: Question[] }>())
 export const retrieveQuestionsError = createAction(RetrieveQuestionAction.RETRIEVE_QUESTIONS_ERROR, props<{ error: any }>())

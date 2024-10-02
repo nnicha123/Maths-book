@@ -5,6 +5,7 @@ import { User } from "../../models/User.model";
 import { getData } from "../utils";
 import { Exercise } from "../../models/Exercise.model";
 import { ModuleData } from "../../definitions/module.definition";
+import { Question } from "../../models/Question.model";
 
 const initialUser: User = {
     userId: 0,
@@ -18,7 +19,6 @@ const initialUser: User = {
 export function retrieveQuestionsReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
         on(fromActions.retrieveExercises, (state, action) => {
-            console.log(state)
             return {
                 ...moduleEntityAdapter.updateOne(
                     {
@@ -55,6 +55,56 @@ export function retrieveQuestionsReducer(): ReducerTypes<ModuleEntityState, any>
             }
         }),
         on(fromActions.retrieveExercisesError, (state, action) => {
+            return {
+                ...moduleEntityAdapter.updateOne(
+                    {
+                        id: state.selectedId || '0',
+                        changes: {
+                            status: 'error'
+                        }
+                    },
+                    state
+
+                )
+            }
+        }),
+        on(fromActions.retrievQuestions, (state, action) => {
+            return {
+                ...moduleEntityAdapter.updateOne(
+                    {
+                        id: state.selectedId || '0',
+                        changes: {
+                            status: 'loading',
+                        }
+
+                    },
+                    state
+                )
+            }
+        }),
+        on(fromActions.retrieveQuestionsSuccess, (state, action) => {
+            const data: ModuleData = getData(state);
+            const questions: Question[] = action.questions;
+            return {
+                ...moduleEntityAdapter.updateOne(
+                    {
+                        id: state.selectedId || '0',
+                        changes: {
+                            data: {
+                                ...data,
+                                questions
+                            },
+                            isLoggedIn: true,
+                            status: 'ready'
+
+                        },
+                    },
+                    state
+
+                )
+            }
+        }),
+        on(fromActions.retrieveQuestionsError, (state, action) => {
             return {
                 ...moduleEntityAdapter.updateOne(
                     {

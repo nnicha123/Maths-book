@@ -5,6 +5,7 @@ import * as fromActions from './retrieve-questions.action';
 import * as fromLoginActions from '../login-user/login-user.action';
 import { map, switchMap } from "rxjs/operators";
 import { Exercise } from "../../models/Exercise.model";
+import { Question } from "../../models/Question.model";
 
 @Injectable()
 export class RetrieveQuestionsEffect {
@@ -36,32 +37,26 @@ export class RetrieveQuestionsEffect {
         )
     )
 
-    // retrieveExerciseSuccess$ = createEffect(
-    //     this.actions$.pipe(
-    //         ofType(fromActions.retrieveExercisesSuccess),
-    //         switchMap((action) => {
-    //             const exercises = action.exercises;
-    //             const exerciseIdList = exercises.map(value => value.exerciseId);
-    //             return this.exerciseService.getAllQuestionsOfExerciseIdList(exerciseIdList)
-    //             .pipe(
-    //                 map((questions:Question[]) => fromActions.retrieveQuestionsSuccess({questions}))
-    //             )
-    //         })
-    //     )
-    // )
+    retrieveExerciseSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromActions.retrieveExercisesSuccess),
+            switchMap((action) => {
+                const exercises = action.exercises;
+                const exerciseIdList = exercises.map(value => value.exerciseId);
+                return [fromActions.retrievQuestions({ exerciseIdList })]
+            })
+        )
+    )
 
+    retrieveQuestions = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromActions.retrievQuestions),
+            switchMap((action) => {
+                const exerciseIdList = action.exerciseIdList;
+                return this.exerciseService.getAllQuestionsOfExerciseIdList(exerciseIdList)
+                    .pipe(map((questions: Question[]) => fromActions.retrieveQuestionsSuccess({ questions })))
+            })
+        )
+    )
 
-    // retrieveExerciseSuccess$ = createEffect(
-    //     this.actions$.pipe(
-    //         ofType(fromActions.retrieveExercisesSuccess),
-    //         switchMap((action) => {
-    //             const resultingActions = []
-    //             const exercises = action.exercises;
-    //             exercises.forEach(exercise => {
-    //                 const exerciseId = exercise.exerciseId;
-    //                 resultingActions.push(fromActions.retrievQuestions(exerciseId))
-    //             })
-    //         })
-    //     )
-    // )
 }
