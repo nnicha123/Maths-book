@@ -10,8 +10,12 @@ export class AchievementsComponent {
 
   constructor(private moduleFacade: ModuleFacade) { }
 
-  logout(){
+  logout() {
     this.moduleFacade.logoutUser();
+  }
+
+  turnAllPagesBackward() {
+    this.moduleFacade.turnAllPagesBackward();
   }
 
 }

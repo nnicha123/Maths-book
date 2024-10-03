@@ -19,7 +19,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  turnAllPagesForward(){
+    this.moduleFacade.turnAllPagesForward();
+  }
 
   logOutUser() {
     // Temporary logout

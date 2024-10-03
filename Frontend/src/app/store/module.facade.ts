@@ -35,6 +35,14 @@ export class ModuleFacade {
         this.store.dispatch(fromTurnPageActions.turnPageBackward());
     }
 
+    turnAllPagesBackward():void{
+        this.store.dispatch(fromTurnPageActions.turnAllPagesBackward());
+    }
+
+    turnAllPagesForward():void{
+        this.store.dispatch(fromTurnPageActions.turnAllPagesForward());
+    }
+
     get user$(): Observable<User> {
         return this.store.pipe(select(fromSelectors.selectUser));
     }

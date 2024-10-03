@@ -8,7 +8,7 @@ import { Question } from "../../models/Question.model";
 
 export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
-        on(fromActions.turnPageForward, fromActions.turnPageBackward, (state, action) => {
+        on((fromActions.turnPageForward, fromActions.turnPageBackward), (state, action) => {
             return {
                 ...moduleEntityAdapter.updateOne(
                     {
@@ -58,7 +58,7 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
             const data: ModuleData = getData(state);
             let pages = data.pages;
             const nextPage: number = data.currentPage - 1;
-            pages[nextPage].zIndex = pages[nextPage + 1].zIndex + 1;
+            pages[data.currentPage - 1].zIndex = pages[data.currentPage].zIndex + 1;
 
             return {
                 ...moduleEntityAdapter.updateOne(
@@ -80,7 +80,7 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
                 )
             }
         }),
-        on(fromActions.turnPageForwardError, fromActions.turnPageBackwardError, (state, action) => {
+        on((fromActions.turnPageForwardError, fromActions.turnPageBackwardError), (state, action) => {
             return {
                 ...moduleEntityAdapter.updateOne(
                     {

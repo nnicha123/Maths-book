@@ -9,7 +9,7 @@ import { LogoutUserEffect } from "./logout-user/logout-user.effect";
 import { logoutUser } from "./logout-user/logout-user.action";
 import { CalculateRankingEffect } from "./calculate-rankings/calculate-rankings.effect";
 import { calculateRanking, calculateRankingError, calculateRankingSuccess } from "./calculate-rankings/calculate-rankings.action";
-import { turnPageBackward, turnPageBackwardError, turnPageBackwardSuccess, turnPageForward, turnPageForwardError, turnPageForwardSuccess } from "./turn-page/turn-page.action";
+import { turnAllPagesBackward, turnAllPagesBackwardSuccess, turnAllPagesForward, turnAllPagesForwardSuccess, turnPageBackward, turnPageBackwardError, turnPageBackwardSuccess, turnPageForward, turnPageForwardError, turnPageForwardSuccess } from "./turn-page/turn-page.action";
 import { TurnPageEffect } from "./turn-page/turn-page.effect";
 
 const actions = {
@@ -34,8 +34,11 @@ const actions = {
     turnPageForwardError: turnPageForwardError,
     turnPageBackward: turnPageBackward,
     turnPageBackwardSuccess: turnPageBackwardSuccess,
-    turnPageBackwardError: turnPageBackwardError
-
+    turnPageBackwardError: turnPageBackwardError,
+    turnAllPagesBackward: turnAllPagesBackward,
+    turnAllPagesBackwardSuccess: turnAllPagesBackwardSuccess,
+    turnAllPagesForward: turnAllPagesForward,
+    turnAllPagesForwardSuccess: turnAllPagesForwardSuccess
 };
 
 const effects: any[] = [

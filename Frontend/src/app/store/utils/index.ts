@@ -51,6 +51,12 @@ const pages: Page[] = [
         zIndex: 11,
         isCurrentPage: false
     },
+    {
+        pageId: 'turn-6',
+        pageNumber: 6,
+        zIndex: 10,
+        isCurrentPage: false
+    },
 ]
 
 export const initialData: ModuleData = {

@@ -8,6 +8,14 @@ enum TurnPageActions {
     TURN_PAGE_BACKWARD = '[Turn Page] Turn Page Backward',
     TURN_PAGE_BACKWARD_SUCCESS = '[Turn Page] Turn Page Backward Success',
     TURN_PAGE_BACKWARD_ERROR = '[Turn Page] Turn Page Backward Error',
+
+    TURN_ALL_PAGES_BACKWARD = '[Turn Page] Turn All Pages Backward',
+    TURN_ALL_PAGES_BACKWARD_SUCCESS = '[Turn Page] Turn All Pages Backward Success',
+    TURN_ALL_PAGES_BACKWARD_ERROR = '[Turn Page] Turn All Pages Backward Error',
+
+    TURN_ALL_PAGES_FORWARD = '[Turn Page] Turn All Pages Forward',
+    TURN_ALL_PAGES_FORWARD_SUCCESS = '[Turn Page] Turn All Pages Forward Success',
+    TURN_ALL_PAGES_FORWARD_ERROR = '[Turn Page] Turn All Pages Forward Error',
 }
 
 export const turnPageForward = createAction(
@@ -36,3 +44,28 @@ export const turnPageBackwardError = createAction(
     props<{ error: any }>()
 );
 
+export const turnAllPagesBackward = createAction(
+    TurnPageActions.TURN_ALL_PAGES_BACKWARD
+);
+
+export const turnAllPagesBackwardSuccess = createAction(
+    TurnPageActions.TURN_ALL_PAGES_BACKWARD_SUCCESS
+);
+
+export const turnAllPagesBackwardError = createAction(
+    TurnPageActions.TURN_ALL_PAGES_BACKWARD_ERROR,
+    props<{ error: any }>()
+)
+
+export const turnAllPagesForward = createAction(
+    TurnPageActions.TURN_ALL_PAGES_FORWARD
+);
+
+export const turnAllPagesForwardSuccess = createAction(
+    TurnPageActions.TURN_ALL_PAGES_FORWARD_SUCCESS
+);
+
+export const turnAllPagesForwardError = createAction(
+    TurnPageActions.TURN_ALL_PAGES_FORWARD_ERROR,
+    props<{ error: any }>()
+);

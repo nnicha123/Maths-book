@@ -24,4 +24,32 @@ export class TurnPageEffect {
             })
         )
     )
+
+    turnAllPagesBackward$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(fromActions.turnAllPagesBackward),
+            switchMap(() => {
+                const returnedActions:any[] = [];
+                for(let i=0;i<4;i++){
+                    returnedActions.push(fromActions.turnPageBackward());
+                }
+                returnedActions.push(fromActions.turnAllPagesBackwardSuccess());
+                return returnedActions
+            })
+        )
+    )
+
+    turnAllPagesForward$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(fromActions.turnAllPagesForward),
+            switchMap(() => {
+                const returnedActions:any[] = [];
+                for(let i=0;i<4;i++){
+                    returnedActions.push(fromActions.turnPageForward());
+                }
+                returnedActions.push(fromActions.turnAllPagesForwardSuccess());
+                return returnedActions
+            })
+        )
+    )
 }
