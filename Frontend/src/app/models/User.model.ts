@@ -6,6 +6,6 @@ export interface User {
     username: string;
     email: string;
     password: string;
-    currentLevel:number;
-    
+    currentLevel: number;
+    image: string;
 }

@@ -1,15 +1,13 @@
-<div class="header-wrapper">
-    <h2>Nicha Ngamtweerat</h2>
+<div class="header-wrapper" *ngIf="user$ | async as user">
+    <h2>{{user.firstName}} {{user.lastName}}</h2>
     <span class="star-container" style="margin: 0;">
-        <i class='bx bxs-star'></i>
-        <i class='bx bxs-star'></i>
-        <i class='bx bxs-star'></i>
-        <i class='bx bxs-star'></i>
-        <i class='bx bxs-star'></i>
+        @for (item of user.currentLevel | starRating; track item) {
+            <i class='bx bxs-star'></i>
+        }
     </span>
 
     <div class="image-wrapper">
-        <img src="me.png" alt="">
+        <img [src]="user.image" alt="">
     </div>
 </div>
 <div class="checkpoint-container success">

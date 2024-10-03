@@ -5,7 +5,8 @@
         "lastName": "Ngamtweerat",
         "username": "nngam123",
         "email": "nicha_nga@hotmail.com",
-        "password": "password"
+        "password": "password",
+        "image":"me.png"
     },
     {
         "userId": 2,
@@ -13,7 +14,8 @@
         "lastName": "Summers",
         "username": "soph123",
         "email": "sophie1@hotmail.com",
-        "password": "password"
+        "password": "password",
+        "image":"woman1.jpg"
     },
     {
         "userId": 3,
@@ -21,7 +23,8 @@
         "lastName": "Rogers",
         "username": "rroger111",
         "email": "rroger111@hotmail.com",
-        "password": "password"
+        "password": "password",
+        "image":"man1.jpg"
     },
     {
         "userId": 4,
@@ -29,7 +32,8 @@
         "lastName": "Wang",
         "username": "elleFour",
         "email": "eliie@gmail.com",
-        "password": "password"
+        "password": "password",
+        "image":"woman2.jpg"
     },
     {
         "userId": 5,
@@ -37,6 +41,7 @@
         "lastName": "Potters",
         "username": "olliePot",
         "email": "ollieLand@hotmail.com",
-        "password": "password"
+        "password": "password",
+        "image":"woman3.jpg"
     }
 ]

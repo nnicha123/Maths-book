@@ -16,7 +16,8 @@ const initialUser: User = {
     firstName: '',
     lastName: '',
     email: '',
-    currentLevel: 0
+    currentLevel: 0,
+    image: ''
 }
 
 

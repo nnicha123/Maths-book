@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ModuleFacade } from '../../store/module.facade';
+import { Observable } from 'rxjs';
+import { User } from '../../models/User.model';
 
 @Component({
   selector: 'app-achievements',
@@ -8,8 +10,11 @@ import { ModuleFacade } from '../../store/module.facade';
 })
 export class AchievementsComponent {
   @Input() disabled: boolean = false;
+  user$: Observable<User>;
 
-  constructor(private moduleFacade: ModuleFacade) { }
+  constructor(private moduleFacade: ModuleFacade) {
+    this.user$ = this.moduleFacade.user$;
+  }
 
   logout() {
     this.moduleFacade.logoutUser();

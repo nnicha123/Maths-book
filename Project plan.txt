@@ -11,7 +11,11 @@
 		- Also update the 'turn' class to be added - start (DONE)
 		- Update z-index with the currentPage information - pages turn now all working! (DONE)
 	- Add loading -> disable buttons and add opacity while still loading (DONE)
-	- Setup forms for exercises 
-	- Figure out how to store images as base64 information
-	- Add this information to json file
+	- Figure out how to store images as base64 information -> maybe for later, for now just store images in public folder and refer only name in json  files (DONE)
+	- Update achievements page to have information from user (DONE)
+	- Start setting up forms for exercises
+
+4/10/2024
+	- Continue setting up forms for exercises 
+
 

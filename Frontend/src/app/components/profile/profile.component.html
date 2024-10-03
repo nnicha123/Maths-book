@@ -1,6 +1,6 @@
 <div *ngIf="user$ | async as user">
     <div class="image-wrapper">
-        <img src="me.png" alt="">
+        <img [src]="user.image" alt="">
     </div>
     <div class="text-container">
         <h3>{{user.firstName}} {{user.lastName}}</h3>
@@ -14,8 +14,8 @@
 
         <div class="rank">
             <p>Rank</p>
-            <span *ngIf="user.currentLevel as rank" class="star-container" style="margin: 0;">
-                @for (item of rank | starRating; track item) {
+            <span class="star-container" style="margin: 0;">
+                @for (item of user.currentLevel | starRating; track item) {
                 <i class='bx bxs-star'></i>
                 }
             </span>
