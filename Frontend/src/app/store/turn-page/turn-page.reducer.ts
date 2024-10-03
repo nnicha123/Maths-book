@@ -8,7 +8,7 @@ import { Question } from "../../models/Question.model";
 
 export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
-        on(fromActions.turnPageForward, (state, action) => {
+        on(fromActions.turnPageForward, fromActions.turnPageBackward, (state, action) => {
             return {
                 ...moduleEntityAdapter.updateOne(
                     {
@@ -25,7 +25,13 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
             const data: ModuleData = getData(state);
             let pages = data.pages;
             const nextPage: number = data.currentPage + 1;
+
             if (nextPage > 1) {
+                // Reset isCurrentPage
+                pages[nextPage - 2].isCurrentPage = false;
+                pages[nextPage - 1].isCurrentPage = true;
+
+                // Set z-index
                 pages[nextPage - 1].zIndex = pages[nextPage - 2].zIndex + 1;
             }
             return {
@@ -48,7 +54,33 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
                 )
             }
         }),
-        on(fromActions.turnPageForwardError, (state, action) => {
+        on(fromActions.turnPageBackwardSuccess, (state) => {
+            const data: ModuleData = getData(state);
+            let pages = data.pages;
+            const nextPage: number = data.currentPage - 1;
+            pages[nextPage].zIndex = pages[nextPage + 1].zIndex + 1;
+
+            return {
+                ...moduleEntityAdapter.updateOne(
+                    {
+                        id: state.selectedId || '0',
+                        changes: {
+                            data: {
+                                ...data,
+                                currentPage: nextPage,
+                                pages: pages
+                            },
+                            isLoggedIn: true,
+                            status: 'ready'
+
+                        },
+                    },
+                    state
+
+                )
+            }
+        }),
+        on(fromActions.turnPageForwardError, fromActions.turnPageBackwardError, (state, action) => {
             return {
                 ...moduleEntityAdapter.updateOne(
                     {

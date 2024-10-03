@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModuleFacade } from '../../store/module.facade';
 
 @Component({
   selector: 'app-achievements',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './achievements.component.scss'
 })
 export class AchievementsComponent {
+
+  constructor(private moduleFacade: ModuleFacade) { }
+
+  logout(){
+    this.moduleFacade.logoutUser();
+  }
 
 }

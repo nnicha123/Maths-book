@@ -11,7 +11,8 @@ export class StarRatingPipe implements PipeTransform {
 
   fullStars(ranking: number): number[] {
     const totalFullStars = Math.floor(ranking);
-    return Array(totalFullStars).fill(0);
+    const newArr = Array.from({ length: totalFullStars }, (_, i) => i);
+    return newArr;
   }
 
   emptyStars(ranking: number): number[] {

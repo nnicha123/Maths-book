@@ -10,8 +10,17 @@ export class TurnPageEffect {
     turnPageForward$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromActions.turnPageForward),
-            switchMap((action) => {
+            switchMap(() => {
                 return [fromActions.turnPageForwardSuccess()]
+            })
+        )
+    )
+
+    turnPageBackward$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromActions.turnPageBackward),
+            switchMap(() => {
+                return [fromActions.turnPageBackwardSuccess()]
             })
         )
     )
