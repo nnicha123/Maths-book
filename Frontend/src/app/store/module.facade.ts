@@ -28,18 +28,18 @@ export class ModuleFacade {
     }
 
     turnPageForward(): void {
-        this.store.dispatch(fromTurnPageActions.turnPageForward());
+        this.store.dispatch(fromTurnPageActions.turnPageForward({ isTurnAll: false }));
     }
 
     turnPageBackward(): void {
-        this.store.dispatch(fromTurnPageActions.turnPageBackward());
+        this.store.dispatch(fromTurnPageActions.turnPageBackward({ isTurnAll: false }));
     }
 
-    turnAllPagesBackward():void{
+    turnAllPagesBackward(): void {
         this.store.dispatch(fromTurnPageActions.turnAllPagesBackward());
     }
 
-    turnAllPagesForward():void{
+    turnAllPagesForward(): void {
         this.store.dispatch(fromTurnPageActions.turnAllPagesForward());
     }
 
@@ -53,5 +53,9 @@ export class ModuleFacade {
 
     get pagesInformation$(): Observable<Page[]> {
         return this.store.pipe(select(fromSelectors.selectPagesInformation));
+    }
+
+    get isLoading$(): Observable<boolean> {
+        return this.store.pipe(select(fromSelectors.selectIsLoading));
     }
 }

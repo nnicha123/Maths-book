@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModuleFacade } from '../../store/module.facade';
 
 @Component({
@@ -7,6 +7,7 @@ import { ModuleFacade } from '../../store/module.facade';
   styleUrl: './achievements.component.scss'
 })
 export class AchievementsComponent {
+  @Input() disabled: boolean = false;
 
   constructor(private moduleFacade: ModuleFacade) { }
 

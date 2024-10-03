@@ -33,6 +33,6 @@
     <span>-</span>
 </div>
 <div class="button-container">
-    <button (click)="logout()">Logout</button>
-    <button class="revert-style" (click)="turnAllPagesBackward()">Profile</button>
+    <button [disabled]="disabled" (click)="logout()">Logout</button>
+    <button [disabled]="disabled" class="revert-style" (click)="turnAllPagesBackward()">Profile</button>
 </div>

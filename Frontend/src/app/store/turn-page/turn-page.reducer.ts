@@ -2,13 +2,11 @@ import { on, ReducerTypes } from "@ngrx/store";
 import { moduleEntityAdapter, ModuleEntityState } from "../definitions/store.definitions";
 import * as fromActions from './turn-page.action';
 import { getData } from "../utils";
-import { Exercise } from "../../models/Exercise.model";
-import { ModuleData } from "../../definitions/module.definition";
-import { Question } from "../../models/Question.model";
+import { ModuleData, ModuleStatus } from "../../definitions/module.definition";
 
 export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
-        on((fromActions.turnPageForward, fromActions.turnPageBackward), (state, action) => {
+        on(fromActions.turnPageForward, fromActions.turnPageBackward, fromActions.turnAllPagesBackward, fromActions.turnAllPagesForward, (state, action) => {
             return {
                 ...moduleEntityAdapter.updateOne(
                     {
@@ -21,7 +19,7 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
                 )
             }
         }),
-        on(fromActions.turnPageForwardSuccess, (state) => {
+        on(fromActions.turnPageForwardSuccess, (state, action) => {
             const data: ModuleData = getData(state);
             let pages = data.pages;
             const nextPage: number = data.currentPage + 1;
@@ -34,6 +32,8 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
                 // Set z-index
                 pages[nextPage - 1].zIndex = pages[nextPage - 2].zIndex + 1;
             }
+
+            const status: ModuleStatus = action.isTurnAll ? 'loading' : 'ready';
             return {
                 ...moduleEntityAdapter.updateOne(
                     {
@@ -45,7 +45,7 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
                                 pages: pages
                             },
                             isLoggedIn: true,
-                            status: 'ready'
+                            status: status
 
                         },
                     },
@@ -54,11 +54,13 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
                 )
             }
         }),
-        on(fromActions.turnPageBackwardSuccess, (state) => {
+        on(fromActions.turnPageBackwardSuccess, (state, action) => {
             const data: ModuleData = getData(state);
             let pages = data.pages;
             const nextPage: number = data.currentPage - 1;
             pages[data.currentPage - 1].zIndex = pages[data.currentPage].zIndex + 1;
+
+            const status: ModuleStatus = action.isTurnAll ? 'loading' : 'ready';
 
             return {
                 ...moduleEntityAdapter.updateOne(
@@ -71,12 +73,25 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
                                 pages: pages
                             },
                             isLoggedIn: true,
-                            status: 'ready'
+                            status: status
 
                         },
                     },
                     state
 
+                )
+            }
+        }),
+        on(fromActions.turnAllPagesBackwardSuccess, fromActions.turnAllPagesForwardSuccess, (state, action) => {
+            return {
+                ...moduleEntityAdapter.updateOne(
+                    {
+                        id: state.selectedId || '0',
+                        changes: {
+                            status: 'ready'
+                        }
+                    },
+                    state
                 )
             }
         }),

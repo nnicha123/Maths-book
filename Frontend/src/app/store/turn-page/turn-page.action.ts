@@ -19,11 +19,14 @@ enum TurnPageActions {
 }
 
 export const turnPageForward = createAction(
-    TurnPageActions.TURN_PAGE_FORWARD
+    TurnPageActions.TURN_PAGE_FORWARD,
+    props<{ isTurnAll: boolean }>()
+
 );
 
 export const turnPageForwardSuccess = createAction(
-    TurnPageActions.TURN_PAGE_FORWARD_SUCCESS
+    TurnPageActions.TURN_PAGE_FORWARD_SUCCESS,
+    props<{ isTurnAll: boolean }>()
 );
 
 export const turnPageForwardError = createAction(
@@ -32,11 +35,13 @@ export const turnPageForwardError = createAction(
 );
 
 export const turnPageBackward = createAction(
-    TurnPageActions.TURN_PAGE_BACKWARD
+    TurnPageActions.TURN_PAGE_BACKWARD,
+    props<{ isTurnAll: boolean }>()
 );
 
 export const turnPageBackwardSuccess = createAction(
-    TurnPageActions.TURN_PAGE_BACKWARD_SUCCESS
+    TurnPageActions.TURN_PAGE_BACKWARD_SUCCESS,
+    props<{ isTurnAll: boolean }>()
 );
 
 export const turnPageBackwardError = createAction(
@@ -45,7 +50,7 @@ export const turnPageBackwardError = createAction(
 );
 
 export const turnAllPagesBackward = createAction(
-    TurnPageActions.TURN_ALL_PAGES_BACKWARD
+    TurnPageActions.TURN_ALL_PAGES_BACKWARD,
 );
 
 export const turnAllPagesBackwardSuccess = createAction(

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable, pipe, take, tap } from 'rxjs';
 import { User } from '../../models/User.model';
 import { ModuleFacade } from '../../store/module.facade';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements OnInit {
+  @Input() disabled: boolean = false;
   user$: Observable<User>;
 
   constructor(private moduleFacade: ModuleFacade, private router: Router) {

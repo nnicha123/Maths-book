@@ -11,41 +11,50 @@
     <div class="book-container" *ngIf="pagesInformation$ | async as pages">
         <div class="cover cover-left"></div>
         <div class="cover cover-right"></div>
-        <div class="book-pages-container" *ngIf="currentPage$ | async as currentPage">
+        <div class="book-pages-container" *ngIf="currentPage$ | async as currentPage"
+            [ngClass]="{'disable': (isLoading$ | async)}">
             <div class="book-page page-left" style="height: 100%;">
-                <app-profile></app-profile>
-
+                <app-profile [disabled]="(isLoading$ | async) || false"></app-profile>
             </div>
-            <div class="book-page page-right" id="turn-1" [ngClass]="{ 'turn': currentPage >= 2}" [ngStyle]="{'z-index': pages[0].zIndex}">
+            <div class="book-page page-right" id="turn-1" [ngClass]="{ 'turn': currentPage >= 2}"
+                [ngStyle]="{'z-index': pages[0].zIndex}">
                 <div class="page-front">
-                    <app-rankings></app-rankings>
+                    <app-rankings [disabled]="(isLoading$ | async) || false"></app-rankings>
                 </div>
                 <div class="page-back">
-                     <app-exercise [questions]="exerciseOneQuestions"></app-exercise>
+                    <app-exercise [disabled]="(isLoading$ | async) || false"
+                        [questions]="exerciseOneQuestions"></app-exercise>
                 </div>
             </div>
-            <div class="book-page page-right" id="turn-2" [ngClass]="{ 'turn': currentPage >= 3}"  [ngStyle]="{'z-index': pages[1].zIndex}">
+            <div class="book-page page-right" id="turn-2" [ngClass]="{ 'turn': currentPage >= 3}"
+                [ngStyle]="{'z-index': pages[1].zIndex}">
                 <div class="page-front">
-                    <app-exercise [questions]="exerciseTwoQuestions" [exerciseNumber]=2></app-exercise>
+                    <app-exercise [disabled]="(isLoading$ | async) || false" [questions]="exerciseTwoQuestions"
+                        [exerciseNumber]=2></app-exercise>
                 </div>
                 <div class="page-back">
-                    <app-exercise [questions]="exerciseThreeQuestions" [exerciseNumber]="3"></app-exercise>
+                    <app-exercise [disabled]="(isLoading$ | async) || false" [questions]="exerciseThreeQuestions"
+                        [exerciseNumber]="3"></app-exercise>
                 </div>
             </div>
-            <div class="book-page page-right" id="turn-3" [ngClass]="{ 'turn': currentPage >= 4}" [ngStyle]="{'z-index': pages[2].zIndex}">
+            <div class="book-page page-right" id="turn-3" [ngClass]="{ 'turn': currentPage >= 4}"
+                [ngStyle]="{'z-index': pages[2].zIndex}">
                 <div class="page-front">
-                    <app-exercise [questions]="exerciseFourQuestions" [exerciseNumber]="4"></app-exercise>
+                    <app-exercise [disabled]="(isLoading$ | async) || false" [questions]="exerciseFourQuestions"
+                        [exerciseNumber]="4"></app-exercise>
                 </div>
                 <div class="page-back">
-                    <app-exercise [questions]="exerciseFiveQuestions" [exerciseNumber]="5"></app-exercise>
+                    <app-exercise [disabled]="(isLoading$ | async) || false" [questions]="exerciseFiveQuestions"
+                        [exerciseNumber]="5"></app-exercise>
                 </div>
             </div>
-            <div class="book-page page-right" id="turn-4" [ngClass]="{ 'turn': currentPage >= 5}" [ngStyle]="{'z-index': pages[3].zIndex}">
+            <div class="book-page page-right" id="turn-4" [ngClass]="{ 'turn': currentPage >= 5}"
+                [ngStyle]="{'z-index': pages[3].zIndex}">
                 <div class="page-front">
-                    <app-congratulations></app-congratulations>
+                    <app-congratulations [disabled]="(isLoading$ | async) || false"></app-congratulations>
                 </div>
                 <div class="page-back">
-                    <app-achievements></app-achievements>
+                    <app-achievements [disabled]="(isLoading$ | async) || false"></app-achievements>
                 </div>
             </div>
         </div>

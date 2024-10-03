@@ -30,6 +30,10 @@
     width: 100%;
     height: 100%;
     perspective: 250;
+    
+    &.disable {
+        opacity: 0.5;
+    }
 }
 
 .book-pages-container .book-page {

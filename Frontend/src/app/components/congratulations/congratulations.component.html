@@ -7,5 +7,5 @@
     <h3>You are now an Expert!</h3>
 </div>
 <div class="button-container">
-    <button (click)="nextPage()">Achievements</button>
+    <button [disabled]="disabled" (click)="nextPage()">Achievements</button>
 </div>

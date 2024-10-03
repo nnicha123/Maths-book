@@ -7,6 +7,7 @@ import { ModuleFacade } from '../../store/module.facade';
   styleUrl: './exercise.component.scss'
 })
 export class ExerciseComponent {
+  @Input() disabled: boolean = false;
   @Input() questions: string[] = ['1 x 1', '2 x 2', '3 x 2', '2 x 4', '5 x 5'];
   @Input() newQuestions: any = [
     { key: "1", value: "1 x 1" },

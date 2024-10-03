@@ -12,6 +12,7 @@ export class BookComponent implements OnInit {
 
   currentPage$: Observable<number>;
   pagesInformation$: Observable<Page[]>;
+  isLoading$: Observable<boolean>;
 
   exerciseOneQuestions = ['1 x 1', '2 x 2', '3 x 2', '2 x 4', '5 x 5'];
   exerciseTwoQuestions = ['10 / 5', '11 x 6', '7 x 4', '30 / 6', '8 x 8'];
@@ -22,6 +23,7 @@ export class BookComponent implements OnInit {
   constructor(private moduleFacade: ModuleFacade) {
     this.currentPage$ = this.moduleFacade.currentPage$;
     this.pagesInformation$ = this.moduleFacade.pagesInformation$;
+    this.isLoading$ = this.moduleFacade.isLoading$;
   }
 
   ngOnInit(): void {

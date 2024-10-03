@@ -50,3 +50,13 @@ export const selectPagesInformation = createSelector(
   selectData,
   data => data ? data.pages : []
 );
+
+export const selectStatus = createSelector(
+  selectEntity,
+  entity => entity ? entity.status : 'error'
+)
+
+export const selectIsLoading = createSelector(
+  selectStatus,
+  status => status ? status === 'loading' : false
+)

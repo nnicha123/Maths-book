@@ -11,8 +11,9 @@ export class TurnPageEffect {
     turnPageForward$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromActions.turnPageForward),
-            switchMap(() => {
-                return [fromActions.turnPageForwardSuccess()]
+            switchMap((action) => {
+                const isTurnAll = action.isTurnAll;
+                return [fromActions.turnPageForwardSuccess({ isTurnAll })]
             })
         )
     )
@@ -20,8 +21,9 @@ export class TurnPageEffect {
     turnPageBackward$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromActions.turnPageBackward),
-            switchMap(() => {
-                return [fromActions.turnPageBackwardSuccess()]
+            switchMap((action) => {
+                const isTurnAll = action.isTurnAll;
+                return [fromActions.turnPageBackwardSuccess({ isTurnAll })]
             })
         )
     )
@@ -33,10 +35,10 @@ export class TurnPageEffect {
                 const returnedActions: Array<Observable<Action>> = [];
                 for (let i = 0; i < 4; i++) {
                     returnedActions.push(
-                        of(fromActions.turnPageBackward()).pipe(delay(1000))
+                        of(fromActions.turnPageBackward({ isTurnAll: true })).pipe(delay(1000))
                     );
                 }
-                returnedActions.push(of(fromActions.turnAllPagesBackwardSuccess()));
+                returnedActions.push(of(fromActions.turnAllPagesBackwardSuccess()).pipe(delay(1000)));
                 return returnedActions
             }),
             // To ensure executed sequentially
@@ -51,10 +53,10 @@ export class TurnPageEffect {
                 const returnedActions: Array<Observable<Action>> = [];
                 for (let i = 0; i < 4; i++) {
                     returnedActions.push(
-                        of(fromActions.turnPageForward()).pipe(delay(1000))
+                        of(fromActions.turnPageForward({ isTurnAll: true })).pipe(delay(1000))
                     );
                 }
-                returnedActions.push(of(fromActions.turnAllPagesForwardSuccess()));
+                returnedActions.push(of(fromActions.turnAllPagesForwardSuccess()).pipe(delay(1000)));
                 return returnedActions
             }),
             // To ensure executed sequentially
