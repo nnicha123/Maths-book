@@ -1,12 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModuleFacade } from '../../store/module.facade';
+import { Observable } from 'rxjs';
+import { Question } from '../../models/Question.model';
 
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
   styleUrl: './exercise.component.scss'
 })
-export class ExerciseComponent {
+export class ExerciseComponent implements OnInit {
   @Input() disabled: boolean = false;
   @Input() questions: string[] = ['1 x 1', '2 x 2', '3 x 2', '2 x 4', '5 x 5'];
   @Input() newQuestions: any = [
@@ -17,8 +19,14 @@ export class ExerciseComponent {
     { key: "5", value: "5 x 5" },
   ]
   @Input() exerciseNumber: number = 1;
+  specificExerciseQuestions$: Observable<Question[]> | undefined;
 
   constructor(private moduleFacade: ModuleFacade) { }
+
+  ngOnInit(): void {
+    this.specificExerciseQuestions$ = this.moduleFacade.questionsOfExercise(this.exerciseNumber);
+
+  }
 
   navigatePage() {
     if (this.exerciseNumber % 2 == 0) {

@@ -10,6 +10,7 @@ import * as fromSelectors from './module.selector'
 import { Observable } from "rxjs";
 import { User } from "../models/User.model";
 import { Page } from "../models/Page.model";
+import { Question } from "../models/Question.model";
 
 @Injectable()
 export class ModuleFacade {
@@ -41,6 +42,12 @@ export class ModuleFacade {
 
     turnAllPagesForward(): void {
         this.store.dispatch(fromTurnPageActions.turnAllPagesForward());
+    }
+
+    questionsOfExercise(exerciseNumber: number): Observable<Question[]> {
+        return this.store.pipe(
+            select(fromSelectors.selectQuestionsFromExercise(exerciseNumber))
+        );
     }
 
     get user$(): Observable<User> {

@@ -1,1 +1,1 @@
-export const IMG_START = "data:image/png;base64,";
+// export const IMG_START = "data:image/png;base64,";

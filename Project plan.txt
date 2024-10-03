@@ -13,7 +13,7 @@
 	- Add loading -> disable buttons and add opacity while still loading (DONE)
 	- Figure out how to store images as base64 information -> maybe for later, for now just store images in public folder and refer only name in json  files (DONE)
 	- Update achievements page to have information from user (DONE)
-	- Start setting up forms for exercises
+	- Start setting up forms for exercises - start selecting specific exercises (DONE)
 
 4/10/2024
 	- Continue setting up forms for exercises 

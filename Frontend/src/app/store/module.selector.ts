@@ -54,9 +54,19 @@ export const selectPagesInformation = createSelector(
 export const selectStatus = createSelector(
   selectEntity,
   entity => entity ? entity.status : 'error'
-)
+);
 
 export const selectIsLoading = createSelector(
   selectStatus,
   status => status ? status === 'loading' : false
-)
+);
+
+export const selectQuestions = createSelector(
+  selectData,
+  data => data ? data.questions : []
+);
+
+export const selectQuestionsFromExercise = (exerciseNumber:number) => createSelector(
+  selectQuestions,
+  (questions) => questions.filter(question => question.exerciseNumber == exerciseNumber)
+);
