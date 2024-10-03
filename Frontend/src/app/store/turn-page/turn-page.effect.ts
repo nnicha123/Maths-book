@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import * as fromActions from './turn-page.action';
-import { switchMap } from "rxjs";
+import { concatMap, delay, Observable, of, switchMap } from "rxjs";
+import { Action } from "@ngrx/store";
 
 @Injectable()
 export class TurnPageEffect {
@@ -25,31 +26,40 @@ export class TurnPageEffect {
         )
     )
 
-    turnAllPagesBackward$ = createEffect(() => 
+    turnAllPagesBackward$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromActions.turnAllPagesBackward),
             switchMap(() => {
-                const returnedActions:any[] = [];
-                for(let i=0;i<4;i++){
-                    returnedActions.push(fromActions.turnPageBackward());
+                const returnedActions: Array<Observable<Action>> = [];
+                for (let i = 0; i < 4; i++) {
+                    returnedActions.push(
+                        of(fromActions.turnPageBackward()).pipe(delay(1000))
+                    );
                 }
-                returnedActions.push(fromActions.turnAllPagesBackwardSuccess());
+                returnedActions.push(of(fromActions.turnAllPagesBackwardSuccess()));
                 return returnedActions
-            })
-        )
+            }),
+            // To ensure executed sequentially
+            concatMap((actions$) => actions$)
+        ),
     )
 
-    turnAllPagesForward$ = createEffect(() => 
+    turnAllPagesForward$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromActions.turnAllPagesForward),
             switchMap(() => {
-                const returnedActions:any[] = [];
-                for(let i=0;i<4;i++){
-                    returnedActions.push(fromActions.turnPageForward());
+                const returnedActions: Array<Observable<Action>> = [];
+                for (let i = 0; i < 4; i++) {
+                    returnedActions.push(
+                        of(fromActions.turnPageForward()).pipe(delay(1000))
+                    );
                 }
-                returnedActions.push(fromActions.turnAllPagesForwardSuccess());
+                returnedActions.push(of(fromActions.turnAllPagesForwardSuccess()));
                 return returnedActions
-            })
+            }),
+            // To ensure executed sequentially
+            concatMap((action$) => action$)
         )
-    )
+    );
+
 }

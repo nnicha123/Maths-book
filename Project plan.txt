@@ -1,4 +1,4 @@
-30/09/2024 ++
+30/09/2024 - 3/10/2024
 	- Add backend -> node/express to pull data from json file (DONE) - added simple ones (login, getusers, getSingleUser, getUserExercises, getQuestions)
 	- Add redux store to page (DONE)
 	- Add login page (DONE)
@@ -9,6 +9,8 @@
 
 		currentPage number (keep track and update) (DONE)
 		- Also update the 'turn' class to be added - start (DONE)
-
-		- Update z-index with the currentPage information 
+		- Update z-index with the currentPage information - pages turn now all working! (DONE)
+	- Setup forms for exercises 
+	- Figure out how to store images as base64 information
+	- Add this information to json file
 
