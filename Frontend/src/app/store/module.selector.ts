@@ -39,9 +39,14 @@ export const selectUser = createSelector(
 export const selectRanking = createSelector(
   selectUser,
   user => user ? user.currentLevel : 0
-)
+);
 
 export const selectCurrentPage = createSelector(
   selectData,
   data => data ? data.currentPage : 1
-)
+);
+
+export const selectPagesInformation = createSelector(
+  selectData,
+  data => data ? data.pages : []
+);

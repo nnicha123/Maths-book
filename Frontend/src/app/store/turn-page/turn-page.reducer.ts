@@ -23,7 +23,11 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
         }),
         on(fromActions.turnPageForwardSuccess, (state) => {
             const data: ModuleData = getData(state);
+            let pages = data.pages;
             const nextPage: number = data.currentPage + 1;
+            if (nextPage > 1) {
+                pages[nextPage - 1].zIndex = pages[nextPage - 2].zIndex + 1;
+            }
             return {
                 ...moduleEntityAdapter.updateOne(
                     {
@@ -31,7 +35,8 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
                         changes: {
                             data: {
                                 ...data,
-                                currentPage: nextPage
+                                currentPage: nextPage,
+                                pages: pages
                             },
                             isLoggedIn: true,
                             status: 'ready'

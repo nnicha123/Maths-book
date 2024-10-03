@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModuleFacade } from '../../store/module.facade';
 import { Observable } from 'rxjs';
+import { Page } from '../../models/Page.model';
 
 @Component({
   selector: 'app-book',
@@ -10,6 +11,7 @@ import { Observable } from 'rxjs';
 export class BookComponent implements OnInit {
 
   currentPage$: Observable<number>;
+  pagesInformation$: Observable<Page[]>;
 
   exerciseOneQuestions = ['1 x 1', '2 x 2', '3 x 2', '2 x 4', '5 x 5'];
   exerciseTwoQuestions = ['10 / 5', '11 x 6', '7 x 4', '30 / 6', '8 x 8'];
@@ -17,15 +19,9 @@ export class BookComponent implements OnInit {
   exerciseFourQuestions = ['100 / 5', '19 x 6', '71 x 4', '310 / 5', '81 x 8'];
   exerciseFiveQuestions = ['945 x 2', '968 / 4', '126 / 3', '56 x 11', '909 / 3'];
 
-  zIndexes = [
-    { id: 'turn-1', zIndex: 15 },
-    { id: 'turn-2', zIndex: 14 },
-    { id: 'turn-3', zIndex: 13 },
-    { id: 'turn-4', zIndex: 12 },
-  ]
-
   constructor(private moduleFacade: ModuleFacade) {
     this.currentPage$ = this.moduleFacade.currentPage$;
+    this.pagesInformation$ = this.moduleFacade.pagesInformation$;
   }
 
   ngOnInit(): void {

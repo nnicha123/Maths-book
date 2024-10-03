@@ -1,4 +1,5 @@
 import { Exercise } from "../models/Exercise.model";
+import { Page } from "../models/Page.model";
 import { Question } from "../models/Question.model";
 import { User } from "../models/User.model";
 
@@ -7,7 +8,8 @@ export interface ModuleData {
     user: User;
     exercises: Exercise[];
     questions: Question[];
-    currentPage: number;
+    currentPage: number,
+    pages: Page[];
 }
 
 export type ModuleStatus = 'loading' | 'ready' | 'error';

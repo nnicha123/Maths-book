@@ -9,6 +9,7 @@ import { Injectable } from "@angular/core";
 import * as fromSelectors from './module.selector'
 import { Observable } from "rxjs";
 import { User } from "../models/User.model";
+import { Page } from "../models/Page.model";
 
 @Injectable()
 export class ModuleFacade {
@@ -27,14 +28,18 @@ export class ModuleFacade {
     }
 
     turnPageForward(): void {
-        this.store.dispatch(fromTurnPageActions.turnPageForward())
+        this.store.dispatch(fromTurnPageActions.turnPageForward());
     }
 
     get user$(): Observable<User> {
-        return this.store.pipe(select(fromSelectors.selectUser))
+        return this.store.pipe(select(fromSelectors.selectUser));
     }
 
     get currentPage$(): Observable<number> {
-        return this.store.pipe(select(fromSelectors.selectCurrentPage))
+        return this.store.pipe(select(fromSelectors.selectCurrentPage));
+    }
+
+    get pagesInformation$(): Observable<Page[]> {
+        return this.store.pipe(select(fromSelectors.selectPagesInformation));
     }
 }

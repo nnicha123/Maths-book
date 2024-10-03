@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModuleFacade } from '../../store/module.facade';
 
 @Component({
   selector: 'app-congratulations',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './congratulations.component.scss'
 })
 export class CongratulationsComponent {
+  constructor(private moduleFacade: ModuleFacade) { }
 
+  nextPage() {
+    this.moduleFacade.turnPageForward();
+  }
 }
