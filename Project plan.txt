@@ -16,6 +16,11 @@
 	- Start setting up forms for exercises - start selecting specific exercises (DONE)
 
 4/10/2024
+	- Fix errors: 
+		- Refresh/login/logout (DONE)
+		- Turn page forward (DONE)
+
+5/10/2024
 	- Continue setting up forms for exercises 
 
 
