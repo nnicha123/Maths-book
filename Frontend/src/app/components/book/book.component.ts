@@ -28,7 +28,9 @@ export class BookComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = localStorage.getItem('userId');
-    this.moduleFacade.refreshUser(userId || '0')
+    if (userId) {
+      this.moduleFacade.checkIfNeedRefresh(userId);
+    }
   }
 
 }

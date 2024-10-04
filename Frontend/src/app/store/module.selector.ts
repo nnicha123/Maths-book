@@ -56,6 +56,11 @@ export const selectStatus = createSelector(
   entity => entity ? entity.status : 'error'
 );
 
+export const selectIsLoggedIn = createSelector(
+  selectEntity,
+  entity => entity ? entity.isLoggedIn : false
+);
+
 export const selectIsLoading = createSelector(
   selectStatus,
   status => status ? status === 'loading' : false
@@ -66,7 +71,7 @@ export const selectQuestions = createSelector(
   data => data ? data.questions : []
 );
 
-export const selectQuestionsFromExercise = (exerciseNumber:number) => createSelector(
+export const selectQuestionsFromExercise = (exerciseNumber: number) => createSelector(
   selectQuestions,
   (questions) => questions.filter(question => question.exerciseNumber == exerciseNumber)
 );

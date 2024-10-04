@@ -4,7 +4,7 @@ import { moduleReducer } from "./module.reducer";
 import { RetrieveQuestionsEffect } from "./retrieve-questions/retrieve-questions.effect";
 import { retrieveExercises, retrieveExercisesError, retrieveExercisesSuccess, retrieveQuestionsError, retrieveQuestionsSuccess, retrievQuestions } from "./retrieve-questions/retrieve-questions.action";
 import { RefreshUserEffect } from "./refresh-user/refresh-user.effect";
-import { refreshUser, refreshUserError, refreshUserSuccess } from "./refresh-user/refresh-user.action";
+import { checkIfNeedRefresh, refreshUser, refreshUserError, refreshUserSuccess } from "./refresh-user/refresh-user.action";
 import { LogoutUserEffect } from "./logout-user/logout-user.effect";
 import { logoutUser } from "./logout-user/logout-user.action";
 import { CalculateRankingEffect } from "./calculate-rankings/calculate-rankings.effect";
@@ -17,6 +17,7 @@ const actions = {
     loginUserSuccess: loginUserSuccess,
     loginUserError: loginUserError,
     logoutUser: logoutUser,
+    checkIfNeedRefresh: checkIfNeedRefresh,
     refreshUser: refreshUser,
     refreshUserSuccess: refreshUserSuccess,
     refreshUserError: refreshUserError,
@@ -39,8 +40,8 @@ const actions = {
     turnAllPagesBackwardSuccess: turnAllPagesBackwardSuccess,
     turnAllPagesForward: turnAllPagesForward,
     turnAllPagesForwardSuccess: turnAllPagesForwardSuccess,
-    updateCurrentPage:updateCurrentPage,
-    updateIndex:updateIndex
+    updateCurrentPage: updateCurrentPage,
+    updateIndex: updateIndex
 };
 
 const effects: any[] = [

@@ -20,8 +20,12 @@ export class ModuleFacade {
         this.store.dispatch(fromLoginActions.loginUser({ login }));
     }
 
+    checkIfNeedRefresh(userId: string): void {
+        this.store.dispatch(fromRefreshActions.checkIfNeedRefresh({ userId }));
+    }
+
     refreshUser(userId: string): void {
-        this.store.dispatch(fromRefreshActions.refreshUser({ userId }))
+        this.store.dispatch(fromRefreshActions.refreshUser({ userId }));
     }
 
     logoutUser(): void {
@@ -64,5 +68,9 @@ export class ModuleFacade {
 
     get isLoading$(): Observable<boolean> {
         return this.store.pipe(select(fromSelectors.selectIsLoading));
+    }
+
+    get isLoggedIn$(): Observable<boolean> {
+        return this.store.pipe(select(fromSelectors.selectIsLoggedIn));
     }
 }

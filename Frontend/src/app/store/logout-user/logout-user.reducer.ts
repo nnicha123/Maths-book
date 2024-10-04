@@ -7,7 +7,8 @@ export function logoutUserReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
         on(fromActions.logoutUser, (state) => {
             return {
-                ...moduleEntityAdapter.removeAll(state)
+                ...moduleEntityAdapter.removeAll(state),
+                selectedId: null
             }
         }),
     ]
