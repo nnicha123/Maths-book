@@ -11,9 +11,11 @@ import { User } from '../../models/User.model';
 export class AchievementsComponent {
   @Input() disabled: boolean = false;
   user$: Observable<User>;
+  allExerciseScores$:Observable<number[]>;
 
   constructor(private moduleFacade: ModuleFacade) {
     this.user$ = this.moduleFacade.user$;
+    this.allExerciseScores$ = this.moduleFacade.allExerciseScores$;
   }
 
   logout() {

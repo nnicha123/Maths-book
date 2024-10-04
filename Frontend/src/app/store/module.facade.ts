@@ -7,7 +7,7 @@ import * as fromLogoutActions from './logout-user/logout-user.action';
 import * as fromTurnPageActions from './turn-page/turn-page.action';
 import { Injectable } from "@angular/core";
 import * as fromSelectors from './module.selector'
-import { Observable } from "rxjs";
+import { combineLatest, map, Observable } from "rxjs";
 import { User } from "../models/User.model";
 import { Page } from "../models/Page.model";
 import { Question } from "../models/Question.model";
@@ -51,6 +51,29 @@ export class ModuleFacade {
     questionsOfExercise(exerciseNumber: number): Observable<Question[]> {
         return this.store.pipe(
             select(fromSelectors.selectQuestionsFromExercise(exerciseNumber))
+        );
+    }
+
+    scorePerExercise(exerciseNumber: number): Observable<number> {
+        return this.questionsOfExercise(exerciseNumber).pipe(
+            map(questions => {
+                if (questions && questions.length > 0) {
+                    const correctAnswers = questions.filter(question => question.isCorrect);
+                    return (correctAnswers.length / questions.length) * 100
+                } else {
+                    return 0;
+                }
+            })
+        )
+    }
+
+    get allExerciseScores$(): Observable<number[]> {
+        return combineLatest(
+            [this.scorePerExercise(1),
+            this.scorePerExercise(2),
+            this.scorePerExercise(3),
+            this.scorePerExercise(4),
+            this.scorePerExercise(5)]
         );
     }
 

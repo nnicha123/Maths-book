@@ -76,8 +76,8 @@
         "exerciseId": 6,
         "exerciseNumber":1,
         "questionNumber": 5,
-        "currentAnswer": 25,
-        "isCorrect": true
+        "currentAnswer": 26,
+        "isCorrect": false
     },
     {
         "questionId": 11,
@@ -270,8 +270,8 @@
         "exerciseId": 7,
         "exerciseNumber": 2,
         "questionNumber": 4,
-        "currentAnswer": 5,
-        "isCorrect": true
+        "currentAnswer": 6,
+        "isCorrect": false
     },
     {
         "questionId": 35,
@@ -448,16 +448,16 @@
         "exerciseId": 8,
         "exerciseNumber": 3,
         "questionNumber": 1,
-        "currentAnswer": 80,
-        "isCorrect": true
+        "currentAnswer": 70,
+        "isCorrect": false
     },
     {
         "questionId": 57,
         "exerciseId": 8,
         "exerciseNumber": 3,
         "questionNumber": 2,
-        "currentAnswer": 23,
-        "isCorrect": true
+        "currentAnswer": 24,
+        "isCorrect": false
     },
     {
         "questionId": 58,
@@ -650,40 +650,35 @@
         "exerciseId": 9,
         "exerciseNumber": 4,
         "questionNumber": 1,
-        "currentAnswer": 20,
-        "isCorrect": true
+        "isCorrect": false
     },
     {
         "questionId": 82,
         "exerciseId": 9,
         "exerciseNumber": 4,
         "questionNumber": 2,
-        "currentAnswer": 114,
-        "isCorrect": true
+        "isCorrect": false
     },
     {
         "questionId": 83,
         "exerciseId": 9,
         "exerciseNumber": 4,
         "questionNumber": 3,
-        "currentAnswer": 284,
-        "isCorrect": true
+        "isCorrect": false
     },
     {
         "questionId": 84,
         "exerciseId": 9,
         "exerciseNumber": 4,
         "questionNumber": 4,
-        "currentAnswer": 62,
-        "isCorrect": true
+        "isCorrect": false
     },
     {
         "questionId": 85,
         "exerciseId": 9,
         "exerciseNumber": 4,
         "questionNumber": 5,
-        "currentAnswer": 648,
-        "isCorrect": true
+        "isCorrect": false
     },
     {
         "questionId": 86,
@@ -852,40 +847,35 @@
         "exerciseId": 10,
         "exerciseNumber": 5,
         "questionNumber": 1,
-        "currentAnswer": 1890,
-        "isCorrect": true
+        "isCorrect": false
     },
     {
         "questionId": 107,
         "exerciseId": 10,
         "exerciseNumber": 5,
         "questionNumber": 2,
-        "currentAnswer": 242,
-        "isCorrect": true
+        "isCorrect": false
     },
     {
         "questionId": 108,
         "exerciseId": 10,
         "exerciseNumber": 5,
         "questionNumber": 3,
-        "currentAnswer": 42,
-        "isCorrect": true
+        "isCorrect": false
     },
     {
         "questionId": 109,
         "exerciseId": 10,
         "exerciseNumber": 5,
         "questionNumber": 4,
-        "currentAnswer": 616,
-        "isCorrect": true
+        "isCorrect": false
     },
     {
         "questionId": 110,
         "exerciseId": 10,
         "exerciseNumber": 5,
         "questionNumber": 5,
-        "currentAnswer": 303,
-        "isCorrect": true
+        "isCorrect": false
     },
     {
         "questionId": 111,

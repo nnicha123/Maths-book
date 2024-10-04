@@ -53,6 +53,10 @@
     &.success{
         background: var(--success-color);
     }
+
+    &.fail{
+        background: var(--fail-color);
+    }
 }
 
 .button-container {

@@ -19,8 +19,14 @@
 	- Fix errors: 
 		- Refresh/login/logout (DONE)
 		- Turn page forward (DONE)
+		- Achievements page -> 
+			- get scores for each exercise => can store in exercise store after all questions results loaded (DONE)
+			- Colour according to exercise scores -> >=80 green, done but <80 red (DONE, but might need to change)
+			- Not done -> might need to add logic to see which has not been submitted (DONE) - added to json file and model (DONE)
 
 5/10/2024
-	- Continue setting up forms for exercises 
+	- Achievements page -> Need to restructure store and model so that questions are loaded inside exercises (as it should be)
+				- and calculate scores and place inside exericse object -> so can only select exercise as a whole from store and use in html and see the submited and score only.
+	- Setup forms for exercises 
 
 

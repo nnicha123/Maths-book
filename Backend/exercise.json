@@ -2,126 +2,151 @@
     {
         "exerciseId": 1,
         "userId": 1,
-        "exerciseNumber": 1
+        "exerciseNumber": 1,
+        "submitted": true
     },
     {
         "exerciseId": 2,
         "userId": 1,
-        "exerciseNumber": 2
+        "exerciseNumber": 2,
+        "submitted": true
     },
     {
         "exerciseId": 3,
         "userId": 1,
-        "exerciseNumber": 3
+        "exerciseNumber": 3,
+        "submitted": true
     },
     {
         "exerciseId": 4,
         "userId": 1,
-        "exerciseNumber": 4
+        "exerciseNumber": 4,
+        "submitted": true
     },
     {
         "exerciseId": 5,
         "userId": 1,
-        "exerciseNumber": 5
+        "exerciseNumber": 5,
+        "submitted": true
     },
     {
         "exerciseId": 6,
         "userId": 2,
-        "exerciseNumber": 1
+        "exerciseNumber": 1,
+        "submitted": true
     },
     {
         "exerciseId": 7,
         "userId": 2,
-        "exerciseNumber": 2
+        "exerciseNumber": 2,
+        "submitted": true
     },
     {
         "exerciseId": 8,
         "userId": 2,
-        "exerciseNumber": 3
+        "exerciseNumber": 3,
+        "submitted": true
     },
     {
         "exerciseId": 9,
         "userId": 2,
-        "exerciseNumber": 4
+        "exerciseNumber": 4,
+        "submitted": false
     },
     {
         "exerciseId": 10,
         "userId": 2,
-        "exerciseNumber": 5
+        "exerciseNumber": 5,
+        "submitted": false
     },
     {
         "exerciseId": 11,
         "userId": 3,
-        "exerciseNumber": 1
+        "exerciseNumber": 1,
+        "submitted": true
     },
     {
         "exerciseId": 12,
         "userId": 3,
-        "exerciseNumber": 2
+        "exerciseNumber": 2,
+        "submitted": true
     },
     {
         "exerciseId": 13,
         "userId": 3,
-        "exerciseNumber": 3
+        "exerciseNumber": 3,
+        "submitted": true
     },
     {
         "exerciseId": 14,
         "userId": 3,
-        "exerciseNumber": 4
+        "exerciseNumber": 4,
+        "submitted": true
     },
     {
         "exerciseId": 15,
         "userId": 3,
-        "exerciseNumber": 5
+        "exerciseNumber": 5,
+        "submitted": true
     },
     {
         "exerciseId": 16,
         "userId": 4,
-        "exerciseNumber": 1
+        "exerciseNumber": 1,
+        "submitted": true
     },
     {
         "exerciseId": 17,
         "userId": 4,
-        "exerciseNumber": 2
+        "exerciseNumber": 2,
+        "submitted": true
     },
     {
         "exerciseId": 18,
         "userId": 4,
-        "exerciseNumber": 3
+        "exerciseNumber": 3,
+        "submitted": true
     },
     {
         "exerciseId": 19,
         "userId": 4,
-        "exerciseNumber": 4
+        "exerciseNumber": 4,
+        "submitted": true
     },
     {
         "exerciseId": 20,
         "userId": 4,
-        "exerciseNumber": 5
+        "exerciseNumber": 5,
+        "submitted": true
     },
     {
         "exerciseId": 21,
         "userId": 5,
-        "exerciseNumber": 1
+        "exerciseNumber": 1,
+        "submitted": true
     },
     {
         "exerciseId": 22,
         "userId": 5,
-        "exerciseNumber": 2
+        "exerciseNumber": 2,
+        "submitted": true
     },
     {
         "exerciseId": 23,
         "userId": 5,
-        "exerciseNumber": 3
+        "exerciseNumber": 3,
+        "submitted": true
     },
     {
         "exerciseId": 24,
         "userId": 5,
-        "exerciseNumber": 4
+        "exerciseNumber": 4,
+        "submitted": true
     },
     {
         "exerciseId": 25,
         "userId": 5,
-        "exerciseNumber": 5
+        "exerciseNumber": 5,
+        "submitted": true
     }
 ]
