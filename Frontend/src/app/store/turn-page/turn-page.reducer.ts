@@ -19,21 +19,9 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
                 )
             }
         }),
-        on(fromActions.turnPageForwardSuccess, (state, action) => {
+        on(fromActions.updateCurrentPage, (state) => {
             const data: ModuleData = getData(state);
-            let pages = data.pages;
             const nextPage: number = data.currentPage + 1;
-
-            if (nextPage > 1) {
-                // Reset isCurrentPage
-                pages[nextPage - 2].isCurrentPage = false;
-                pages[nextPage - 1].isCurrentPage = true;
-
-                // Set z-index
-                pages[nextPage - 1].zIndex = pages[nextPage - 2].zIndex + 1;
-            }
-
-            const status: ModuleStatus = action.isTurnAll ? 'loading' : 'ready';
             return {
                 ...moduleEntityAdapter.updateOne(
                     {
@@ -42,11 +30,52 @@ export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
                             data: {
                                 ...data,
                                 currentPage: nextPage,
+                            },
+                        },
+                    },
+                    state
+
+                )
+            }
+        }),
+        on(fromActions.updateIndex, (state) => {
+            const data: ModuleData = getData(state);
+            let pages = data.pages;
+            const currentPage = data.currentPage;
+            if (currentPage > 1) {
+                // Reset isCurrentPage
+                pages[currentPage - 2].isCurrentPage = false;
+                pages[currentPage - 1].isCurrentPage = true;
+
+                // Set z-index
+                pages[currentPage - 1].zIndex = pages[currentPage - 2].zIndex + 1;
+            }
+
+            return {
+                ...moduleEntityAdapter.updateOne(
+                    {
+                        id: state.selectedId || '0',
+                        changes: {
+                            data: {
+                                ...data,
                                 pages: pages
                             },
-                            isLoggedIn: true,
-                            status: status
+                        },
+                    },
+                    state
 
+                )
+            }
+        }),
+        on(fromActions.turnPageForwardSuccess, (state, action) => {
+
+            const status: ModuleStatus = action.isTurnAll ? 'loading' : 'ready';
+            return {
+                ...moduleEntityAdapter.updateOne(
+                    {
+                        id: state.selectedId || '0',
+                        changes: {
+                            status: status
                         },
                     },
                     state

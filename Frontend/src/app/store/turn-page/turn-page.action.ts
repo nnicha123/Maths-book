@@ -16,7 +16,18 @@ enum TurnPageActions {
     TURN_ALL_PAGES_FORWARD = '[Turn Page] Turn All Pages Forward',
     TURN_ALL_PAGES_FORWARD_SUCCESS = '[Turn Page] Turn All Pages Forward Success',
     TURN_ALL_PAGES_FORWARD_ERROR = '[Turn Page] Turn All Pages Forward Error',
+
+    UPDATE_CURRENT_PAGE = '[Turn Page] Update Current Page',
+    UPDATE_INDEX = '[Turn Page] Update Index'
 }
+
+export const updateCurrentPage = createAction(
+    TurnPageActions.UPDATE_CURRENT_PAGE,
+);
+
+export const updateIndex = createAction(
+    TurnPageActions.UPDATE_INDEX,
+);
 
 export const turnPageForward = createAction(
     TurnPageActions.TURN_PAGE_FORWARD,
