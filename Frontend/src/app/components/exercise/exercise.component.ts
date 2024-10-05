@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModuleFacade } from '../../store/module.facade';
-import { Observable, Subject, take, takeLast, takeUntil } from 'rxjs';
+import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
 import { Question } from '../../models/Question.model';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-exercise',
@@ -31,10 +31,11 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.patchStoreValuesToForm();
+    this.listenToChanges();
   }
 
   patchStoreValuesToForm() {
-    this.moduleFacade.getExerciseNo(this.exerciseNumber).pipe(takeUntil(this.destroy$)).subscribe(exercise => {
+    this.moduleFacade.getExerciseNo(this.exerciseNumber).pipe(debounceTime(300), takeUntil(this.destroy$)).subscribe(exercise => {
       if (exercise && exercise.questions && exercise.questions.length > 0) {
         exercise.questions.forEach((question, index) => {
           const formGroup = this.answers.at(index);
@@ -47,13 +48,24 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
           // Patch to isSubmitted
           this.isSubmitted?.patchValue(exercise.submitted)
+          // Patch exerciseNumber
+          this.formExerciseNumber?.patchValue(exercise.exerciseNumber)
         })
       }
     })
   }
 
+  submitExercise(){
+    this.moduleFacade.submitExercise(this.form.value)
+  }
+
+  listenToChanges() {
+    this.form.valueChanges.pipe(debounceTime(300), takeUntil(this.destroy$)).subscribe(exercise => this.form.patchValue({...exercise}));
+  }
+
   initForm() {
     this.form = this.formBuilder.group({
+      exerciseNumber: [this.exerciseNumber, [Validators.required]],
       answers: this.formBuilder.array([]),
       isSubmitted: [false]
     })
@@ -69,6 +81,10 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
   get isSubmitted() {
     return this.form.get('isSubmitted')
+  }
+
+  get formExerciseNumber(){
+    return this.form.get('exerciseNumber')
   }
 
   getAnswersFormGroup(index: number): FormGroup {

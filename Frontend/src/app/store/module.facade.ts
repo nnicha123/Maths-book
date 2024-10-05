@@ -5,6 +5,7 @@ import * as fromLoginActions from './login-user/login-user.action';
 import * as fromRefreshActions from './refresh-user/refresh-user.action';
 import * as fromLogoutActions from './logout-user/logout-user.action';
 import * as fromTurnPageActions from './turn-page/turn-page.action';
+import * as fromSubmitExerciseActions from './submit-exercise/submit-exercise.action';
 import { Injectable } from "@angular/core";
 import * as fromSelectors from './module.selector'
 import { combineLatest, map, Observable } from "rxjs";
@@ -12,6 +13,7 @@ import { User } from "../models/User.model";
 import { Page } from "../models/Page.model";
 import { Question } from "../models/Question.model";
 import { Exercise } from "../models/Exercise.model";
+import { ExerciseForm } from "../models/ExerciseForm.model";
 
 @Injectable()
 export class ModuleFacade {
@@ -70,6 +72,10 @@ export class ModuleFacade {
                 }
             })
         )
+    }
+
+    submitExercise(exercise:ExerciseForm): void {
+        this.store.dispatch(fromSubmitExerciseActions.submitExercise({exercise}));
     }
 
     get allExerciseScores$(): Observable<number[]> {

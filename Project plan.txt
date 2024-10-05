@@ -29,6 +29,10 @@
 				- and calculate scores and place inside exericse object -> so can only select exercise as a whole from store and use in html and see the submited and score only. (DONE)
 	- Setup forms for exercises (DONE) continue later
 		- Setup forms and patch value from store (DONE)
-		- Start patch value to store
+		- Start patch value to store (DONE)
+
+6/10/2024
+	- Exercises -> have some method of checking answers and updating the isCorrect for each question
+			- update values in json file -> need new service in backend as well as frontend to change values
 
 

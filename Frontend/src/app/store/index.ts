@@ -11,6 +11,8 @@ import { CalculateRankingEffect } from "./calculate-rankings/calculate-rankings.
 import { calculateRanking, calculateRankingError, calculateRankingSuccess } from "./calculate-rankings/calculate-rankings.action";
 import { turnAllPagesBackward, turnAllPagesBackwardSuccess, turnAllPagesForward, turnAllPagesForwardSuccess, turnPageBackward, turnPageBackwardError, turnPageBackwardSuccess, turnPageForward, turnPageForwardError, turnPageForwardSuccess, updateCurrentPage, updateIndex } from "./turn-page/turn-page.action";
 import { TurnPageEffect } from "./turn-page/turn-page.effect";
+import { submitExercise, submitExerciseError, submitExerciseSuccess } from "./submit-exercise/submit-exercise.action";
+import { SubmitExerciseEffect } from "./submit-exercise/submit-exercise.effect";
 
 const actions = {
     loginUser: loginUser,
@@ -41,7 +43,10 @@ const actions = {
     turnAllPagesForward: turnAllPagesForward,
     turnAllPagesForwardSuccess: turnAllPagesForwardSuccess,
     updateCurrentPage: updateCurrentPage,
-    updateIndex: updateIndex
+    updateIndex: updateIndex,
+    submitExercise: submitExercise,
+    submitExerciseSuccess: submitExerciseSuccess,
+    submitExerciseError: submitExerciseError
 };
 
 const effects: any[] = [
@@ -50,7 +55,8 @@ const effects: any[] = [
     RefreshUserEffect,
     RetrieveQuestionsEffect,
     CalculateRankingEffect,
-    TurnPageEffect
+    TurnPageEffect,
+    SubmitExerciseEffect
 ];
 
 export { actions, effects, moduleReducer }
