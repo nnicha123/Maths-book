@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModuleFacade } from '../../store/module.facade';
 import { Observable, Subject, take, takeLast, takeUntil } from 'rxjs';
 import { Question } from '../../models/Question.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-exercise',
@@ -22,7 +22,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   @Input() exerciseNumber: number = 1;
   specificExerciseQuestions$: Observable<Question[]> | undefined;
   form!: FormGroup;
-  formControlName:string = 'answer'+ this.exerciseNumber;
+  formControlName: string = 'answer' + this.exerciseNumber;
   private destroy$ = new Subject<void>();
 
   constructor(private moduleFacade: ModuleFacade, private formBuilder: FormBuilder) {
@@ -30,31 +30,57 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.moduleFacade.questionsOfExercise(this.exerciseNumber).pipe(takeUntil(this.destroy$)).subscribe(questions => {
-      if (questions) {
-        const answers = questions.map(question => question?.currentAnswer);
-        if (answers) {
-          this.form.get('answer1')?.patchValue(answers[0]);
-          this.form.get('answer2')?.patchValue(answers[1]);
-          this.form.get('answer3')?.patchValue(answers[2]);
-          this.form.get('answer4')?.patchValue(answers[3]);
-          this.form.get('answer5')?.patchValue(answers[4]);
-        }
+    this.patchStoreValuesToForm();
+  }
+
+  patchStoreValuesToForm() {
+    this.moduleFacade.getExerciseNo(this.exerciseNumber).pipe(takeUntil(this.destroy$)).subscribe(exercise => {
+      if (exercise && exercise.questions && exercise.questions.length > 0) {
+        exercise.questions.forEach((question, index) => {
+          const formGroup = this.answers.at(index);
+          if (formGroup) {
+            formGroup.patchValue({
+              value: question?.currentAnswer,
+              isCorrect: question?.isCorrect,
+            })
+          }
+
+          // Patch to isSubmitted
+          this.isSubmitted?.patchValue(exercise.submitted)
+        })
       }
     })
-    // this.specificExerciseQuestions$ = this.moduleFacade.questionsOfExercise(this.exerciseNumber);
-
-
   }
 
   initForm() {
     this.form = this.formBuilder.group({
-      answer1: [undefined, [Validators.required]],
-      answer2: [undefined, [Validators.required]],
-      answer3: [undefined, [Validators.required]],
-      answer4: [undefined, [Validators.required]],
-      answer5: [undefined, [Validators.required]],
+      answers: this.formBuilder.array([]),
+      isSubmitted: [false]
     })
+
+    for (let i = 0; i < 5; i++) {
+      this.addAnswersGroup();
+    }
+  }
+
+  get answers(): FormArray {
+    return this.form.get('answers') as FormArray;
+  }
+
+  get isSubmitted() {
+    return this.form.get('isSubmitted')
+  }
+
+  getAnswersFormGroup(index: number): FormGroup {
+    return this.answers.at(index) as FormGroup
+  }
+
+  addAnswersGroup() {
+    const answerGroup = this.formBuilder.group({
+      value: [undefined, Validators.required],
+      isCorrect: [false],
+    })
+    this.answers.push(answerGroup);
   }
 
   navigatePage() {

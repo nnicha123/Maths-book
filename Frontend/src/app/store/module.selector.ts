@@ -3,6 +3,7 @@ import * as fromReducer from './module.reducer';
 import { ModuleEntityState } from "./definitions/store.definitions";
 import { ModuleData } from "../definitions/module.definition";
 import { User } from "../models/User.model";
+import { Exercise } from "../models/Exercise.model";
 
 
 export const selectModuleState = (state: { module: ModuleEntityState }) => state.module;
@@ -74,6 +75,11 @@ export const selectQuestions = createSelector(
 export const selectExercises = createSelector(
   selectData,
   data => data ? data.exercises : []
+);
+
+export const selectExerciseNo = (exerciseNumber: number) => createSelector(
+  selectExercises,
+  exercises => exercises?.find(exercise => exercise.exerciseNumber === exerciseNumber)
 );
 
 export const selectQuestionsFromExerciseNo = (exerciseNumber: number) => createSelector(

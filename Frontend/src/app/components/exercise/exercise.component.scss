@@ -15,7 +15,8 @@ h1 {
 
     & .answer input {
         height: 100%;
-        padding: 0 1.5rem;
+        padding: 0 1.0rem;
+        position: relative;
     }
 }
 
@@ -29,4 +30,18 @@ h1 {
 }
 
 
+.bx {
+    font-size: 25px;
+    &.bx-check {
+        color: green;
+    }
+    &.bx-x {
+        color: red;
+    }
+}
 
+.disable-button{
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+}

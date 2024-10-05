@@ -28,5 +28,7 @@
 	- Achievements page -> Need to restructure store and model so that questions are loaded inside exercises (as it should be) (DONE)
 				- and calculate scores and place inside exericse object -> so can only select exercise as a whole from store and use in html and see the submited and score only. (DONE)
 	- Setup forms for exercises (DONE) continue later
+		- Setup forms and patch value from store (DONE)
+		- Start patch value to store
 
 

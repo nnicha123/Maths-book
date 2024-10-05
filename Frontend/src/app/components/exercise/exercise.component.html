@@ -1,17 +1,23 @@
 <h1>Exercise {{exerciseNumber}}</h1>
-@for (question of questions; track $index) {
-    <div class="question-container">
-        <span class="question">{{question}}</span>
-        <span class="question">=</span>
-        <form [formGroup]="form" class="answer"><input type="number" [formControlName]="'answer' + ($index+1)"></form>
-    </div>
-    } @empty {
-    <li>There are no questions.</li>
+@for (question of questions; track  $index) {
+<div class="question-container">
+    <span class="question">{{question}}</span>
+    <span class="question">=</span>
+    <form [formGroup]="getAnswersFormGroup($index)" class="answer">
+            <input type="number" formControlName="value">
+            <span *ngIf="isSubmitted?.value">
+                <i class='bx bx-check' *ngIf="getAnswersFormGroup($index).get('isCorrect')?.value"></i>
+                <i class='bx bx-x' *ngIf="!getAnswersFormGroup($index).get('isCorrect')?.value"></i>
+            </span>
+    </form>
+</div>
+} @empty {
+<li>There are no questions.</li>
 }
 
 <div class="button-container">
-    <button [disabled]="disabled">Submit</button>
-    <button [disabled]="disabled" class="revert-style" (click)="navigatePage()">{{exerciseNumber | pageNavigation}}</button>
+    <button [disabled]="disabled" *ngIf="!isSubmitted?.value">Submit</button>
+    <button [disabled]="disabled" *ngIf="isSubmitted?.value">Resubmit</button>
+    <button [disabled]="disabled" [ngClass]="{'disable-button': (exerciseNumber % 2 == 0 && !isSubmitted?.value)}" class="revert-style" (click)="navigatePage()">{{exerciseNumber |
+        pageNavigation}}</button>
 </div>
-
-<!-- {{(specificExerciseQuestions$ | async) | json}} -->

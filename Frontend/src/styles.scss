@@ -64,5 +64,5 @@ button:disabled {
     // background-color: gray; /* Change background for disabled state */
     // color: lightgray; /* Change text color for disabled state */
     cursor: not-allowed; /* Change cursor to indicate disabled state */
-
+    pointer-events: none;
 }

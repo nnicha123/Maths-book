@@ -49,6 +49,10 @@ export class ModuleFacade {
         this.store.dispatch(fromTurnPageActions.turnAllPagesForward());
     }
 
+    getExerciseNo(exerciseNumber: number): Observable<Exercise | undefined> {
+        return this.store.pipe(select(fromSelectors.selectExerciseNo(exerciseNumber)))
+    }
+
     questionsOfExercise(exerciseNumber: number): Observable<Question[]> {
         return this.store.pipe(
             select(fromSelectors.selectQuestionsFromExerciseNo(exerciseNumber))
