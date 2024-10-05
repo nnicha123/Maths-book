@@ -11,6 +11,7 @@ import { combineLatest, map, Observable } from "rxjs";
 import { User } from "../models/User.model";
 import { Page } from "../models/Page.model";
 import { Question } from "../models/Question.model";
+import { Exercise } from "../models/Exercise.model";
 
 @Injectable()
 export class ModuleFacade {
@@ -95,5 +96,9 @@ export class ModuleFacade {
 
     get isLoggedIn$(): Observable<boolean> {
         return this.store.pipe(select(fromSelectors.selectIsLoggedIn));
+    }
+
+    get exercises$(): Observable<Exercise[]> {
+        return this.store.pipe(select(fromSelectors.selectExercises))
     }
 }

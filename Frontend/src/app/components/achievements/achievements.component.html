@@ -10,30 +10,32 @@
         <img [src]="user.image" alt="">
     </div>
 </div>
-<div *ngIf="allExerciseScores$ | async as allScores">
-
-    <div class="checkpoint-container" [ngClass]="allScores[0] | score">
-        <span>Level 1</span>
-        <span>{{allScores[0]}} %</span>
+<div *ngIf="exercises$ | async as exercises">
+    <div *ngIf="exercises && exercises.length > 0">
+        <div class="checkpoint-container" [ngClass]="exercises[0] | score">
+            <span>Level 1</span>
+            <span>{{exercises[0].score}} %</span>
+        </div>
+        <div class="checkpoint-container" [ngClass]="exercises[1] | score">
+            <span>Level 2</span>
+            <span>{{exercises[1].score}} %</span>
+        </div>
+        <div class="checkpoint-container" [ngClass]="exercises[2] | score">
+            <span>Level 3</span>
+            <span>{{exercises[2].score}} %</span>
+        </div>
+        <div class="checkpoint-container" [ngClass]="exercises[3] | score">
+            <span>Level 4</span>
+            <span>{{exercises[3].score}} %</span>
+        </div>
+        <div class="checkpoint-container" [ngClass]="exercises[4] | score">
+            <span>Level 5</span>
+            <span>{{exercises[4].score}} %</span>
+        </div>
+        <div class="button-container">
+            <button [disabled]="disabled" (click)="logout()">Logout</button>
+            <button [disabled]="disabled" class="revert-style" (click)="turnAllPagesBackward()">Profile</button>
+        </div>
     </div>
-    <div class="checkpoint-container" [ngClass]="allScores[1] | score">
-        <span>Level 2</span>
-        <span>{{allScores[1]}} %</span>
-    </div>
-    <div class="checkpoint-container" [ngClass]="allScores[2] | score">
-        <span>Level 3</span>
-        <span>{{allScores[2]}} %</span>
-    </div>
-    <div class="checkpoint-container" [ngClass]="allScores[3] | score">
-        <span>Level 4</span>
-        <span>{{allScores[3]}} %</span>
-    </div>
-    <div class="checkpoint-container" [ngClass]="allScores[4] | score">
-        <span>Level 5</span>
-        <span>{{allScores[4]}} %</span>
-    </div>
-    <div class="button-container">
-        <button [disabled]="disabled" (click)="logout()">Logout</button>
-        <button [disabled]="disabled" class="revert-style" (click)="turnAllPagesBackward()">Profile</button>
-    </div>
+    
 </div>

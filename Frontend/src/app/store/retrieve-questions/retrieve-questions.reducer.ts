@@ -75,6 +75,17 @@ export function retrieveQuestionsReducer(): ReducerTypes<ModuleEntityState, any>
         on(fromActions.retrieveQuestionsSuccess, (state, action) => {
             const data: ModuleData = getData(state);
             const questions: Question[] = action.questions;
+            const exercises: Exercise[] = data.exercises;
+
+            const updatedExercises = exercises.map(exercise => {
+                const filteredQuestions = questions.filter(question => question.exerciseNumber === exercise.exerciseNumber)
+                return {
+                    ...exercise,
+                    questions: filteredQuestions,
+                    score: calculateScore(filteredQuestions)
+                }
+            })
+
             return {
                 ...moduleEntityAdapter.updateOne(
                     {
@@ -82,7 +93,8 @@ export function retrieveQuestionsReducer(): ReducerTypes<ModuleEntityState, any>
                         changes: {
                             data: {
                                 ...data,
-                                questions
+                                questions,
+                                exercises: updatedExercises
                             },
                             isLoggedIn: true,
                             status: 'ready'
@@ -109,4 +121,9 @@ export function retrieveQuestionsReducer(): ReducerTypes<ModuleEntityState, any>
             }
         })
     ]
-} 
+}
+
+function calculateScore(questions: Question[]): number {
+    const numOfcorrectQuestions = questions.filter(question => question.isCorrect).length;
+    return (numOfcorrectQuestions / questions.length) * 100
+}

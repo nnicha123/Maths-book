@@ -1,12 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Exercise } from '../../models/Exercise.model';
 
 @Pipe({
   name: 'score'
 })
 export class ScorePipe implements PipeTransform {
 
-  transform(score: number): string {
-    return score >= 80 ? 'success' : 'fail';
+  transform(exercise: Exercise): string {
+    return exercise.score >= 80 ? 'success' : exercise.submitted ? 'fail' : 'pending';
   }
 
 }

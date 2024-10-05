@@ -71,6 +71,11 @@ export const selectQuestions = createSelector(
   data => data ? data.questions : []
 );
 
+export const selectExercises = createSelector(
+  selectData,
+  data => data ? data.exercises : []
+);
+
 export const selectQuestionsFromExercise = (exerciseNumber: number) => createSelector(
   selectQuestions,
   (questions) => questions.filter(question => question.exerciseNumber == exerciseNumber)

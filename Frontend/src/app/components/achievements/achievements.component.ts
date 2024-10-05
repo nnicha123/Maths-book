@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ModuleFacade } from '../../store/module.facade';
 import { Observable } from 'rxjs';
 import { User } from '../../models/User.model';
+import { Exercise } from '../../models/Exercise.model';
 
 @Component({
   selector: 'app-achievements',
@@ -11,11 +12,11 @@ import { User } from '../../models/User.model';
 export class AchievementsComponent {
   @Input() disabled: boolean = false;
   user$: Observable<User>;
-  allExerciseScores$:Observable<number[]>;
+  exercises$: Observable<Exercise[]>;
 
   constructor(private moduleFacade: ModuleFacade) {
     this.user$ = this.moduleFacade.user$;
-    this.allExerciseScores$ = this.moduleFacade.allExerciseScores$;
+    this.exercises$ = this.moduleFacade.exercises$;
   }
 
   logout() {
