@@ -1,9 +1,9 @@
 <h1>Exercise {{exerciseNumber}}</h1>
-@for (question of questions; track question) {
+@for (question of questions; track $index) {
     <div class="question-container">
         <span class="question">{{question}}</span>
         <span class="question">=</span>
-        <span class="answer"><input type="number"></span>
+        <form [formGroup]="form" class="answer"><input type="number" [formControlName]="'answer' + ($index+1)"></form>
     </div>
     } @empty {
     <li>There are no questions.</li>

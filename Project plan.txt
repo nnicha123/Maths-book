@@ -25,8 +25,8 @@
 			- Not done -> might need to add logic to see which has not been submitted (DONE) - added to json file and model (DONE)
 
 5/10/2024
-	- Achievements page -> Need to restructure store and model so that questions are loaded inside exercises (as it should be)
-				- and calculate scores and place inside exericse object -> so can only select exercise as a whole from store and use in html and see the submited and score only.
-	- Setup forms for exercises 
+	- Achievements page -> Need to restructure store and model so that questions are loaded inside exercises (as it should be) (DONE)
+				- and calculate scores and place inside exericse object -> so can only select exercise as a whole from store and use in html and see the submited and score only. (DONE)
+	- Setup forms for exercises (DONE) continue later
 
 

@@ -51,7 +51,7 @@ export class ModuleFacade {
 
     questionsOfExercise(exerciseNumber: number): Observable<Question[]> {
         return this.store.pipe(
-            select(fromSelectors.selectQuestionsFromExercise(exerciseNumber))
+            select(fromSelectors.selectQuestionsFromExerciseNo(exerciseNumber))
         );
     }
 
