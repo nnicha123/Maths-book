@@ -22,7 +22,6 @@ export function SubmitExerciseReducer(): ReducerTypes<ModuleEntityState, any>[] 
             const data = getData(state);
             const exercises = data.exercises;
             const questions = action.questions;
-            console.log(questions);
             const selectedExerciseNumber = questions[0].exerciseNumber;
 
             const selectedExerciseIndex = exercises.findIndex(ex => ex.exerciseNumber === selectedExerciseNumber);

@@ -13,6 +13,8 @@ import { turnAllPagesBackward, turnAllPagesBackwardSuccess, turnAllPagesForward,
 import { TurnPageEffect } from "./turn-page/turn-page.effect";
 import { submitExercise, submitExerciseError, submitExerciseSuccess } from "./submit-exercise/submit-exercise.action";
 import { SubmitExerciseEffect } from "./submit-exercise/submit-exercise.effect";
+import { retrieveAnswers, retrieveAnswersError, retrieveAnswersSuccess } from "./retrieve-answers/retrieve-answers.action";
+import { RetrieveAnswersEffect } from "./retrieve-answers/retrieve-answers.effect";
 
 const actions = {
     loginUser: loginUser,
@@ -46,7 +48,10 @@ const actions = {
     updateIndex: updateIndex,
     submitExercise: submitExercise,
     submitExerciseSuccess: submitExerciseSuccess,
-    submitExerciseError: submitExerciseError
+    submitExerciseError: submitExerciseError,
+    retrieveAnswers: retrieveAnswers,
+    retrieveAnswersSuccess: retrieveAnswersSuccess,
+    retrieveAnswersError: retrieveAnswersError
 };
 
 const effects: any[] = [
@@ -56,7 +61,8 @@ const effects: any[] = [
     RetrieveQuestionsEffect,
     CalculateRankingEffect,
     TurnPageEffect,
-    SubmitExerciseEffect
+    SubmitExerciseEffect,
+    RetrieveAnswersEffect
 ];
 
 export { actions, effects, moduleReducer }

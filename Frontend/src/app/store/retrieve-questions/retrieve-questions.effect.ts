@@ -49,7 +49,7 @@ export class RetrieveQuestionsEffect {
         )
     )
 
-    retrieveQuestions = createEffect(() =>
+    retrieveQuestions$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromActions.retrievQuestions),
             switchMap((action) => {

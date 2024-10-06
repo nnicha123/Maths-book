@@ -1,0 +1,127 @@
+[
+    {
+        "exerciseNumber": 1,
+        "questionNumber": 1,
+        "answer": 1
+    },
+    {
+        "exerciseNumber": 1,
+        "questionNumber": 2,
+        "answer": 4
+    },
+    {
+        "exerciseNumber": 1,
+        "questionNumber": 3,
+        "answer": 6
+    },
+    {
+        "exerciseNumber": 1,
+        "questionNumber": 4,
+        "answer": 8
+    },
+    {
+        "exerciseNumber": 1,
+        "questionNumber": 5,
+        "answer": 25
+    },
+    {
+        "exerciseNumber": 2,
+        "questionNumber": 1,
+        "answer": 2
+    },
+    {
+        "exerciseNumber": 2,
+        "questionNumber": 2,
+        "answer": 66
+    },
+    {
+        "exerciseNumber": 2,
+        "questionNumber": 3,
+        "answer": 28
+    },
+    {
+        "exerciseNumber": 2,
+        "questionNumber": 4,
+        "answer": 5
+    },
+    {
+        "exerciseNumber": 2,
+        "questionNumber": 5,
+        "answer": 64
+    },
+    {
+        "exerciseNumber": 3,
+        "questionNumber": 1,
+        "answer": 80
+    },
+    {
+        "exerciseNumber": 3,
+        "questionNumber": 2,
+        "answer": 23
+    },
+    {
+        "exerciseNumber": 3,
+        "questionNumber": 3,
+        "answer": 132
+    },
+    {
+        "exerciseNumber": 3,
+        "questionNumber": 4,
+        "answer": 15
+    },
+    {
+        "exerciseNumber": 3,
+        "questionNumber": 5,
+        "answer": 255
+    },
+    {
+        "exerciseNumber": 4,
+        "questionNumber": 1,
+        "answer": 20
+    },
+    {
+        "exerciseNumber": 4,
+        "questionNumber": 2,
+        "answer": 114
+    },
+    {
+        "exerciseNumber": 4,
+        "questionNumber": 3,
+        "answer": 284
+    },
+    {
+        "exerciseNumber": 4,
+        "questionNumber": 4,
+        "answer": 62
+    },
+    {
+        "exerciseNumber": 4,
+        "questionNumber": 5,
+        "answer": 648
+    },
+    {
+        "exerciseNumber": 5,
+        "questionNumber": 1,
+        "answer": 1890
+    },
+    {
+        "exerciseNumber": 5,
+        "questionNumber": 2,
+        "answer": 242
+    },
+    {
+        "exerciseNumber": 5,
+        "questionNumber": 3,
+        "answer": 42
+    },
+    {
+        "exerciseNumber": 5,
+        "questionNumber": 4,
+        "answer": 616
+    },
+    {
+        "exerciseNumber": 5,
+        "questionNumber": 5,
+        "answer": 303
+    }
+]

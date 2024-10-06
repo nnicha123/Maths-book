@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import * as fromActions from './submit-exercise.action';
 import { map, switchMap, withLatestFrom } from "rxjs";
 import { ExerciseService } from "../../services/exercises/exercises.service";
-import { ExerciseForm } from "../../models/ExerciseForm.model";
+import { AnswersForm, ExerciseForm } from "../../models/ExerciseForm.model";
 import { Exercise } from "../../models/Exercise.model";
 import { calculateScore } from "../utils";
 import { Question } from "../../models/Question.model";
@@ -21,7 +21,9 @@ export class SubmitExerciseEffect {
     submitExercise$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromActions.submitExercise),
-            withLatestFrom(this.store.pipe(select(fromSelectors.selectUserId))),
+            withLatestFrom(
+                this.store.pipe(select(fromSelectors.selectUserId)),
+            ),
             switchMap(([action, userId]) => {
                 const exercise = formToApi(userId, action.exercise);
                 return this.exerciseService.submitExercise(exercise).pipe(
@@ -43,14 +45,21 @@ function formToApi(userId: number, exerciseForm: ExerciseForm): Exercise {
         // update isCorrect on submit as well & calculate new score 
         questions: exerciseForm.answers.map((answer) => {
             return {
-                questionId: 1,
+                questionId: answer.questionId,
+                questionNumber: answer.questionNumber,
                 exerciseId: exerciseForm.exerciseId,
                 exerciseNumber: exerciseForm.exerciseNumber,
                 currentAnswer: answer.value,
-                isCorrect: answer.isCorrect
+                correctAnswer: answer.correctValue,
+                isCorrect: isAnswerCorrect(answer)
             }
         })
 
     }
+    returnedExercise.score = calculateScore(returnedExercise.questions);
     return returnedExercise;
+}
+
+function isAnswerCorrect(answer: AnswersForm) {
+    return answer.value === answer.correctValue;
 }

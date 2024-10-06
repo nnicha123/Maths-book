@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
     .get('/exercise/:exerciseId', getQuestionsFromExerciseId)
     .post('/questions', getQuestionsFromExerciseList)
     .post('/submit', submitAnwers)
+    .get('/answers', getAnswers)
 
 app.listen(3000, () => {
     console.log('Listening at: http://localhost:3000');
@@ -26,6 +27,13 @@ function getUsers(req, res) {
     fs.readFile("users.json", { encoding: "utf-8" }, (err, results) => {
         let userList = JSON.parse(results);
         res.send(userList);
+    })
+}
+
+function getAnswers(req,res){
+    fs.readFile("answers.json", {encoding:"utf-8"},(err,results) => {
+        let answers = JSON.parse(results);
+        res.send(answers);
     })
 }
 

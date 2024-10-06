@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Exercise } from '../../models/Exercise.model';
 import { Question } from '../../models/Question.model';
+import { Answer } from '../../models/Answer.model';
 
 @Injectable({
     providedIn: 'root'
@@ -26,5 +27,9 @@ export class ExerciseService {
 
     submitExercise(exercise:Exercise):Observable<Question[]>{
         return this.httpClient.post<Question[]>(`${this.baseUrl}/submit`, exercise)
+    }
+
+    getAllAnswers():Observable<Answer[]>{
+        return this.httpClient.get<Answer[]>(`${this.baseUrl}/answers`)
     }
 }

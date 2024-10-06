@@ -1,3 +1,4 @@
+import { Answer } from "../models/Answer.model";
 import { Exercise } from "../models/Exercise.model";
 import { Page } from "../models/Page.model";
 import { User } from "../models/User.model";

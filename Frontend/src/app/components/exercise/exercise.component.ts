@@ -20,7 +20,6 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     { key: "5", value: "5 x 5" },
   ]
   @Input() exerciseNumber: number = 1;
-  specificExerciseQuestions$: Observable<Question[]> | undefined;
   form!: FormGroup;
   formControlName: string = 'answer' + this.exerciseNumber;
   private destroy$ = new Subject<void>();
@@ -61,6 +60,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     this.moduleFacade.submitExercise(this.form.value)
   }
 
+  // Come back to this - is this doing anything useful?
   listenToChanges() {
     this.form.valueChanges.pipe(debounceTime(300), takeUntil(this.destroy$)).subscribe(exercise => this.form.patchValue({ ...exercise }));
   }

@@ -6,6 +6,9 @@ export interface ExerciseForm {
 }
 
 export interface AnswersForm {
+    questionId: number;
+    questionNumber: number;
     value: number;
+    correctValue: number;
     isCorrect: boolean;
 }
