@@ -67,11 +67,6 @@ export const selectIsLoading = createSelector(
   status => status ? status === 'loading' : false
 );
 
-export const selectQuestions = createSelector(
-  selectData,
-  data => data ? data.questions : []
-);
-
 export const selectExercises = createSelector(
   selectData,
   data => data ? data.exercises : []

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModuleFacade } from '../../store/module.facade';
 import { Observable } from 'rxjs';
 import { Page } from '../../models/Page.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -20,7 +21,7 @@ export class BookComponent implements OnInit {
   exerciseFourQuestions = ['100 / 5', '19 x 6', '71 x 4', '310 / 5', '81 x 8'];
   exerciseFiveQuestions = ['945 x 2', '968 / 4', '126 / 3', '56 x 11', '909 / 3'];
 
-  constructor(private moduleFacade: ModuleFacade) {
+  constructor(private moduleFacade: ModuleFacade, private router: Router) {
     this.currentPage$ = this.moduleFacade.currentPage$;
     this.pagesInformation$ = this.moduleFacade.pagesInformation$;
     this.isLoading$ = this.moduleFacade.isLoading$;
@@ -30,6 +31,8 @@ export class BookComponent implements OnInit {
     const userId = localStorage.getItem('userId');
     if (userId) {
       this.moduleFacade.checkIfNeedRefresh(userId);
+    } else {
+      this.router.navigate(['/login']);
     }
   }
 

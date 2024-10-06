@@ -93,7 +93,6 @@ export function retrieveQuestionsReducer(): ReducerTypes<ModuleEntityState, any>
                         changes: {
                             data: {
                                 ...data,
-                                questions,
                                 exercises: updatedExercises
                             },
                             isLoggedIn: true,
