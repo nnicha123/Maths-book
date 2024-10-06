@@ -47,24 +47,27 @@ export class ExerciseComponent implements OnInit, OnDestroy {
           }
 
           // Patch to isSubmitted
-          this.isSubmitted?.patchValue(exercise.submitted)
+          this.isSubmitted?.patchValue(exercise.submitted);
           // Patch exerciseNumber
-          this.formExerciseNumber?.patchValue(exercise.exerciseNumber)
+          this.formExerciseNumber?.patchValue(exercise.exerciseNumber);
+          // Patch exerciseId
+          this.formExerciseId?.patchValue(exercise.exerciseId);
         })
       }
     })
   }
 
-  submitExercise(){
+  submitExercise() {
     this.moduleFacade.submitExercise(this.form.value)
   }
 
   listenToChanges() {
-    this.form.valueChanges.pipe(debounceTime(300), takeUntil(this.destroy$)).subscribe(exercise => this.form.patchValue({...exercise}));
+    this.form.valueChanges.pipe(debounceTime(300), takeUntil(this.destroy$)).subscribe(exercise => this.form.patchValue({ ...exercise }));
   }
 
   initForm() {
     this.form = this.formBuilder.group({
+      exerciseId: [0, [Validators.required]],
       exerciseNumber: [this.exerciseNumber, [Validators.required]],
       answers: this.formBuilder.array([]),
       isSubmitted: [false]
@@ -83,8 +86,12 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     return this.form.get('isSubmitted')
   }
 
-  get formExerciseNumber(){
+  get formExerciseNumber() {
     return this.form.get('exerciseNumber')
+  }
+
+  get formExerciseId(){
+    return this.form.get('exerciseId');
   }
 
   getAnswersFormGroup(index: number): FormGroup {

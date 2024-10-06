@@ -37,6 +37,11 @@ export const selectUser = createSelector(
   data => data ? data.user : {} as User
 );
 
+export const selectUserId = createSelector(
+  selectUser,
+  user => user ? user.userId : 0
+);
+
 export const selectRanking = createSelector(
   selectUser,
   user => user ? user.currentLevel : 0

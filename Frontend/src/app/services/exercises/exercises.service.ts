@@ -23,4 +23,8 @@ export class ExerciseService {
     getExerciseQuestions(exerciseId: number): Observable<Question[]> {
         return this.httpClient.get<Question[]>(`${this.baseUrl}/exercise/${exerciseId}`)
     }
+
+    submitExercise(exercise:Exercise):Observable<Question[]>{
+        return this.httpClient.post<Question[]>(`${this.baseUrl}/submit`, exercise)
+    }
 }

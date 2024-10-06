@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { ExerciseForm } from "../../models/ExerciseForm.model";
+import { Question } from "../../models/Question.model";
 
 enum SubmitExerciseAction {
     SUBMIT_EXERCISE = '[Exercise] Submit Exercise',
@@ -13,9 +14,11 @@ export const submitExercise = createAction(
 );
 
 export const submitExerciseSuccess = createAction(
-    SubmitExerciseAction.SUBMIT_EXERCISE_SUCCESS
+    SubmitExerciseAction.SUBMIT_EXERCISE_SUCCESS,
+    props<{ questions: Question[] }>()
 );
 
 export const submitExerciseError = createAction(
-    SubmitExerciseAction.SUBMIT_EXERCISE_ERROR
+    SubmitExerciseAction.SUBMIT_EXERCISE_ERROR,
+    props<{ error: any }>()
 );

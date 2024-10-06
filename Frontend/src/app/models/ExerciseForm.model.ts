@@ -1,4 +1,5 @@
 export interface ExerciseForm {
+    exerciseId: number;
     exerciseNumber: number;
     isSubmitted: boolean;
     answers: AnswersForm[];

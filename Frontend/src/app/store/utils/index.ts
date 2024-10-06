@@ -1,5 +1,6 @@
 import { ModuleData } from "../../definitions/module.definition";
 import { Page } from "../../models/Page.model";
+import { Question } from "../../models/Question.model";
 import { User } from "../../models/User.model";
 import { ModuleEntityState } from "../definitions/store.definitions";
 import cloneDeep from 'lodash.clonedeep';
@@ -66,4 +67,9 @@ export const initialData: ModuleData = {
     exercises: [],
     currentPage: 1,
     pages: pages
+}
+
+export function calculateScore(questions: Question[]): number {
+    const numOfcorrectQuestions = questions.filter(question => question.isCorrect).length;
+    return (numOfcorrectQuestions / questions.length) * 100
 }

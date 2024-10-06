@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
     .get('/user/userExercise/:userId', getUserExercises)
     .get('/exercise/:exerciseId', getQuestionsFromExerciseId)
     .post('/questions', getQuestionsFromExerciseList)
+    .post('/submit', submitAnwers)
 
 app.listen(3000, () => {
     console.log('Listening at: http://localhost:3000');
@@ -52,6 +53,20 @@ function loginUser(req, res) {
             res.status(401).send({ "message": "Unauthorized: Cannot find username password combination" })
         }
     })
+}
+
+function submitAnwers(req, res) {
+    const submittedExercise = req.body;
+    updateQuestionsToFile(submittedExercise)
+        .then((updatedQuestionsList) => {
+            res.status(200).send(updatedQuestionsList)
+        })
+        .catch((error) => {
+            console.error("Error updating answers:", error);
+
+            res.status(500).send({ "Error": "Error updating answers" })
+
+        })
 }
 
 function getUserExercises(req, res) {
@@ -92,5 +107,48 @@ function getQuestionsFromExerciseId(req, res) {
             res.status(500).send({ "message": "Cannot find questions related to exerciseId" })
         }
 
+    })
+}
+
+function updateQuestionsToFile(updatedExercise) {
+    return new Promise((resolve, reject) => {
+        // Just replace questions with new questions/answers
+        fs.readFile("question.json", { encoding: "utf-8" }, (err, results) => {
+            if (err) {
+                return reject(err)
+            }
+
+            try {
+                const questionList = JSON.parse(results);
+                const newQuestionsList = questionList.filter((question => question.exerciseId !== updatedExercise.exerciseId)).concat(updatedExercise.questions);
+                const questionsListText = JSON.stringify(newQuestionsList);
+
+                // Return updated questions
+                const questionListToReturn = newQuestionsList.filter((question) => question.exerciseId == updatedExercise.exerciseId);
+
+                // console.log(questionsListText)
+                writeToFile("question.json", questionsListText)
+                    .then(() => resolve(questionListToReturn))
+                    .catch(reject);
+
+            } catch (parseError) {
+                reject(parseError);
+            }
+        })
+
+    })
+
+}
+
+function writeToFile(fileName, fileText) {
+    return new Promise((resolve) => {
+        fs.writeFile(fileName, fileText, (err) => {
+            if (err) {
+                console.log(err);
+                resolve(false);
+            } else {
+                resolve(true);
+            }
+        })
     })
 }
