@@ -32,7 +32,11 @@
 		- Start patch value to store (DONE)
 
 6/10/2024
-	- Exercises -> have some method of checking answers and updating the isCorrect for each question
-			- update values in json file -> need new service in backend as well as frontend to change values
+	- Exercises -> have some method of checking answers and updating the isCorrect for each question (DONE)
+			- update values in json file -> need new service in backend as well as frontend to change values (DONE)
+	
+7/10/2024
+	- Update rankings and level after submission 
+	- Do something with the rankings page
 
 

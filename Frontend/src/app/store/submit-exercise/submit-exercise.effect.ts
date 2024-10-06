@@ -30,7 +30,7 @@ export class SubmitExerciseEffect {
                     map((questions: Question[]) => fromActions.submitExerciseSuccess({ questions }))
                 )
             })
-        )
+        ),
     )
 }
 

@@ -42,6 +42,9 @@ export class ExerciseComponent implements OnInit, OnDestroy {
             formGroup.patchValue({
               value: question?.currentAnswer,
               isCorrect: question?.isCorrect,
+              correctValue:question?.correctAnswer,
+              questionNumber:question?.questionNumber,
+              questionId:question?.questionId
             })
           }
 
@@ -98,10 +101,14 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     return this.answers.at(index) as FormGroup
   }
 
+
   addAnswersGroup() {
     const answerGroup = this.formBuilder.group({
       value: [undefined, Validators.required],
       isCorrect: [false],
+      correctValue:[undefined],
+      questionNumber:[undefined],
+      questionId:[undefined]
     })
     this.answers.push(answerGroup);
   }

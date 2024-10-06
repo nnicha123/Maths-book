@@ -67,15 +67,21 @@ export function retrieveAnswersReducer(): ReducerTypes<ModuleEntityState, any>[]
     ]
 }
 
+
+function mapCorrectAnswer(questions: Question[], answers: Answer[]) {
+    return questions.map(question => ({
+        ...question,
+        isCorrect:getIsCorrect(question.currentAnswer, getCorrectAnswer(question, answers)),
+        correctAnswer: getCorrectAnswer(question, answers)
+    }))
+}
+
 function getCorrectAnswer(question: Question, answers: Answer[]): number {
     const { questionNumber, exerciseNumber } = question;
     const filteredAnswer = answers.find(answer => answer.exerciseNumber === exerciseNumber && answer.questionNumber === questionNumber);
     return filteredAnswer ? filteredAnswer.answer : 0;
 }
 
-function mapCorrectAnswer(questions: Question[], answers: Answer[]) {
-    return questions.map(question => ({
-        ...question,
-        correctAnswer: getCorrectAnswer(question, answers)
-    }))
+function getIsCorrect(currentAnswer:number, correctAnswer:number){
+    return currentAnswer === correctAnswer;
 }
