@@ -16,7 +16,7 @@
 }
 
 <div class="button-container">
-    <button [disabled]="disabled" *ngIf="!isSubmitted?.value" (click)="submitExercise()">Submit</button>
+    <button [disabled]="disabled" [ngClass]="{'disable-button': !previousSubmitted}" *ngIf="!isSubmitted?.value" (click)="submitExercise()">Submit</button>
     <button [disabled]="disabled" *ngIf="isSubmitted?.value" (click)="submitExercise()">Resubmit</button>
     <button [disabled]="disabled" [ngClass]="{'disable-button': (exerciseNumber % 2 == 0 && !isSubmitted?.value)}" class="revert-style" (click)="navigatePage()">{{exerciseNumber |
         pageNavigation}}</button>

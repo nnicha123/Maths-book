@@ -95,6 +95,13 @@ export const selectExerciseIsSubmitted = (exerciseNumber:number) => createSelect
   }
 );
 
+export const selectPreviousExerciseSubmitted = (previousExerciseNumber:number) => createSelector(
+  selectExerciseNo(previousExerciseNumber),
+  exercise => {
+    return exercise ? exercise.submitted : false
+  }
+)
+
 export const selectQuestionsFromExerciseNo = (exerciseNumber: number) => createSelector(
   selectExercises,
   exercises => exercises.filter(exercise => exercise.exerciseNumber === exerciseNumber).flatMap(exercise => exercise.questions)

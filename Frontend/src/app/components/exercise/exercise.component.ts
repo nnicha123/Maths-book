@@ -22,6 +22,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   @Input() exerciseNumber: number = 1;
   form!: FormGroup;
   formControlName: string = 'answer' + this.exerciseNumber;
+  previousSubmitted:boolean = true;
   private destroy$ = new Subject<void>();
 
   constructor(private moduleFacade: ModuleFacade, private formBuilder: FormBuilder) {
@@ -30,6 +31,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.patchStoreValuesToForm();
+    this.checkPreviousExerciseSubmitted();
     this.listenToChanges();
   }
 
@@ -75,6 +77,15 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     this.moduleFacade.exerciseSubmitted(this.exerciseNumber).pipe(debounceTime(300),takeUntil(this.destroy$)).subscribe(isSubmitted => {
       this.isSubmitted?.patchValue(isSubmitted)
     })
+  }
+
+  checkPreviousExerciseSubmitted(){
+    if(this.exerciseNumber - 1 > 0){
+      this.moduleFacade.previousExerciseSubmitted(this.exerciseNumber - 1).pipe(debounceTime(300),takeUntil(this.destroy$)).subscribe(isSubmitted => {
+        this.previousSubmitted = isSubmitted;
+      })
+
+    }
   }
 
   initForm() {
