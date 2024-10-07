@@ -51,7 +51,8 @@ function formToApi(userId: number, exerciseForm: ExerciseForm): Exercise {
                 exerciseNumber: exerciseForm.exerciseNumber,
                 currentAnswer: answer.value,
                 correctAnswer: answer.correctValue,
-                isCorrect: isAnswerCorrect(answer)
+                isCorrect: isAnswerCorrect(answer),
+                isSubmitted: true
             }
         })
 

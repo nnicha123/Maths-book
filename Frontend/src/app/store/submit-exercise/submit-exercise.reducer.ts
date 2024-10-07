@@ -28,7 +28,8 @@ export function SubmitExerciseReducer(): ReducerTypes<ModuleEntityState, any>[] 
             if (selectedExerciseIndex != -1) {
                 const selectedExercise = {
                     ...exercises[selectedExerciseIndex],
-                    score: calculateScore(questions)
+                    score: calculateScore(questions),
+                    submitted: true
                 }
 
                 selectedExercise.questions = questions;
@@ -42,7 +43,7 @@ export function SubmitExerciseReducer(): ReducerTypes<ModuleEntityState, any>[] 
                         changes: {
                             isLoggedIn: true,
                             status: 'ready',
-                            data:{
+                            data: {
                                 ...data,
                                 exercises
                             }

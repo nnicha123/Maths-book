@@ -73,3 +73,21 @@ export function calculateScore(questions: Question[]): number {
     const numOfcorrectQuestions = questions.filter(question => question.isCorrect).length;
     return (numOfcorrectQuestions / questions.length) * 100
 }
+
+export function calculateRank(questions: Question[]): number {
+    const correctQuestions = questions.filter((question) => question.isCorrect);
+    const correctPercentage = correctQuestions.length / questions.length * 100;
+    let ranking = 0
+    if (correctPercentage > 90) {
+        ranking = 5;
+    } else if (correctPercentage > 80) {
+        ranking = 4
+    } else if (correctPercentage > 60) {
+        ranking = 3;
+    } else if (correctPercentage > 50) {
+        ranking = 2;
+    } else if (correctPercentage > 30) {
+        ranking = 1;
+    }
+    return ranking;
+}

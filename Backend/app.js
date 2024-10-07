@@ -30,8 +30,8 @@ function getUsers(req, res) {
     })
 }
 
-function getAnswers(req,res){
-    fs.readFile("answers.json", {encoding:"utf-8"},(err,results) => {
+function getAnswers(req, res) {
+    fs.readFile("answers.json", { encoding: "utf-8" }, (err, results) => {
         let answers = JSON.parse(results);
         res.send(answers);
     })
@@ -65,8 +65,12 @@ function loginUser(req, res) {
 
 function submitAnwers(req, res) {
     const submittedExercise = req.body;
-    updateQuestionsToFile(submittedExercise)
-        .then((updatedQuestionsList) => {
+
+    Promise.all([
+        updateExerciseFile(submittedExercise),
+        updateQuestionsToFile(submittedExercise)
+    ])
+        .then(([_, updatedQuestionsList]) => {
             res.status(200).send(updatedQuestionsList)
         })
         .catch((error) => {
@@ -118,6 +122,36 @@ function getQuestionsFromExerciseId(req, res) {
     })
 }
 
+function updateExerciseFile(updatedExercise) {
+    return new Promise((resolve, reject) => {
+        fs.readFile("exercise.json", { encoding: "utf-8" }, (err, results) => {
+            if (err) {
+                return reject(err)
+            }
+
+            try {
+                const exerciseList = JSON.parse(results);
+                const newExerciseList = exerciseList.map((exercise) => {
+                    if (exercise.exerciseId === updatedExercise.exerciseId) {
+                        exercise.submitted = true
+                        return exercise
+                    }
+                    return exercise;
+                })
+
+                const exerciseListText = JSON.stringify(newExerciseList);
+
+                writeToFile("exercise.json", exerciseListText)
+                    .then(resolve)
+                    .catch(reject)
+
+            } catch (parseError) {
+                reject(parseError);
+            }
+        })
+    })
+}
+
 function updateQuestionsToFile(updatedExercise) {
     return new Promise((resolve, reject) => {
         // Just replace questions with new questions/answers
@@ -134,7 +168,6 @@ function updateQuestionsToFile(updatedExercise) {
                 // Return updated questions
                 const questionListToReturn = newQuestionsList.filter((question) => question.exerciseId == updatedExercise.exerciseId);
 
-                // console.log(questionsListText)
                 writeToFile("question.json", questionsListText)
                     .then(() => resolve(questionListToReturn))
                     .catch(reject);

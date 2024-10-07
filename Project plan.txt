@@ -36,7 +36,8 @@
 			- update values in json file -> need new service in backend as well as frontend to change values (DONE)
 	
 7/10/2024
-	- Update rankings and level after submission 
+	- Update rankings and level after submission (DONE)
+	- Fix loading of answers -> maybe just have correctAnswer as part of questions database
 	- Do something with the rankings page
 
 

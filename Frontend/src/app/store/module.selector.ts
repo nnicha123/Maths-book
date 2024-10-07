@@ -86,3 +86,8 @@ export const selectQuestionsFromExerciseNo = (exerciseNumber: number) => createS
   selectExercises,
   exercises => exercises.filter(exercise => exercise.exerciseNumber === exerciseNumber).flatMap(exercise => exercise.questions)
 );
+
+export const selectAllQuestions = createSelector(
+  selectExercises,
+  exercises => exercises ? exercises.flatMap(exercise => exercise.questions) : []
+)
