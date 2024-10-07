@@ -37,7 +37,7 @@
 	
 7/10/2024
 	- Update rankings and level after submission (DONE)
-	- Fix loading of answers -> maybe just have correctAnswer as part of questions database
+	- Fix loading of answers -> maybe just have correctAnswer as part of questions database/or remove correct answers before sending to api (DONE)
 	- Do something with the rankings page
 
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Exercise } from '../../models/Exercise.model';
+import { Exercise, ExerciseAPI } from '../../models/Exercise.model';
 import { Question } from '../../models/Question.model';
 import { Answer } from '../../models/Answer.model';
 
@@ -25,7 +25,7 @@ export class ExerciseService {
         return this.httpClient.get<Question[]>(`${this.baseUrl}/exercise/${exerciseId}`)
     }
 
-    submitExercise(exercise:Exercise):Observable<Question[]>{
+    submitExercise(exercise:ExerciseAPI):Observable<Question[]>{
         return this.httpClient.post<Question[]>(`${this.baseUrl}/submit`, exercise)
     }
 

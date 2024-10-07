@@ -1,6 +1,6 @@
 import { ModuleData } from "../../definitions/module.definition";
 import { Page } from "../../models/Page.model";
-import { Question } from "../../models/Question.model";
+import { QuestionAPI } from "../../models/Question.model";
 import { User } from "../../models/User.model";
 import { ModuleEntityState } from "../definitions/store.definitions";
 import cloneDeep from 'lodash.clonedeep';
@@ -69,12 +69,12 @@ export const initialData: ModuleData = {
     pages: pages
 }
 
-export function calculateScore(questions: Question[]): number {
+export function calculateScore(questions: QuestionAPI[]): number {
     const numOfcorrectQuestions = questions.filter(question => question.isCorrect).length;
     return (numOfcorrectQuestions / questions.length) * 100
 }
 
-export function calculateRank(questions: Question[]): number {
+export function calculateRank(questions: QuestionAPI[]): number {
     const correctQuestions = questions.filter((question) => question.isCorrect);
     const correctPercentage = correctQuestions.length / questions.length * 100;
     let ranking = 0

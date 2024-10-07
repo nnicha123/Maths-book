@@ -4,7 +4,7 @@ import * as fromActions from './submit-exercise.action';
 import { map, switchMap, withLatestFrom } from "rxjs";
 import { ExerciseService } from "../../services/exercises/exercises.service";
 import { AnswersForm, ExerciseForm } from "../../models/ExerciseForm.model";
-import { Exercise } from "../../models/Exercise.model";
+import { ExerciseAPI } from "../../models/Exercise.model";
 import { calculateScore } from "../utils";
 import { Question } from "../../models/Question.model";
 import * as fromSelectors from '../module.selector';
@@ -34,8 +34,8 @@ export class SubmitExerciseEffect {
     )
 }
 
-function formToApi(userId: number, exerciseForm: ExerciseForm): Exercise {
-    const returnedExercise: Exercise = {
+function formToApi(userId: number, exerciseForm: ExerciseForm): ExerciseAPI {
+    const returnedExercise: ExerciseAPI = {
         exerciseId: exerciseForm.exerciseId,
         userId: userId,
         exerciseNumber: exerciseForm.exerciseNumber,
@@ -50,9 +50,9 @@ function formToApi(userId: number, exerciseForm: ExerciseForm): Exercise {
                 exerciseId: exerciseForm.exerciseId,
                 exerciseNumber: exerciseForm.exerciseNumber,
                 currentAnswer: answer.value,
-                correctAnswer: answer.correctValue,
+                // correctAnswer: answer.correctValue,
                 isCorrect: isAnswerCorrect(answer),
-                isSubmitted: true
+                // isSubmitted: true
             }
         })
 

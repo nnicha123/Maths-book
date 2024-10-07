@@ -51,13 +51,13 @@
         "exerciseId": 9,
         "userId": 2,
         "exerciseNumber": 4,
-        "submitted": false
+        "submitted": true
     },
     {
         "exerciseId": 10,
         "userId": 2,
         "exerciseNumber": 5,
-        "submitted": false
+        "submitted": true
     },
     {
         "exerciseId": 11,

@@ -11,7 +11,7 @@ import * as fromSelectors from './module.selector'
 import { combineLatest, map, Observable } from "rxjs";
 import { User } from "../models/User.model";
 import { Page } from "../models/Page.model";
-import { Question } from "../models/Question.model";
+import { QuestionAPI } from "../models/Question.model";
 import { Exercise } from "../models/Exercise.model";
 import { ExerciseForm } from "../models/ExerciseForm.model";
 
@@ -55,7 +55,7 @@ export class ModuleFacade {
         return this.store.pipe(select(fromSelectors.selectExerciseNo(exerciseNumber)))
     }
 
-    questionsOfExercise(exerciseNumber: number): Observable<Question[]> {
+    questionsOfExercise(exerciseNumber: number): Observable<QuestionAPI[]> {
         return this.store.pipe(
             select(fromSelectors.selectQuestionsFromExerciseNo(exerciseNumber))
         );

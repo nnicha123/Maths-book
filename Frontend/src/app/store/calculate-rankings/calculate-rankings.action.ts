@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Question } from "../../models/Question.model";
+import { QuestionAPI } from "../../models/Question.model";
 
 enum CalculateRankingsActions {
     CALCULATE_RANKING = '[Calculate Ranking] Calculate Ranking',
@@ -9,7 +9,7 @@ enum CalculateRankingsActions {
 
 export const calculateRanking = createAction(
     CalculateRankingsActions.CALCULATE_RANKING,
-    props<{ questions: Question[] }>()
+    props<{ questions: QuestionAPI[] }>()
 );
 
 export const calculateRankingSuccess = createAction(
