@@ -41,6 +41,8 @@
 	- submit exercise for person with no records in file -> need to add exerciseId and questionId (DONE)
 	- fix rank and level calculation (DONE)
 	- need to make sure can only submit if previous exercise done (DONE)
-	- Do something with the rankings page
+
+8/10/2024
+	- Get data of all users and do ranking page
 
 
