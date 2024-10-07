@@ -38,7 +38,7 @@ export class CalculateRankingEffect {
         this.actions$.pipe(
             ofType(fromSubmitExerciseActions.submitExerciseSuccess),
             withLatestFrom(this.store.pipe(select(fromSelectors.selectAllQuestions))),
-            switchMap(([action, allQuestions]) => {
+            switchMap(([_, allQuestions]) => {
                 return [fromActions.calculateRanking({ questions: allQuestions })]
             })
         )

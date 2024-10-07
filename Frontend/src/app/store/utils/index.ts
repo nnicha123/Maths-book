@@ -6,6 +6,9 @@ import { User } from "../../models/User.model";
 import { ModuleEntityState } from "../definitions/store.definitions";
 import cloneDeep from 'lodash.clonedeep';
 
+const DEFAULT_NUM_QUESTIONS = 25;
+
+
 export function getData(state: ModuleEntityState): ModuleData {
     const data: ModuleData = cloneDeep(state.entities[state.selectedId || '0']!.data);
     return data;
@@ -78,7 +81,7 @@ export function calculateScore(questions: QuestionAPI[]): number {
 
 export function calculateRank(questions: QuestionAPI[]): number {
     const correctQuestions = questions.filter((question) => question.isCorrect);
-    const correctPercentage = correctQuestions.length / questions.length * 100;
+    const correctPercentage = correctQuestions.length / DEFAULT_NUM_QUESTIONS * 100;
     let ranking = 0
     if (correctPercentage > 90) {
         ranking = 5;

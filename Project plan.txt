@@ -39,7 +39,7 @@
 	- Update rankings and level after submission (DONE)
 	- Fix loading of answers -> maybe just have correctAnswer as part of questions database/or remove correct answers before sending to api (DONE)
 	- submit exercise for person with no records in file -> need to add exerciseId and questionId (DONE)
-	- fix rank and level calculation
+	- fix rank and level calculation (DONE)
 	- need to make sure can only submit if previous exercise done
 	- Do something with the rankings page
 
