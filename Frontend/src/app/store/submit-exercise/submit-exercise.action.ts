@@ -15,7 +15,7 @@ export const submitExercise = createAction(
 
 export const submitExerciseSuccess = createAction(
     SubmitExerciseAction.SUBMIT_EXERCISE_SUCCESS,
-    props<{ questions: Question[] }>()
+    props<{ questions: Question[], userId:number }>()
 );
 
 export const submitExerciseError = createAction(

@@ -43,5 +43,23 @@
         "email": "ollieLand@hotmail.com",
         "password": "password",
         "image":"woman3.jpg"
+    },
+    {
+        "userId": 6,
+        "firstName": "Victor",
+        "lastName": "Salaman",
+        "username": "vic",
+        "email": "vic@hotmail.com",
+        "password": "password",
+        "image":"man2.jpg"
+    },
+    {
+        "userId": 7,
+        "firstName": "Kassy",
+        "lastName": "Logan",
+        "username": "kass33",
+        "email": "kassie@hotmail.com",
+        "password": "password",
+        "image":"woman4.jpg"
     }
 ]

@@ -77,9 +77,22 @@ export const selectExercises = createSelector(
   data => data ? data.exercises : []
 );
 
+export const selectAllAnswers = createSelector(
+  selectData,
+  data => data ? data.answers : []
+)
+
+
 export const selectExerciseNo = (exerciseNumber: number) => createSelector(
   selectExercises,
   exercises => exercises?.find(exercise => exercise.exerciseNumber === exerciseNumber)
+);
+
+export const selectExerciseIsSubmitted = (exerciseNumber:number) => createSelector(
+  selectExerciseNo(exerciseNumber),
+  exercise => {
+    return exercise ? exercise.submitted : false
+  }
 );
 
 export const selectQuestionsFromExerciseNo = (exerciseNumber: number) => createSelector(

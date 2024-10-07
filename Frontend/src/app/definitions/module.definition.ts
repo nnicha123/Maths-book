@@ -7,6 +7,7 @@ export interface ModuleData {
     id: string;
     user: User;
     exercises: Exercise[];
+    answers:Answer[];
     currentPage: number,
     pages: Page[];
 }

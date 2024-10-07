@@ -3,13 +3,14 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import * as fromActions from './submit-exercise.action';
 import { map, switchMap, withLatestFrom } from "rxjs";
 import { ExerciseService } from "../../services/exercises/exercises.service";
-import { AnswersForm, ExerciseForm } from "../../models/ExerciseForm.model";
+import {  ExerciseForm } from "../../models/ExerciseForm.model";
 import { ExerciseAPI } from "../../models/Exercise.model";
-import { calculateScore } from "../utils";
+import { calculateScore, fetchCorrectAnswerRaw, getIsCorrect } from "../utils";
 import { Question } from "../../models/Question.model";
 import * as fromSelectors from '../module.selector';
 import { ModuleEntityState } from "../definitions/store.definitions";
 import { select, Store } from "@ngrx/store";
+import { Answer } from "../../models/Answer.model";
 
 @Injectable()
 export class SubmitExerciseEffect {
@@ -23,44 +24,44 @@ export class SubmitExerciseEffect {
             ofType(fromActions.submitExercise),
             withLatestFrom(
                 this.store.pipe(select(fromSelectors.selectUserId)),
+                this.store.pipe(select(fromSelectors.selectAllAnswers))
             ),
-            switchMap(([action, userId]) => {
-                const exercise = formToApi(userId, action.exercise);
+            switchMap(([action, userId, answers]) => {
+                const exercise = formToApi(userId, action.exercise, answers);
+                // console.log(exercise)
+                // return []
                 return this.exerciseService.submitExercise(exercise).pipe(
-                    map((questions: Question[]) => fromActions.submitExerciseSuccess({ questions }))
+                    map((questions: Question[]) => fromActions.submitExerciseSuccess({ questions,userId }))
                 )
             })
         ),
+        // { dispatch: false }
     )
 }
 
-function formToApi(userId: number, exerciseForm: ExerciseForm): ExerciseAPI {
+function formToApi(userId: number, exerciseForm: ExerciseForm, answers: Answer[]): ExerciseAPI {
     const returnedExercise: ExerciseAPI = {
         exerciseId: exerciseForm.exerciseId,
         userId: userId,
         exerciseNumber: exerciseForm.exerciseNumber,
-        submitted: exerciseForm.isSubmitted,
+        // Default submited to true
+        submitted: true,
         // default score first, have a function to determine this later (need set of answers to compare to each exercise)
         score: 100,
         // update isCorrect on submit as well & calculate new score 
         questions: exerciseForm.answers.map((answer) => {
+            const correctAnswer = fetchCorrectAnswerRaw(answer.questionNumber, exerciseForm.exerciseNumber,answers)
             return {
                 questionId: answer.questionId,
                 questionNumber: answer.questionNumber,
                 exerciseId: exerciseForm.exerciseId,
                 exerciseNumber: exerciseForm.exerciseNumber,
                 currentAnswer: answer.value,
-                // correctAnswer: answer.correctValue,
-                isCorrect: isAnswerCorrect(answer),
-                // isSubmitted: true
+                isCorrect: getIsCorrect(answer.value, correctAnswer),
             }
         })
 
     }
     returnedExercise.score = calculateScore(returnedExercise.questions);
     return returnedExercise;
-}
-
-function isAnswerCorrect(answer: AnswersForm) {
-    return answer.value === answer.correctValue;
 }

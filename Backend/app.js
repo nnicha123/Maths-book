@@ -66,16 +66,15 @@ function loginUser(req, res) {
 function submitAnwers(req, res) {
     const submittedExercise = req.body;
 
-    Promise.all([
-        updateExerciseFile(submittedExercise),
-        updateQuestionsToFile(submittedExercise)
-    ])
-        .then(([_, updatedQuestionsList]) => {
+    updateExerciseFile(submittedExercise)
+        .then((updatedExercise) => {
+            return updateQuestionsToFile(updatedExercise)
+        })
+        .then((updatedQuestionsList) => {
             res.status(200).send(updatedQuestionsList)
         })
         .catch((error) => {
             console.error("Error updating answers:", error);
-
             res.status(500).send({ "Error": "Error updating answers" })
 
         })
@@ -130,19 +129,40 @@ function updateExerciseFile(updatedExercise) {
             }
 
             try {
-                const exerciseList = JSON.parse(results);
-                const newExerciseList = exerciseList.map((exercise) => {
-                    if (exercise.exerciseId === updatedExercise.exerciseId) {
-                        exercise.submitted = true
-                        return exercise
+                let exerciseList = JSON.parse(results);
+                let newExerciseList;
+                if (updatedExercise.exerciseId) {
+                    newExerciseList = exerciseList.map((exercise) => {
+                        if (exercise.exerciseId === updatedExercise.exerciseId) {
+                            exercise.submitted = true
+                            return exercise
+                        }
+                        return exercise;
+                    })
+                } else {
+                    // create new exercise with exerciseId
+                    exerciseList.sort((a, b) => {
+                        return a.exerciseId > b.exerciseId ? 1 : -1;
+                    })
+                    let latestExerciseId = exerciseList[exerciseList.length - 1].exerciseId;
+
+                    const newExercise = {
+                        exerciseId: latestExerciseId + 1,
+                        userId: updatedExercise.userId,
+                        exerciseNumber: updatedExercise.exerciseNumber,
+                        submitted: true
                     }
-                    return exercise;
-                })
+                    newExerciseList = exerciseList.concat(newExercise);
+
+                    // Add exerciseId to updatedExercise before sending out
+                    updatedExercise.exerciseId = latestExerciseId + 1;
+
+                }
 
                 const exerciseListText = JSON.stringify(newExerciseList);
 
                 writeToFile("exercise.json", exerciseListText)
-                    .then(resolve)
+                    .then(() => resolve(updatedExercise))
                     .catch(reject)
 
             } catch (parseError) {
@@ -162,12 +182,33 @@ function updateQuestionsToFile(updatedExercise) {
 
             try {
                 const questionList = JSON.parse(results);
-                const newQuestionsList = questionList.filter((question => question.exerciseId !== updatedExercise.exerciseId)).concat(updatedExercise.questions);
+                let newQuestionsList = questionList.filter((question => question.exerciseId !== updatedExercise.exerciseId))
+
+                if (questionList.length !== newQuestionsList.length) {
+                    // If exerciseId already recorded in questions file
+                    newQuestionsList = newQuestionsList.concat(updatedExercise.questions);
+                } else {
+                    // if exerciseId newly added (no previous record)
+                    // Add ids to questions
+                    let questionsToUpdate = updatedExercise.questions;
+                    questionList.sort((a, b) => {
+                        return a.questionId > b.questionId ? 1 : -1;
+                    })
+                    let latestQuestionId = questionList[questionList.length - 1].questionId;
+                    questionsToUpdate = questionsToUpdate.map((question, index) => {
+                        return {
+                            ...question,
+                            exerciseId: updatedExercise.exerciseId,
+                            questionId: latestQuestionId + index + 1
+                        }
+                    })
+                    newQuestionsList = newQuestionsList.concat(questionsToUpdate);
+                }
+
                 const questionsListText = JSON.stringify(newQuestionsList);
 
                 // Return updated questions
                 const questionListToReturn = newQuestionsList.filter((question) => question.exerciseId == updatedExercise.exerciseId);
-
                 writeToFile("question.json", questionsListText)
                     .then(() => resolve(questionListToReturn))
                     .catch(reject);

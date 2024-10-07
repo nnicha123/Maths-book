@@ -1,4 +1,5 @@
 import { ModuleData } from "../../definitions/module.definition";
+import { Answer } from "../../models/Answer.model";
 import { Page } from "../../models/Page.model";
 import { QuestionAPI } from "../../models/Question.model";
 import { User } from "../../models/User.model";
@@ -65,6 +66,7 @@ export const initialData: ModuleData = {
     id: '0',
     user: { ...initialUser },
     exercises: [],
+    answers: [],
     currentPage: 1,
     pages: pages
 }
@@ -90,4 +92,31 @@ export function calculateRank(questions: QuestionAPI[]): number {
         ranking = 1;
     }
     return ranking;
+}
+
+export function mapCorrectAnswer(questions: QuestionAPI[], answers: Answer[]) {
+    return questions.map(question => {
+        const correctAnswer = getCorrectAnswer(question, answers)
+        return ({
+            ...question,
+            isCorrect: getIsCorrect(question.currentAnswer, correctAnswer),
+            correctAnswer: correctAnswer
+        })
+    })
+}
+
+
+function getCorrectAnswer(question: QuestionAPI, answers: Answer[]): number {
+    const { questionNumber, exerciseNumber } = question;
+    return fetchCorrectAnswerRaw(questionNumber, exerciseNumber, answers);
+}
+
+export function fetchCorrectAnswerRaw(questionNumber:number, exerciseNumber:number, answers:Answer[]):number{
+    const filteredAnswer = answers.find(answer => answer.exerciseNumber === exerciseNumber && answer.questionNumber === questionNumber);
+    return filteredAnswer ? filteredAnswer.answer : 0;
+
+}
+
+export function getIsCorrect(currentAnswer: number, correctAnswer: number) {
+    return currentAnswer === correctAnswer;
 }

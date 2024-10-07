@@ -74,6 +74,10 @@ export class ModuleFacade {
         )
     }
 
+    exerciseSubmitted(exerciseNumber:number):Observable<boolean>{
+        return this.store.pipe(select(fromSelectors.selectExerciseIsSubmitted(exerciseNumber)));
+    }
+
     submitExercise(exercise:ExerciseForm): void {
         this.store.dispatch(fromSubmitExerciseActions.submitExercise({exercise}));
     }

@@ -42,9 +42,9 @@ export class ExerciseComponent implements OnInit, OnDestroy {
             formGroup.patchValue({
               value: question?.currentAnswer,
               isCorrect: question?.isCorrect,
-              correctValue:question?.correctAnswer,
-              questionNumber:question?.questionNumber,
-              questionId:question?.questionId
+              correctValue: question?.correctAnswer,
+              questionNumber: question?.questionNumber,
+              questionId: question?.questionId
             })
           }
 
@@ -55,31 +55,38 @@ export class ExerciseComponent implements OnInit, OnDestroy {
           // Patch exerciseId
           this.formExerciseId?.patchValue(exercise.exerciseId);
         })
+      } else {
+        this.formExerciseNumber?.patchValue(this.exerciseNumber);
+
       }
+
     })
   }
 
   submitExercise() {
     // Set submitted to true
-    this.isSubmitted?.patchValue(true);
+    // this.isSubmitted?.patchValue(true);
+    console.log(this.form.value)
     this.moduleFacade.submitExercise(this.form.value)
   }
 
   // Come back to this - is this doing anything useful?
   listenToChanges() {
-    this.form.valueChanges.pipe(debounceTime(300), takeUntil(this.destroy$)).subscribe(exercise => this.form.patchValue({ ...exercise }));
+    this.moduleFacade.exerciseSubmitted(this.exerciseNumber).pipe(debounceTime(300),takeUntil(this.destroy$)).subscribe(isSubmitted => {
+      this.isSubmitted?.patchValue(isSubmitted)
+    })
   }
 
   initForm() {
     this.form = this.formBuilder.group({
-      exerciseId: [0, [Validators.required]],
+      exerciseId: [undefined, [Validators.required]],
       exerciseNumber: [this.exerciseNumber, [Validators.required]],
       answers: this.formBuilder.array([]),
       isSubmitted: [false]
     })
 
     for (let i = 0; i < 5; i++) {
-      this.addAnswersGroup();
+      this.addAnswersGroup(i);
     }
   }
 
@@ -95,7 +102,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     return this.form.get('exerciseNumber')
   }
 
-  get formExerciseId(){
+  get formExerciseId() {
     return this.form.get('exerciseId');
   }
 
@@ -104,13 +111,13 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   }
 
 
-  addAnswersGroup() {
+  addAnswersGroup(index: number) {
     const answerGroup = this.formBuilder.group({
       value: [undefined, Validators.required],
       isCorrect: [false],
-      correctValue:[undefined],
-      questionNumber:[undefined],
-      questionId:[undefined]
+      correctValue: [undefined],
+      questionNumber: [index + 1],
+      questionId: [undefined]
     })
     this.answers.push(answerGroup);
   }

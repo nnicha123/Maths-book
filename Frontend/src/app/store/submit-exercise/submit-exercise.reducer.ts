@@ -2,6 +2,7 @@ import { on, ReducerTypes } from "@ngrx/store";
 import { moduleEntityAdapter, ModuleEntityState } from "../definitions/store.definitions";
 import * as fromActions from './submit-exercise.action';
 import { calculateScore, getData } from "../utils";
+import { Exercise } from "../../models/Exercise.model";
 
 export function SubmitExerciseReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
@@ -20,7 +21,7 @@ export function SubmitExerciseReducer(): ReducerTypes<ModuleEntityState, any>[] 
         }),
         on(fromActions.submitExerciseSuccess, (state, action) => {
             const data = getData(state);
-            const exercises = data.exercises;
+            let exercises = data.exercises;
             const questions = action.questions;
             const selectedExerciseNumber = questions[0].exerciseNumber;
 
@@ -35,6 +36,16 @@ export function SubmitExerciseReducer(): ReducerTypes<ModuleEntityState, any>[] 
                 selectedExercise.questions = questions;
                 exercises[selectedExerciseIndex] = selectedExercise;
 
+            } else {
+                const newExercise:Exercise = {
+                    exerciseId: questions[0].exerciseId,
+                    userId: action.userId,
+                    exerciseNumber: questions[0].exerciseNumber,
+                    submitted: true,
+                    questions: questions,
+                    score: calculateScore(questions)
+                }
+                exercises = [...exercises,newExercise];
             }
             return {
                 ...moduleEntityAdapter.updateOne(

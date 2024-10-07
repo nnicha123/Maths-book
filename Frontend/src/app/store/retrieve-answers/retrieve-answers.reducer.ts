@@ -1,9 +1,7 @@
 import { on, ReducerTypes } from "@ngrx/store";
 import { moduleEntityAdapter, ModuleEntityState } from "../definitions/store.definitions";
 import * as fromActions from './retrieve-answers.action'
-import { getData } from "../utils";
-import { QuestionAPI } from "../../models/Question.model";
-import { Answer } from "../../models/Answer.model";
+import { getData, mapCorrectAnswer } from "../utils";
 import { Exercise } from "../../models/Exercise.model";
 
 
@@ -30,7 +28,7 @@ export function retrieveAnswersReducer(): ReducerTypes<ModuleEntityState, any>[]
             const updatedExercises: Exercise[] = exercises.map(exercise => {
                 return {
                     ...exercise,
-                    questions: mapCorrectAnswer(exercise.questions, answers)
+                    questions: mapCorrectAnswer(exercise.questions, answers),
                 }
             })
             return {
@@ -40,7 +38,9 @@ export function retrieveAnswersReducer(): ReducerTypes<ModuleEntityState, any>[]
                         changes: {
                             data: {
                                 ...data,
-                                exercises: updatedExercises
+                                exercises: updatedExercises,
+                                answers: answers
+
                             },
                             status: 'ready'
 
@@ -68,20 +68,3 @@ export function retrieveAnswersReducer(): ReducerTypes<ModuleEntityState, any>[]
 }
 
 
-function mapCorrectAnswer(questions: QuestionAPI[], answers: Answer[]) {
-    return questions.map(question => ({
-        ...question,
-        isCorrect: getIsCorrect(question.currentAnswer, getCorrectAnswer(question, answers)),
-        correctAnswer: getCorrectAnswer(question, answers)
-    }))
-}
-
-function getCorrectAnswer(question: QuestionAPI, answers: Answer[]): number {
-    const { questionNumber, exerciseNumber } = question;
-    const filteredAnswer = answers.find(answer => answer.exerciseNumber === exerciseNumber && answer.questionNumber === questionNumber);
-    return filteredAnswer ? filteredAnswer.answer : 0;
-}
-
-function getIsCorrect(currentAnswer: number, correctAnswer: number) {
-    return currentAnswer === correctAnswer;
-}
