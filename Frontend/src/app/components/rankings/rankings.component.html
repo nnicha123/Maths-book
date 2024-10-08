@@ -1,6 +1,6 @@
 <h1>Top 5 Rankings</h1>
 <div class="level-and-rank">
-    @for (rank of allRankings$ | async; track rank) {
+    @for (rank of allRankings$ | async; track $index) {
     <div class="rank">
         <p>{{rank.fullName | truncate : 11}}</p>
         <app-star-rating [currentLevel]="rank.currentLevel" style="margin: 0;"></app-star-rating>

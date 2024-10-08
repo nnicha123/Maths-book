@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import * as fromStore from './store';
 import { ModuleFacade } from './store/module.facade';
 import { HttpClientModule } from '@angular/common/http';
-import { StarRatingComponent } from './components/star-rating/star-rating/star-rating.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 const NGRX_MODULES = [
   StoreModule.forRoot({ module: fromStore.moduleReducer }),

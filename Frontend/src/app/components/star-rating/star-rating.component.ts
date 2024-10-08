@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MAX_STARS } from '../../../store/utils';
+import { MAX_STARS } from '../../store/utils';
 
 @Component({
   selector: 'app-star-rating',
