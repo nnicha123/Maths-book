@@ -18,6 +18,9 @@
                 @for (item of user.currentLevel | starRating; track item) {
                 <i class='bx bxs-star'></i>
                 }
+                @for (item of maxStars - user.currentLevel | starRating; track item){
+                <i class='bx bxs-star grey'></i>
+                }
             </span>
         </div>
     </div>

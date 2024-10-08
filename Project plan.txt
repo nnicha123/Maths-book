@@ -43,6 +43,8 @@
 	- need to make sure can only submit if previous exercise done (DONE)
 
 8/10/2024
+	- Add empty stars (DONE)
+	- Wrap stars in a small container
 	- Get data of all users and do ranking page
 
 

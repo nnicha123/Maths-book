@@ -22,7 +22,7 @@
     h2 {
         position: absolute;
         top: 2rem;
-        right: 2.5rem;
+        left: 9rem;
     }
 
     .star-container {
@@ -33,6 +33,10 @@
         & i {
             color: var(--star-color);
             font-size: 30px;
+
+            &.grey {
+                color: var(--disabled-color);
+            }
         }
     }
 }

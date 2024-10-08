@@ -8,6 +8,8 @@ import cloneDeep from 'lodash.clonedeep';
 
 const DEFAULT_NUM_QUESTIONS = 25;
 
+export const MAX_STARS = 5;
+
 
 export function getData(state: ModuleEntityState): ModuleData {
     const data: ModuleData = cloneDeep(state.entities[state.selectedId || '0']!.data);

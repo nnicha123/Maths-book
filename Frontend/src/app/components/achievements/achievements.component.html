@@ -4,6 +4,9 @@
         @for (item of user.currentLevel | starRating; track item) {
         <i class='bx bxs-star'></i>
         }
+        @for (item of maxStars - user.currentLevel | starRating; track item){
+        <i class='bx bxs-star grey'></i>
+        }
     </span>
 
     <div class="image-wrapper">
@@ -12,7 +15,8 @@
 </div>
 <div *ngIf="exercises$ | async as exercises;else notDoneAny">
     <div *ngIf="exercises && exercises.length > 0;else notDoneAny">
-        <div class="checkpoint-container" *ngIf="exercises[0] && exercises[0].score;else notSubmitted1" [ngClass]="exercises[0] | score">
+        <div class="checkpoint-container" *ngIf="exercises[0] && exercises[0].score;else notSubmitted1"
+            [ngClass]="exercises[0] | score">
             <span>Level {{exercises[0].exerciseNumber}}</span>
             <span>{{exercises[0].score}} %</span>
         </div>
@@ -22,7 +26,8 @@
                 <span>-</span>
             </div>
         </ng-template>
-        <div class="checkpoint-container" *ngIf="exercises[1] && exercises[1].score;else notSubmitted2" [ngClass]="exercises[1] | score">
+        <div class="checkpoint-container" *ngIf="exercises[1] && exercises[1].score;else notSubmitted2"
+            [ngClass]="exercises[1] | score">
             <span>Level {{exercises[1].exerciseNumber}}</span>
             <span>{{exercises[1].score}} %</span>
         </div>
@@ -32,7 +37,8 @@
                 <span>-</span>
             </div>
         </ng-template>
-        <div class="checkpoint-container" *ngIf="exercises[2] && exercises[2].score;else notSubmitted3" [ngClass]="exercises[2] | score">
+        <div class="checkpoint-container" *ngIf="exercises[2] && exercises[2].score;else notSubmitted3"
+            [ngClass]="exercises[2] | score">
             <span>Level {{exercises[2].exerciseNumber}}</span>
             <span>{{exercises[2].score}} %</span>
         </div>
@@ -42,7 +48,8 @@
                 <span>-</span>
             </div>
         </ng-template>
-        <div class="checkpoint-container" *ngIf="exercises[3] && exercises[3].score;else notSubmitted4" [ngClass]="exercises[3] | score">
+        <div class="checkpoint-container" *ngIf="exercises[3] && exercises[3].score;else notSubmitted4"
+            [ngClass]="exercises[3] | score">
             <span>Level {{exercises[3].exerciseNumber}}</span>
             <span>{{exercises[3].score}} %</span>
         </div>
@@ -52,7 +59,8 @@
                 <span>-</span>
             </div>
         </ng-template>
-        <div class="checkpoint-container" *ngIf="exercises[4] && exercises[4].score;else notSubmitted5" [ngClass]="exercises[4] | score">
+        <div class="checkpoint-container" *ngIf="exercises[4] && exercises[4].score;else notSubmitted5"
+            [ngClass]="exercises[4] | score">
             <span>Level {{exercises[4].exerciseNumber}}</span>
             <span>{{exercises[4].score}} %</span>
         </div>
@@ -67,7 +75,7 @@
             <button [disabled]="disabled" class="revert-style" (click)="turnAllPagesBackward()">Profile</button>
         </div>
     </div>
-    
+
 </div>
 
 <ng-template #notDoneAny>

@@ -3,6 +3,7 @@ import { Observable, pipe, take, tap } from 'rxjs';
 import { User } from '../../models/User.model';
 import { ModuleFacade } from '../../store/module.facade';
 import { Router } from '@angular/router';
+import { MAX_STARS } from '../../store/utils';
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   @Input() disabled: boolean = false;
+  maxStars = MAX_STARS;
   user$: Observable<User>;
 
   constructor(private moduleFacade: ModuleFacade, private router: Router) {

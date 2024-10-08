@@ -19,6 +19,10 @@
         & i {
             color: var(--star-color);
             font-size: 30px;
+
+            &.grey {
+                color: var(--disabled-color);
+            }
         }
 
         & p {
