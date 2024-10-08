@@ -1,0 +1,8 @@
+<span class="star-container" style="margin: 0;">
+    @for (item of currentLevel | starRating; track item) {
+    <i class='bx bxs-star'></i>
+    }
+    @for (item of maxStars - currentLevel | starRating; track item){
+    <i class='bx bxs-star grey'></i>
+    }
+</span>

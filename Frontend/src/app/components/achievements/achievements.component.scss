@@ -25,19 +25,10 @@
         left: 9rem;
     }
 
-    .star-container {
+    app-star-rating {
         position: absolute;
         right: 9rem;
         top: 4.5rem;
-
-        & i {
-            color: var(--star-color);
-            font-size: 30px;
-
-            &.grey {
-                color: var(--disabled-color);
-            }
-        }
     }
 }
 

@@ -14,14 +14,7 @@
 
         <div class="rank">
             <p>Rank</p>
-            <span class="star-container" style="margin: 0;">
-                @for (item of user.currentLevel | starRating; track item) {
-                <i class='bx bxs-star'></i>
-                }
-                @for (item of maxStars - user.currentLevel | starRating; track item){
-                <i class='bx bxs-star grey'></i>
-                }
-            </span>
+            <app-star-rating [currentLevel]="user.currentLevel" style="margin: 0;"></app-star-rating>
         </div>
     </div>
     <div class="button-container">

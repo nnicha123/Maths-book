@@ -28,15 +28,6 @@
         justify-content: space-between;
         width: 100%;
 
-        & i {
-            color: var(--star-color);
-            font-size: 30px;
-
-            &.grey {
-                color: var(--disabled-color);
-            }
-        }
-
         & p {
             font-weight: 700;
             margin: 0;
