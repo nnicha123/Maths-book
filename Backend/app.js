@@ -18,6 +18,8 @@ app.get('/', (req, res) => {
     .post('/questions', getQuestionsFromExerciseList)
     .post('/submit', submitAnwers)
     .get('/answers', getAnswers)
+    .post('/user/updateRanking', updateRanking)
+// .get('/allRankings', getAllRankings)
 
 app.listen(3000, () => {
     console.log('Listening at: http://localhost:3000');
@@ -60,6 +62,18 @@ function loginUser(req, res) {
         } else {
             res.status(401).send({ "message": "Unauthorized: Cannot find username password combination" })
         }
+    })
+}
+
+function updateRanking(req, res) {
+    const userEdited = req.body;
+    fs.readFile("users.json", { encoding: "utf-8" }, (err, results) => {
+        let userList = JSON.parse(results);
+        userList = userList.filter(user => user.userId !== userEdited.userId).concat(userEdited);
+        const userListText = JSON.stringify(userList);
+        writeToFile("users.json", userListText)
+            .then(() => res.send(userEdited))
+            .catch(() => res.status(500).send({ "message": "Errir writing to users file" }))
     })
 }
 

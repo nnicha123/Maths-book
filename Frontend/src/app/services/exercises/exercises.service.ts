@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Exercise, ExerciseAPI } from '../../models/Exercise.model';
 import { Question } from '../../models/Question.model';
 import { Answer } from '../../models/Answer.model';
+import { User } from '../../models/User.model';
 
 @Injectable({
     providedIn: 'root'
@@ -25,11 +26,15 @@ export class ExerciseService {
         return this.httpClient.get<Question[]>(`${this.baseUrl}/exercise/${exerciseId}`)
     }
 
-    submitExercise(exercise:ExerciseAPI):Observable<Question[]>{
+    submitExercise(exercise: ExerciseAPI): Observable<Question[]> {
         return this.httpClient.post<Question[]>(`${this.baseUrl}/submit`, exercise)
     }
 
-    getAllAnswers():Observable<Answer[]>{
+    getAllAnswers(): Observable<Answer[]> {
         return this.httpClient.get<Answer[]>(`${this.baseUrl}/answers`)
+    }
+
+    updateRanking(updatedUser: User): Observable<User> {
+        return this.httpClient.post<User>(`${this.baseUrl}/user/updateRanking`, updatedUser)
     }
 }

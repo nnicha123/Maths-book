@@ -6,7 +6,8 @@
         "username": "nngam123",
         "email": "nicha_nga@hotmail.com",
         "password": "password",
-        "image":"me.png"
+        "image": "me.png",
+        "currentLevel": 5
     },
     {
         "userId": 2,
@@ -15,7 +16,8 @@
         "username": "soph123",
         "email": "sophie1@hotmail.com",
         "password": "password",
-        "image":"woman1.jpg"
+        "image": "woman1.jpg",
+        "currentLevel": 2
     },
     {
         "userId": 3,
@@ -24,7 +26,8 @@
         "username": "rroger111",
         "email": "rroger111@hotmail.com",
         "password": "password",
-        "image":"man1.jpg"
+        "image": "man1.jpg",
+        "currentLevel": 5
     },
     {
         "userId": 4,
@@ -33,16 +36,8 @@
         "username": "elleFour",
         "email": "eliie@gmail.com",
         "password": "password",
-        "image":"woman2.jpg"
-    },
-    {
-        "userId": 5,
-        "firstName": "Olivia",
-        "lastName": "Potters",
-        "username": "olliePot",
-        "email": "ollieLand@hotmail.com",
-        "password": "password",
-        "image":"woman3.jpg"
+        "image": "woman2.jpg",
+        "currentLevel": 5
     },
     {
         "userId": 6,
@@ -51,7 +46,8 @@
         "username": "vic",
         "email": "vic@hotmail.com",
         "password": "password",
-        "image":"man2.jpg"
+        "image": "man2.jpg",
+        "currentLevel": 0
     },
     {
         "userId": 7,
@@ -60,6 +56,17 @@
         "username": "kass33",
         "email": "kassie@hotmail.com",
         "password": "password",
-        "image":"woman4.jpg"
+        "image": "woman4.jpg",
+        "currentLevel": 0
+    },
+    {
+        "userId": 5,
+        "firstName": "Olivia",
+        "lastName": "Potters",
+        "username": "olliePot",
+        "email": "ollieLand@hotmail.com",
+        "password": "password",
+        "image": "woman3.jpg",
+        "currentLevel": 3
     }
 ]
