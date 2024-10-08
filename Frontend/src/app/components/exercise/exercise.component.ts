@@ -66,9 +66,6 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   }
 
   submitExercise() {
-    // Set submitted to true
-    // this.isSubmitted?.patchValue(true);
-    console.log(this.form.value)
     this.moduleFacade.submitExercise(this.form.value)
   }
 

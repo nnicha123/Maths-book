@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     .post('/submit', submitAnwers)
     .get('/answers', getAnswers)
     .post('/user/updateRanking', updateRanking)
-// .get('/allRankings', getAllRankings)
+    .get('/allRankings', getAllRankings)
 
 app.listen(3000, () => {
     console.log('Listening at: http://localhost:3000');
@@ -36,6 +36,24 @@ function getAnswers(req, res) {
     fs.readFile("answers.json", { encoding: "utf-8" }, (err, results) => {
         let answers = JSON.parse(results);
         res.send(answers);
+    })
+}
+
+function getAllRankings(req, res) {
+    fs.readFile("users.json", { encoding: "utf-8" }, (err, results) => {
+        const users = JSON.parse(results);
+        const mappedRankings = users.map((user) => {
+            return {
+                fullName: user.firstName + ' ' + user.lastName,
+                currentLevel: user.currentLevel
+            }
+        })
+
+        mappedRankings.sort((a, b) =>   b.currentLevel - a.currentLevel)
+
+        // Get first 5 rankings
+        res.send(mappedRankings.slice(0, 5))
+
     })
 }
 

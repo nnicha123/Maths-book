@@ -1,55 +1,11 @@
 <h1>Top 5 Rankings</h1>
 <div class="level-and-rank">
+    @for (rank of allRankings$ | async; track rank) {
     <div class="rank">
-        <p>Amy Slator</p>
-        <span class="star-container" style="margin: 0;">
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-        </span>
+        <p>{{rank.fullName | truncate : 11}}</p>
+        <app-star-rating [currentLevel]="rank.currentLevel" style="margin: 0;"></app-star-rating>
     </div>
-    <div class="rank">
-        <p>Kim Sutton</p>
-        <span class="star-container" style="margin: 0;">
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-        </span>
-    </div>
-    <div class="rank">
-        <p>Tim Timmy</p>
-        <span class="star-container" style="margin: 0;">
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-        </span>
-    </div>
-    <div class="rank">
-        <p>Tobie Blues</p>
-        <span class="star-container" style="margin: 0;">
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-        </span>
-    </div>
-    <div class="rank">
-        <p>{{'Nicha Ngamtweerat' | truncate : 11}}</p>
-        <span class="star-container" style="margin: 0;">
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-        </span>
-    </div>
+    }
 </div>
 <div class="button-container">
     <button [disabled]="disabled" (click)="nextPage()">Continue</button>

@@ -14,6 +14,7 @@ import { Page } from "../models/Page.model";
 import { QuestionAPI } from "../models/Question.model";
 import { Exercise } from "../models/Exercise.model";
 import { ExerciseForm } from "../models/ExerciseForm.model";
+import { Rank } from "../models/Rank.model";
 
 @Injectable()
 export class ModuleFacade {
@@ -118,5 +119,9 @@ export class ModuleFacade {
 
     get exercises$(): Observable<Exercise[]> {
         return this.store.pipe(select(fromSelectors.selectExercises))
+    }
+
+    get allRankings$():Observable<Rank[]>{
+        return this.store.pipe(select(fromSelectors.selectAllRankings))
     }
 }

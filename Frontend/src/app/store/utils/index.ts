@@ -73,7 +73,8 @@ export const initialData: ModuleData = {
     exercises: [],
     answers: [],
     currentPage: 1,
-    pages: pages
+    pages: pages,
+    allRankings: []
 }
 
 export function calculateScore(questions: QuestionAPI[]): number {
@@ -116,7 +117,7 @@ function getCorrectAnswer(question: QuestionAPI, answers: Answer[]): number {
     return fetchCorrectAnswerRaw(questionNumber, exerciseNumber, answers);
 }
 
-export function fetchCorrectAnswerRaw(questionNumber:number, exerciseNumber:number, answers:Answer[]):number{
+export function fetchCorrectAnswerRaw(questionNumber: number, exerciseNumber: number, answers: Answer[]): number {
     const filteredAnswer = answers.find(answer => answer.exerciseNumber === exerciseNumber && answer.questionNumber === questionNumber);
     return filteredAnswer ? filteredAnswer.answer : 0;
 

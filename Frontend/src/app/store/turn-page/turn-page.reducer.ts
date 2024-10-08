@@ -4,7 +4,7 @@ import * as fromActions from './turn-page.action';
 import { getData } from "../utils";
 import { ModuleData, ModuleStatus } from "../../definitions/module.definition";
 
-export function TurnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
+export function turnPageReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
         on(fromActions.turnPageForward, fromActions.turnPageBackward, fromActions.turnAllPagesBackward, fromActions.turnAllPagesForward, (state, action) => {
             return {

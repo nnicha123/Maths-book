@@ -7,8 +7,8 @@ import { RefreshUserEffect } from "./refresh-user/refresh-user.effect";
 import { checkIfNeedRefresh, refreshUser, refreshUserError, refreshUserSuccess } from "./refresh-user/refresh-user.action";
 import { LogoutUserEffect } from "./logout-user/logout-user.effect";
 import { logoutUser } from "./logout-user/logout-user.action";
-import { CalculateRankingEffect } from "./calculate-rankings/calculate-rankings.effect";
-import { calculateRanking, calculateRankingError, calculateRankingSuccess } from "./calculate-rankings/calculate-rankings.action";
+import { RetrieveRankingEffect } from "./retrieve-rankings/retrieve-rankings.effect";
+import { calculateRanking, calculateRankingError, calculateRankingSuccess, retrieveAllRankings, retrieveAllRankingsError, retrieveAllRankingsSuccess } from "./retrieve-rankings/retrieve-rankings.action";
 import { turnAllPagesBackward, turnAllPagesBackwardSuccess, turnAllPagesForward, turnAllPagesForwardSuccess, turnPageBackward, turnPageBackwardError, turnPageBackwardSuccess, turnPageForward, turnPageForwardError, turnPageForwardSuccess, updateCurrentPage, updateIndex } from "./turn-page/turn-page.action";
 import { TurnPageEffect } from "./turn-page/turn-page.effect";
 import { submitExercise, submitExerciseError, submitExerciseSuccess } from "./submit-exercise/submit-exercise.action";
@@ -31,6 +31,9 @@ const actions = {
     retrieveQuestions: retrievQuestions,
     retrieveQuestionsSuccess: retrieveQuestionsSuccess,
     retrieveQuestionsError: retrieveQuestionsError,
+    retrieveAllRankings: retrieveAllRankings,
+    retrieveAllRankingsSuccess: retrieveAllRankingsSuccess,
+    retrieveAllRankingsError: retrieveAllRankingsError,
     calculateRanking: calculateRanking,
     calculateRankingSuccess: calculateRankingSuccess,
     calculateRankingError: calculateRankingError,
@@ -59,7 +62,7 @@ const effects: any[] = [
     LogoutUserEffect,
     RefreshUserEffect,
     RetrieveQuestionsEffect,
-    CalculateRankingEffect,
+    RetrieveRankingEffect,
     TurnPageEffect,
     SubmitExerciseEffect,
     RetrieveAnswersEffect

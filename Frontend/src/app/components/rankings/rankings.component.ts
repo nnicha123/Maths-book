@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ModuleFacade } from '../../store/module.facade';
+import { Observable } from 'rxjs';
+import { Rank } from '../../models/Rank.model';
 
 @Component({
   selector: 'app-rankings',
@@ -8,8 +10,11 @@ import { ModuleFacade } from '../../store/module.facade';
 })
 export class RankingsComponent {
   @Input() disabled: boolean = false;
+  allRankings$: Observable<Rank[]>;
 
-  constructor(private moduleFacade: ModuleFacade) { }
+  constructor(private moduleFacade: ModuleFacade) {
+    this.allRankings$ = this.moduleFacade.allRankings$;
+  }
 
   nextPage() {
     this.moduleFacade.turnPageForward();

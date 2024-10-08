@@ -45,6 +45,6 @@
 8/10/2024
 	- Add empty stars (DONE)
 	- Wrap stars in a small container (DONE)
-	- Get data of all users and do ranking page
+	- Get data of all users and do ranking page (DONE)
 
 

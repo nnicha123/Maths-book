@@ -4,7 +4,7 @@ import * as fromActions from './submit-exercise.action';
 import { calculateScore, getData } from "../utils";
 import { Exercise } from "../../models/Exercise.model";
 
-export function SubmitExerciseReducer(): ReducerTypes<ModuleEntityState, any>[] {
+export function submitExerciseReducer(): ReducerTypes<ModuleEntityState, any>[] {
     return [
         on(fromActions.submitExercise, (state) => {
             return {

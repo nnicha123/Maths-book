@@ -28,14 +28,11 @@ export class SubmitExerciseEffect {
             ),
             switchMap(([action, userId, answers]) => {
                 const exercise = formToApi(userId, action.exercise, answers);
-                // console.log(exercise)
-                // return []
                 return this.exerciseService.submitExercise(exercise).pipe(
                     map((questions: Question[]) => fromActions.submitExerciseSuccess({ questions,userId }))
                 )
             })
         ),
-        // { dispatch: false }
     )
 }
 

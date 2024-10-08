@@ -4,9 +4,9 @@ import { loginUserReducer } from "./login-user/login-user.reducer";
 import { retrieveQuestionsReducer } from "./retrieve-questions/retrieve-questions.reducer";
 import { refershUserReducer } from "./refresh-user/refresh-user.reducer";
 import { logoutUserReducer } from "./logout-user/logout-user.reducer";
-import { CalculateRankingReducer } from "./calculate-rankings/calculate-rankings.reducer";
-import { TurnPageReducer } from "./turn-page/turn-page.reducer";
-import { SubmitExerciseReducer } from "./submit-exercise/submit-exercise.reducer";
+import { retrieveRankingReducer } from "./retrieve-rankings/retrieve-rankings.reducer";
+import { turnPageReducer } from "./turn-page/turn-page.reducer";
+import { submitExerciseReducer } from "./submit-exercise/submit-exercise.reducer";
 import { retrieveAnswersReducer } from "./retrieve-answers/retrieve-answers.reducer";
 
 export const initialState: ModuleEntityState = moduleEntityAdapter.getInitialState({
@@ -25,9 +25,9 @@ const _reducer = createReducer(
   ...logoutUserReducer(),
   ...refershUserReducer(),
   ...retrieveQuestionsReducer(),
-  ...CalculateRankingReducer(),
-  ...TurnPageReducer(),
-  ...SubmitExerciseReducer(),
+  ...retrieveRankingReducer(),
+  ...turnPageReducer(),
+  ...submitExerciseReducer(),
   ...retrieveAnswersReducer()
 );
 

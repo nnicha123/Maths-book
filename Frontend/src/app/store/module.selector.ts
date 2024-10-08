@@ -23,7 +23,7 @@ export const selectSelectedId = createSelector(
 export const selectEntity = createSelector(
   selectModuleState,
   (state: ModuleEntityState) => state.entities[state.selectedId || '0']
-)
+);
 
 // Select the data from the selected entity
 export const selectData = createSelector(
@@ -80,7 +80,12 @@ export const selectExercises = createSelector(
 export const selectAllAnswers = createSelector(
   selectData,
   data => data ? data.answers : []
-)
+);
+
+export const selectAllRankings = createSelector(
+  selectData,
+  data => data ? data.allRankings : []
+);
 
 
 export const selectExerciseNo = (exerciseNumber: number) => createSelector(
@@ -88,19 +93,19 @@ export const selectExerciseNo = (exerciseNumber: number) => createSelector(
   exercises => exercises?.find(exercise => exercise.exerciseNumber === exerciseNumber)
 );
 
-export const selectExerciseIsSubmitted = (exerciseNumber:number) => createSelector(
+export const selectExerciseIsSubmitted = (exerciseNumber: number) => createSelector(
   selectExerciseNo(exerciseNumber),
   exercise => {
     return exercise ? exercise.submitted : false
   }
 );
 
-export const selectPreviousExerciseSubmitted = (previousExerciseNumber:number) => createSelector(
+export const selectPreviousExerciseSubmitted = (previousExerciseNumber: number) => createSelector(
   selectExerciseNo(previousExerciseNumber),
   exercise => {
     return exercise ? exercise.submitted : false
   }
-)
+);
 
 export const selectQuestionsFromExerciseNo = (exerciseNumber: number) => createSelector(
   selectExercises,
@@ -110,4 +115,4 @@ export const selectQuestionsFromExerciseNo = (exerciseNumber: number) => createS
 export const selectAllQuestions = createSelector(
   selectExercises,
   exercises => exercises ? exercises.flatMap(exercise => exercise.questions) : []
-)
+);

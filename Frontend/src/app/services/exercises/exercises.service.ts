@@ -5,6 +5,7 @@ import { Exercise, ExerciseAPI } from '../../models/Exercise.model';
 import { Question } from '../../models/Question.model';
 import { Answer } from '../../models/Answer.model';
 import { User } from '../../models/User.model';
+import { Rank } from '../../models/Rank.model';
 
 @Injectable({
     providedIn: 'root'
@@ -36,5 +37,9 @@ export class ExerciseService {
 
     updateRanking(updatedUser: User): Observable<User> {
         return this.httpClient.post<User>(`${this.baseUrl}/user/updateRanking`, updatedUser)
+    }
+
+    getAllRankings():Observable<Rank[]>{
+        return this.httpClient.get<Rank[]>(`${this.baseUrl}/allRankings`)
     }
 }
