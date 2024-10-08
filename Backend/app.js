@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
     res.send("Checking it works!");
 })
     .post("/auth/login", loginUser)
+    .post("/auth/register", registerUser)
     .get('/user/users', getUsers)
     .get('/user/userSingle/:userId', getSingleUser)
     .get('/user/userExercise/:userId', getUserExercises)
@@ -49,7 +50,7 @@ function getAllRankings(req, res) {
             }
         })
 
-        mappedRankings.sort((a, b) =>   b.currentLevel - a.currentLevel)
+        mappedRankings.sort((a, b) => b.currentLevel - a.currentLevel)
 
         // Get first 5 rankings
         res.send(mappedRankings.slice(0, 5))
@@ -73,13 +74,36 @@ function loginUser(req, res) {
     // To add security later
     const { username, password } = req.body;
     fs.readFile("users.json", { encoding: "utf-8" }, (err, results) => {
-        let userList = JSON.parse(results);
-        let singleUser = userList.filter(row => row.username === username && row.password === password)[0];
+        const userList = JSON.parse(results);
+        const singleUser = userList.filter(row => row.username === username && row.password === password)[0];
         if (singleUser) {
             res.send(singleUser);
         } else {
             res.status(401).send({ "message": "Unauthorized: Cannot find username password combination" })
         }
+    })
+}
+
+function registerUser(req, res) {
+    let newUser = req.body;
+    fs.readFile("users.json", { encoding: "utf-8" }, (err, results) => {
+        let userList = JSON.parse(results);
+        const usernameExists = userList.filter(row => row.username === newUser.username);
+        if (usernameExists.length > 0) {
+            res.status(500).send({ "message": "Username already exists" });
+        } else {
+            // Add necessary variables
+            newUser.currentLevel = 0;
+            userList.sort((a, b) => a.userId - b.userId);
+            const latestUserId = userList[userList.length - 1].userId;
+            newUser.userId = latestUserId + 1;
+            userList = userList.concat(newUser);
+            const userListText = JSON.stringify(userList);
+            writeToFile("users.json", userListText)
+                .then(() => res.send(newUser))
+                .catch(() => res.status(500).send({ "message": "Error writing new user to file" }))
+        }
+
     })
 }
 
@@ -91,7 +115,7 @@ function updateRanking(req, res) {
         const userListText = JSON.stringify(userList);
         writeToFile("users.json", userListText)
             .then(() => res.send(userEdited))
-            .catch(() => res.status(500).send({ "message": "Errir writing to users file" }))
+            .catch(() => res.status(500).send({ "message": "Error writing to users file" }))
     })
 }
 

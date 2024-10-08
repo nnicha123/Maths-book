@@ -6,10 +6,11 @@ import * as fromRefreshActions from './refresh-user/refresh-user.action';
 import * as fromLogoutActions from './logout-user/logout-user.action';
 import * as fromTurnPageActions from './turn-page/turn-page.action';
 import * as fromSubmitExerciseActions from './submit-exercise/submit-exercise.action';
+import * as fromRegisterActions from './register-user/register-user.action';
 import { Injectable } from "@angular/core";
 import * as fromSelectors from './module.selector'
 import { combineLatest, map, Observable } from "rxjs";
-import { User } from "../models/User.model";
+import { NewUser, User } from "../models/User.model";
 import { Page } from "../models/Page.model";
 import { QuestionAPI } from "../models/Question.model";
 import { Exercise } from "../models/Exercise.model";
@@ -22,6 +23,10 @@ export class ModuleFacade {
 
     loginUser(login: Login): void {
         this.store.dispatch(fromLoginActions.loginUser({ login }));
+    }
+
+    registerUser(newUser: NewUser): void {
+        this.store.dispatch(fromRegisterActions.registerUser({ newUser }));
     }
 
     checkIfNeedRefresh(userId: string): void {
@@ -75,16 +80,16 @@ export class ModuleFacade {
         )
     }
 
-    exerciseSubmitted(exerciseNumber:number):Observable<boolean>{
+    exerciseSubmitted(exerciseNumber: number): Observable<boolean> {
         return this.store.pipe(select(fromSelectors.selectExerciseIsSubmitted(exerciseNumber)));
     }
 
-    previousExerciseSubmitted(previousExerciseNumber:number):Observable<boolean>{
+    previousExerciseSubmitted(previousExerciseNumber: number): Observable<boolean> {
         return this.store.pipe(select(fromSelectors.selectPreviousExerciseSubmitted(previousExerciseNumber)));
     }
 
-    submitExercise(exercise:ExerciseForm): void {
-        this.store.dispatch(fromSubmitExerciseActions.submitExercise({exercise}));
+    submitExercise(exercise: ExerciseForm): void {
+        this.store.dispatch(fromSubmitExerciseActions.submitExercise({ exercise }));
     }
 
     get allExerciseScores$(): Observable<number[]> {
@@ -121,7 +126,7 @@ export class ModuleFacade {
         return this.store.pipe(select(fromSelectors.selectExercises))
     }
 
-    get allRankings$():Observable<Rank[]>{
+    get allRankings$(): Observable<Rank[]> {
         return this.store.pipe(select(fromSelectors.selectAllRankings))
     }
 }

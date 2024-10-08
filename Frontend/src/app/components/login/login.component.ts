@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModuleFacade } from '../../store/module.facade';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,9 @@ import { ModuleFacade } from '../../store/module.facade';
 export class LoginComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private moduleFacade:ModuleFacade) { }
+  constructor(private formBuilder: FormBuilder, private moduleFacade: ModuleFacade,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -28,7 +31,11 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
-    this.moduleFacade.loginUser({username:this.form.value.username, password:this.form.value.password})
+    this.moduleFacade.loginUser({ username: this.form.value.username, password: this.form.value.password })
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 
 }

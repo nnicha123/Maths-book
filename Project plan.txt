@@ -46,5 +46,10 @@
 	- Add empty stars (DONE)
 	- Wrap stars in a small container (DONE)
 	- Get data of all users and do ranking page (DONE)
+	- Add register page (DONE)
+
+*Later -> -Add authentication
+	  -Add database to backend
+	  -Change method of storing image -> add image uploader
 
 

@@ -14,6 +14,13 @@
         </div>
         <div class="text-container">
             <div>
+                <input type="text" placeholder="FIRSTNAME" formControlName="firstName">
+                <input style="margin-left: 10px;" type="text" placeholder="LASTNAME" formControlName="lastName">
+            </div>
+            <div>
+                <input type="email" placeholder="EMAIL" formControlName="email">
+            </div>
+            <div>
                 <input type="text" placeholder="USERNAME" formControlName="username">
             </div>
             <div>
@@ -21,10 +28,10 @@
             </div>
         </div>
         <div class="button-container">
-            <button type="submit">Login</button>
-            <button class="revert-style" (click)="goToRegister()">Signup</button>
+            <button type="submit">Signup</button>
+            <button class="revert-style" (click)="goToLogin()">Login</button>
         </div>
-        
+
     </form>
 </body>
 

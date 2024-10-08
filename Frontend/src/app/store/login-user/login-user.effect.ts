@@ -2,9 +2,11 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { LoginService } from "../../services/login/login.service";
 import { Router } from "@angular/router";
 import * as fromActions from './login-user.action';
-import { map, switchMap, tap } from "rxjs/operators";
+import * as fromRegisterActions from '../register-user/register-user.action';
+import { map, switchMap } from "rxjs/operators";
 import { User } from "../../models/User.model";
 import { Injectable } from "@angular/core";
+import { Login } from "../../models/Login.model";
 
 @Injectable()
 export class LoginUserEffect {
@@ -39,6 +41,17 @@ export class LoginUserEffect {
       })
     ),
     { dispatch: false }
+  )
+
+  registerUserSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromRegisterActions.registerUserSuccess),
+      switchMap((action) => {
+        const { username, password } = action.user;
+        const login: Login = { username, password }
+        return [fromActions.loginUser({ login })]
+      })
+    )
   )
 
 }

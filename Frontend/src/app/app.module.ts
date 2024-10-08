@@ -21,6 +21,7 @@ import * as fromStore from './store';
 import { ModuleFacade } from './store/module.facade';
 import { HttpClientModule } from '@angular/common/http';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const NGRX_MODULES = [
   StoreModule.forRoot({ module: fromStore.moduleReducer }),
@@ -39,6 +40,7 @@ const NGRX_MODULES = [
     ExerciseComponent,
     LoginComponent,
     StarRatingComponent,
+    RegisterComponent,
   ],
   imports: [
     HttpClientModule,

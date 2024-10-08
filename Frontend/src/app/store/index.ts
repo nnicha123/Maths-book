@@ -15,11 +15,16 @@ import { submitExercise, submitExerciseError, submitExerciseSuccess } from "./su
 import { SubmitExerciseEffect } from "./submit-exercise/submit-exercise.effect";
 import { retrieveAnswers, retrieveAnswersError, retrieveAnswersSuccess } from "./retrieve-answers/retrieve-answers.action";
 import { RetrieveAnswersEffect } from "./retrieve-answers/retrieve-answers.effect";
+import { registerUser, registerUserError, registerUserSuccess } from "./register-user/register-user.action";
+import { RegisterUserEffect } from "./register-user/register-user.effect";
 
 const actions = {
     loginUser: loginUser,
     loginUserSuccess: loginUserSuccess,
     loginUserError: loginUserError,
+    registerUser: registerUser,
+    registerUserSuccess: registerUserSuccess,
+    registerUserError: registerUserError,
     logoutUser: logoutUser,
     checkIfNeedRefresh: checkIfNeedRefresh,
     refreshUser: refreshUser,
@@ -65,7 +70,8 @@ const effects: any[] = [
     RetrieveRankingEffect,
     TurnPageEffect,
     SubmitExerciseEffect,
-    RetrieveAnswersEffect
+    RetrieveAnswersEffect,
+    RegisterUserEffect
 ];
 
 export { actions, effects, moduleReducer }
